@@ -21,19 +21,6 @@
 
     lib = nixpkgs.lib;
   in {
-#    homeManagerConfigurations = {
-#      emaleth = home-manager.lib.homeManagerConfiguration {
-#        inherit system pkgs;
-#        username = "emaleth";
-#        homeDirectory = "/home/emaleth";
-#        configuration = {
-#          imports = [
-#            .config/nixpkgs/home.nix
-#          ];
-#        };
-#      };
-#    };
-
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         inherit system;
@@ -45,6 +32,10 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.emaleth = import ./home.nix;
+
+            home-manager.extraSpecialArgs = {
+              inherit nixvim;
+            };
           }
         ];
       };

@@ -7,9 +7,7 @@ with lib;
 let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in {
-  imports = [
-#    inputs.nixvim.homeManagerModules.nixvim
-  ];
+  imports = [];
   home = {
     username = "emaleth";
     homeDirectory = "/home/emaleth";
@@ -38,7 +36,6 @@ in {
       gnome.nautilus
       unzip
       imv
-#      nixvim
       killall
       ranger
       gimp
