@@ -15,6 +15,29 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+  ];
+  stylix = {
+    image = /home/emaleth/Pictures/Wallpapers/wallhaven-4l72jr.jpg;
+    #base16Scheme = "${base16-schemes}/gruvbox-dark-hard.yaml";
+    polarity = "dark";
+    fonts = { 
+      serif = config.stylix.fonts.sansSerif;
+      sansSerif = {
+        package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+        name = "FiraCode";
+      };
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+        name = "FiraCode";
+      };
+      emoji = {
+        package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+        name = "FiraCode";
+      };
+    };
+  };
   security.pam.services.swaylock = {
     text = "auth include login";
   };
@@ -68,7 +91,13 @@
   users.users.emaleth = {
     isNormalUser = true;
     description = "Emaleth";
-    extraGroups = [ "networkmanager" "wheel" "lpadmin" "video" "scanner" ];
+    extraGroups = [ 
+      "networkmanager" 
+      "wheel" 
+      "lpadmin" 
+      "video" 
+      "scanner" 
+    ];
     shell = pkgs.fish;
     packages = with pkgs; [];
   };
@@ -85,8 +114,9 @@
   environment = {
     systemPackages = with pkgs; [];
   };
+  
   programs.fish.enable = true;
-
+  
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
 
