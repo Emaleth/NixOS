@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modulesPath, inputs, ... }:
+{ config, pkgs, lib, base16-schemes, modulesPath, inputs, ... }:
 
 {
   imports =
@@ -20,7 +20,7 @@
   ];
   stylix = {
     image = /home/emaleth/Pictures/Wallpapers/wallhaven-4l72jr.jpg;
-    #base16Scheme = "${base16-schemes}/gruvbox-dark-hard.yaml";
+    base16Scheme = "${base16-schemes}/spacemacs.yaml";
     polarity = "dark";
     fonts = { 
       serif = config.stylix.fonts.sansSerif;

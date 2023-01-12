@@ -102,35 +102,42 @@ in {
       enableAliases = true;
     };
     nixvim = {
+      extraPackages = with pkgs; [
+        ripgrep
+        fd
+      ];
+      extraPlugins = with pkgs.vimPlugins; [
+        vim-nix
+      ];
       enable = true;
       viAlias = true;
       vimAlias = true;
       options = {
         nocompatible = true;            
         showmatch = true;               
-	      ignorecase = true;              
-    	  hlsearch = true;                
-  	    incsearch = true;               
-	      tabstop = 2;               
-	      softtabstop = 2;           
-	      expandtab = true;               
-  	    shiftwidth = 2;            
-	      autoindent = true;              
-	      number = true;                  
+        ignorecase = true;              
+    	hlsearch = true;                
+  	incsearch = true;               
+	tabstop = 2;               
+	softtabstop = 2;           
+	expandtab = true;               
+  	shiftwidth = 2;            
+	autoindent = true;              
+	number = true;                  
         wildmode = "longest, list";   
         #filetype plugin indent = on;   
-	      syntax = true;                   
-	      mouse = "a";                 
-	      clipboard = "unnamedplus";   
+	syntax = true;                   
+	mouse = "a";                 
+	clipboard = "unnamedplus";   
         #filetype plugin = on;          
-	      ttyfast = true;                 
-	      noswapfile = true;              
-	      nobackup = true;               
-  	    nowritebackup = true;           
-	      undodir = ~/.vim/backup;   
-	      undofile = true;		    
-	      undoreload = 10000;	    
-  	    scrolloff = 10;            
+	ttyfast = true;                 
+	noswapfile = true;              
+	nobackup = true;               
+  	nowritebackup = true;           
+	undodir = ~/.vim/backup;   
+	undofile = true;		    
+	undoreload = 10000;	    
+  	scrolloff = 10;            
         #&fcs = 'eob: ';            
         completeopt = "menu, menuone, noselect";
         termguicolors = true;
@@ -139,34 +146,35 @@ in {
       };
       plugins = {
         cmp-nvim-lsp.enable = true;
-	      cmp-treesitter.enable = true;
-	      lsp = {
-	        enable = true;
-	        servers = {
-	          cssls.enable = true;
-	          gdscript.enable = true;
-	          html.enable = true;
-	          jsonls.enable = true;
-	          pyright.enable = true;
-	          rnix-lsp.enable = true;
-	        };
-	      };
-	      nix.enable = true;
-	      nvim-cmp.enable = true;
-	      treesitter-context.enable = true;
-	      treesitter = {
-	        enable = true;
-	        nixGrammars = true;
-	        indent = true;
-	      };
+	cmp-treesitter.enable = true;
+	lsp = {
+	  enable = true;
+	  servers = {
+	    cssls.enable = true;
+	    gdscript.enable = true;
+	    html.enable = true;
+	    jsonls.enable = true;
+	    rnix-lsp.enable = true;
+	  };
+	};
+        telescope.enable = true;
+        nix.enable = true;
+        nvim-cmp.enable = true;
+        treesitter-context.enable = true;
+        treesitter = {
+          enable = true;
+          nixGrammars = true;
+          indent = true;
+          folding = true;
+        };
         bufferline = {
-	        enable = true;
-	        alwaysShowBufferline = true;
-	      };
+          enable = true;
+          alwaysShowBufferline = true;
+        };
       	lualine = {
-	        enable = true;
-	        alwaysDivideMiddle = true;
-	      };
+          enable = true;
+          alwaysDivideMiddle = true;
+        };
       };
     };
     waybar = { 
@@ -408,6 +416,17 @@ in {
     };
     fish = {
       enable = true;
+      plugins = [
+        {
+          name = "Hydro";
+          src = pkgs.fetchFromGitHub {
+            owner = "jorgebucaran";
+            repo = "hydro";
+            rev = "d4c107a2c99d1066950a09f605bffea61fc0efab";
+            sha256 = "sha256-cQYT1EKlSev+FZe/zgeb3kzaqYOvZTJxFXbmwOk0UKo=";
+          };
+        }
+      ];
       loginShellInit = ''
         # autostart ssh-agent 
         eval "$(ssh-agent -c)"
