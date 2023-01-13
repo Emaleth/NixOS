@@ -22,7 +22,6 @@ in {
       mpv
       yt-dlp
       ffmpeg
-      gnome.gnome-keyring
       zenith
       wofi
       imagemagick
@@ -32,7 +31,6 @@ in {
       libreoffice
       godot
       inkscape
-      gnome.nautilus
       unzip
       imv
       killall
@@ -50,6 +48,11 @@ in {
       slurp
       gcc
     ];
+    sessionVariables = {
+      EDITOR = "nvim";
+      SUDO_EDITOR = "nvim";
+      VISUAL = "nvim";
+    };  
   };
   
   wayland.windowManager.sway = {
@@ -413,6 +416,10 @@ in {
     };
     kitty = {
       enable = true;
+      font.size = 10;
+      settings = {
+        allow_remote_control = true;
+      };
     };
     fish = {
       enable = true;
