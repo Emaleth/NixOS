@@ -111,10 +111,25 @@ in {
       ];
       extraPlugins = with pkgs.vimPlugins; [
         vim-nix
+        rnvimr
       ];
+      maps = {
+        normal."<C-Bslash>" = {
+          silent = true;
+          action = "<cmd>RnvimrToggle<CR>";
+        };
+      };
+#      extraConfigLua = "
+#        let g:rnvimr_enable_ex = 1
+#        let g:rnvimr_enable_picker = 1
+#        let g:rnvimr_edit_cmd = 'drop'
+#        let g:rnvimr_enable_bw = 1
+#        highlight link RnvimrNormal CursorLine
+#      ";
       enable = true;
       viAlias = true;
       vimAlias = true;
+      wrapRc = true;
       options = {
         nocompatible = true;            
         showmatch = true;               
@@ -134,9 +149,9 @@ in {
 	clipboard = "unnamedplus";   
         #filetype plugin = on;          
 	ttyfast = true;                 
-	noswapfile = true;              
-	nobackup = true;               
-  	nowritebackup = true;           
+	swapfile = false;              
+	backup = false;               
+  	writebackup = false;           
 	undodir = ~/.vim/backup;   
 	undofile = true;		    
 	undoreload = 10000;	    
@@ -149,7 +164,9 @@ in {
       };
       plugins = {
         cmp-nvim-lsp.enable = true;
-	cmp-treesitter.enable = true;
+        cmp-nvim-lua.enable = true;
+        cmp-treesitter.enable = true;
+        cmp-snippy.enable = true;
 	lsp = {
 	  enable = true;
 	  servers = {
@@ -244,7 +261,7 @@ in {
             "on-click" = "pavucontrol";
           };
           "custom/launcher" = {
-          "format" = "";
+          "format" = "";
           "on-click" = "killall wofi | wofi --show run";
           };
           "custom/power" = {
@@ -423,17 +440,6 @@ in {
     };
     fish = {
       enable = true;
-      plugins = [
-        {
-          name = "Hydro";
-          src = pkgs.fetchFromGitHub {
-            owner = "jorgebucaran";
-            repo = "hydro";
-            rev = "d4c107a2c99d1066950a09f605bffea61fc0efab";
-            sha256 = "sha256-cQYT1EKlSev+FZe/zgeb3kzaqYOvZTJxFXbmwOk0UKo=";
-          };
-        }
-      ];
       loginShellInit = ''
         # autostart ssh-agent 
         eval "$(ssh-agent -c)"
@@ -456,6 +462,19 @@ in {
       anchor = "bottom-right";
     };
     brave.enable = true;
+    starship = {
+      enable = true;
+      enableFishIntegration = true;
+      settings = {
+        add_newline = false;
+        format = "$all$directory$character";
+        scan_timeout = 10;
+        character = {
+          success_symbol = "[](bold green)";
+          error_symbol = "[](bold red)";
+        };
+      };
+    };
   };
   gtk = {
     enable = true;
