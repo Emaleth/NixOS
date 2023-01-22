@@ -18,6 +18,7 @@ in {
       wl-clipboard
       obsidian
       neofetch
+      spotify
       blueman
       mpv
       yt-dlp
@@ -27,11 +28,11 @@ in {
       imagemagick
       gnome.simple-scan
       libappindicator-gtk3
-      spotify
       libreoffice
-      godot
+      unstable.godot_4
       inkscape
       unzip
+      zip
       imv
       killall
       ranger
@@ -129,9 +130,8 @@ in {
       enable = true;
       viAlias = true;
       vimAlias = true;
-      wrapRc = true;
       options = {
-        nocompatible = true;            
+        compatible = false;            
         showmatch = true;               
         ignorecase = true;              
     	hlsearch = true;                
@@ -143,11 +143,9 @@ in {
 	autoindent = true;              
 	number = true;                  
         wildmode = "longest, list";   
-        #filetype plugin indent = on;   
 	syntax = true;                   
 	mouse = "a";                 
 	clipboard = "unnamedplus";   
-        #filetype plugin = on;          
 	ttyfast = true;                 
 	swapfile = false;              
 	backup = false;               
@@ -156,7 +154,6 @@ in {
 	undofile = true;		    
 	undoreload = 10000;	    
   	scrolloff = 10;            
-        #&fcs = 'eob: ';            
         completeopt = "menu, menuone, noselect";
         termguicolors = true;
         foldmethod = "expr";
@@ -203,11 +200,11 @@ in {
         mainBar = {
           height = 16;
           layer = "top";
-          position = "bottom";
+          position = "top";
           spacing = 2;
-          margin-top = 2;
-          margin-bottom = 2;
-          modules-center = ["custom/launcher" "sway/workspaces" "tray" "custom/media" "pulseaudio" "network" "battery" "clock" "custom/power"];
+          modules-left = ["sway/workspaces"];
+          modules-center = ["clock"];
+          modules-right = ["tray" "pulseaudio" "network" "battery"];
           "sway/workspaces" = {
             "disable-scroll" = true;
               "all-outputs" = false;
@@ -258,165 +255,110 @@ in {
               "car" = "";
               "default" = ["" "" ""];
             };
-            "on-click" = "pavucontrol";
           };
-          "custom/launcher" = {
-          "format" = "";
-          "on-click" = "killall wofi | wofi --show run";
-          };
-          "custom/power" = {
-            "format" = "" ;
-          };	
         };
       };
-      style = 
-        "
-        * {
-          border: none;
-          border-radius: 0px;
-          font-family: Meslo;
-          font-size: 12px;
-          min-height: 0;
-        }
-        window#waybar {
-          background-color: transparent;
-          color: #ffffff;
-          transition-property: background-color;
-          transition-duration: .5s;
-        }
-        window#waybar.hidden {
-          opacity: 0.2;
-        }
-        #workspaces button {
-          background: #1f1f1f;
-          color: #ffffff;
-          border-radius: 20px;
-        }
-        #workspaces button:hover {
-          background: lightblue;
-          color: black;
-          border-bottom: 3px solid #ffffff;
-        }
-        #workspaces button.focused {
-          background: #2BD2FF;
-          color: black;
-        }
-        #workspaces button.focused:hover {
-          background: lightblue;
-          color: black;
-          border-bottom: 3px solid #ffffff;
-        }
-        #workspaces button.urgent {
-          background-color: #eb4d4b;
-        }
-        #clock,
-        #battery,
-        #network,
-        #pulseaudio,
-        #custom-launcher,
-        #custom-power,
-        #tray {
-          padding: 0 10px;
-          color: black;
-          border-radius: 20px 0px 0px 20px;
-        }
-        #pulseaudio,
-        #network,
-        #battery {
-          border-radius: 0px 0px 0px 0px;
-        }
-        #window,
-        #workspaces {
-          margin: 0px 4px;
-        }
-        .modules-left > widget:first-child > #workspaces {
-          margin-left: 0px;
-        }
-        .modules-right > widget:last-child > #workspaces {
-          margin-right: 0px;
-        }
-        #clock {
-          background-color: #FA8BFF;
-          background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          color: black;
-          border-radius: 0px 20px 20px 0px;
-          margin-right: 4px;
-        }
-        #battery {
-          background-color: #ffffff;
-          color: #000000;
-        }
-        #battery.charging, #battery.plugged {
-          color: #ffffff;
-          background-color: #26A65B;
-        }
-        @keyframes blink {
-          to {
-            background-color: #ffffff;
-            color: #000000;
-          }
-        }
-        #battery.critical:not(.charging) {
-          background-color: #f53c3c;
-          color: #ffffff;
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-        }
-        label:focus {
-          background-color: #000000;
-        }
-        #network {
-          background-color: #FA8BFF;
-          background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          color: black;
-        }
-        #network.disconnected {
-          background-color: #FA8BFF;
-          background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          color: red;
-        }
-        #pulseaudio {
-          background-color: #FA8BFF;
-          background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          color: black;
-        }
-        #pulseaudio.muted {
-          background-color: #FA8BFF;
-          background-image: linear-gradient(45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          color: red;
-        }
-        #custom-power{
-          background-color: #FA8BFF;
-          background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          font-size: 16px;
-          border-radius: 19px;
-        }
-        #custom-launcher{
-          background-color: #FA8BFF;
-          background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          font-size: 16px;
-          border-radius: 19px;
-        }
-        #tray {
-          background-color: #FA8BFF;
-          background-image: linear-gradient(-45deg, #2BD2FF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          color: black;
-        }
-        #tray > .passive {
-          -gtk-icon-effect: dim;
-          background-color: #FA8BFF;
-          background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          color: black;
-        }
-        #tray > .needs-attention {
-          -gtk-icon-effect: highlight;
-          background-color: #FA8BFF;
-          background-image: linear-gradient(-45deg, #FA8BFF 0%, #2BD2FF 52%, #2BD2FF 90%);
-          color: black;
-        }
+      style = "
+* {
+    transition: none;
+    box-shadow: none;
+    font-size: 13px;
+    color: #f2f2f2;
+}
+
+#waybar {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    background: #060608;
+    /*border-radius: 10px;*/
+    border: none;
+}
+
+#workspaces {
+    margin: 0 3px;
+    color: transparent;
+}
+
+#workspaces button {
+    margin: 3px 0;
+    padding: 0 3px;
+}
+
+#workspaces button.visible {
+}
+
+#workspaces button.focused {
+    background: #32363d;
+    border-radius: 10px;
+}
+
+#workspaces button.urgent * {
+    color: #ff0055;
+}
+
+
+#mode, #battery, #bluetooth, #cpu, #disk, #memory, #temperature, #network, #pulseaudio, #idle_inhibitor, #backlight, #mpd, #clock, #temperature {
+    margin: 4px 2px;
+    padding: 0 8px;
+    border-radius: 20px;
+    min-width: 8px;
+    background-color: #32363d;
+}
+
+#clock {
+    margin: 4px 2px;
+    padding: 0 10px;
+  }
+
+#tray {
+    margin: 3px 2px;
+    border-radius: 12px;
+    background-color: #060608;
+}
+  
+#tray * {
+    padding: 0 6px;
+    border-left: 1px solid #060608;
+}
+  
+#tray *:first-child {
+    border-left: none;
+}
+
+#mpd * {
+    min-width: 10px;
+    font-size: 11px;
+    font-family: JetBrainsMono;
+}
+  
+#custom-powermenu {
+    margin: 4px 5px 4px 1px;
+    padding: 0 6px;
+    background-color: #722F37;
+    border-radius: 10px;
+    min-width: 15px;
+}
+  
+#custom-launcher {
+    margin: 4px 1px 4px 5px;
+    padding: 0 6px;
+    background-color: #ff0055;
+    border-radius: 10px;
+    min-width: 15px;
+}
+
+#battery.warning {
+    color: #e5c07a
+} 
+
+#battery.critical {
+    color: #ff0055
+}
+
+#temperature.critical {
+    color: #e06b74;
+}
       ";
     };
     git = {
