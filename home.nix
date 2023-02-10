@@ -135,17 +135,18 @@ in {
   	scrolloff = 10;            
         termguicolors = true;
       };
-      colorschemes.base16 = {
+      colorschemes.gruvbox = {
         enable = true;
-        useTruecolor = true;
+        contrastDark = "hard";
+        #useTruecolor = true;
       };
       plugins = {
-#        indent-blankline = {
+#        indent_blankline = {
 #          enable = true;
 #          useTreesitterScope = true;
 #          useTreesitter = true;
 #        };
-#        nvim-colorizer = {
+#        nvim_colorizer = {
 #          enable = true;
 #        };
         trouble = {
