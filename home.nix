@@ -113,76 +113,80 @@ in {
       extraPlugins = with pkgs.vimPlugins; [
         vim-nix
         rnvimr
+        mkdir-nvim
       ];
-      maps = {
-        normal."<C-Bslash>" = {
-          silent = true;
-          action = "<cmd>RnvimrToggle<CR>";
-        };
-      };
-#      extraConfigLua = "
-#        let g:rnvimr_enable_ex = 1
-#        let g:rnvimr_enable_picker = 1
-#        let g:rnvimr_edit_cmd = 'drop'
-#        let g:rnvimr_enable_bw = 1
-#        highlight link RnvimrNormal CursorLine
-#      ";
       enable = true;
       viAlias = true;
       vimAlias = true;
       options = {
-        compatible = false;            
-        showmatch = true;               
-        ignorecase = true;              
-    	hlsearch = true;                
-  	incsearch = true;               
-	tabstop = 2;               
-	softtabstop = 2;           
-	expandtab = true;               
-  	shiftwidth = 2;            
 	autoindent = true;              
 	number = true;                  
-        wildmode = "longest, list";   
-	syntax = true;                   
+        syntax = true;                   
 	mouse = "a";                 
 	clipboard = "unnamedplus";   
 	ttyfast = true;                 
 	swapfile = false;              
 	backup = false;               
+        completeopt = "menu,menuone,noselect";
   	writebackup = false;           
-	undodir = ~/.vim/backup;   
+	undodir = ".nixvim/undo";   
 	undofile = true;		    
 	undoreload = 10000;	    
   	scrolloff = 10;            
-        completeopt = "menu, menuone, noselect";
         termguicolors = true;
-        foldmethod = "expr";
-        foldexpr = "nvim_treesitter#foldexpr()";
+      };
+      colorschemes.base16 = {
+        enable = true;
+        useTruecolor = true;
       };
       plugins = {
-        cmp-nvim-lsp.enable = true;
-        cmp-nvim-lua.enable = true;
-        cmp-treesitter.enable = true;
-        cmp-snippy.enable = true;
-	lsp = {
-	  enable = true;
-	  servers = {
-	    cssls.enable = true;
-	    gdscript.enable = true;
-	    html.enable = true;
-	    jsonls.enable = true;
-	    rnix-lsp.enable = true;
-	  };
-	};
-        telescope.enable = true;
-        nix.enable = true;
-        nvim-cmp.enable = true;
-        treesitter-context.enable = true;
+#        indent-blankline = {
+#          enable = true;
+#          useTreesitterScope = true;
+#          useTreesitter = true;
+#        };
+#        nvim-colorizer = {
+#          enable = true;
+#        };
+        trouble = {
+          enable = true;
+          icons = true;
+        };
+        nvim-cmp = {
+          enable = true;
+          auto_enable_sources = true;
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "path"; }
+            { name = "buffer"; }
+          ];
+          mapping = {
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<Tab>" = {
+            modes = [ "i" "s" ];
+            action = ''
+              function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                else
+                  fallback()
+                end
+              end
+            '';
+            };
+          };
+        };
+        treesitter-context = {
+          enable = true;
+        };
+        treesitter-refactor = {
+          enable = true;
+        };
         treesitter = {
           enable = true;
-          nixGrammars = true;
-          indent = true;
           folding = true;
+          indent = true;
+          nixGrammars = true;
         };
         bufferline = {
           enable = true;
@@ -191,6 +195,20 @@ in {
       	lualine = {
           enable = true;
           alwaysDivideMiddle = true;
+        };
+        nix = {
+          enable = true;
+        };
+        lsp = {
+          enable = true;
+          servers = {
+            gdscript.enable = true;
+            jsonls.enable = true;
+            rnix-lsp.enable = true;
+          };
+        };
+        lsp-lines = {
+          enable = true;
         };
       };
     };
@@ -451,3 +469,4 @@ in {
     };
   };
 }
+

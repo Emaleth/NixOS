@@ -9,7 +9,6 @@
     };
     nixvim.url = github:pta2002/nixvim;
     stylix.url = github:danth/stylix;
-#    base16-schemes.url = github:tinted-theming/base16-schemes;
   };
 
   outputs = { nixpkgs, home-manager, nixvim, stylix, ... }:

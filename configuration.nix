@@ -19,7 +19,7 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
   stylix = {
-    image = /home/emaleth/Pictures/Wallpapers/wallhaven-733vv9.png;
+    image = /home/emaleth/Pictures/Wallpapers/wallhaven-p9oj33.png;
     base16Scheme = "${base16-schemes}/ayu-dark.yaml";
     polarity = "dark";
     fonts = { 
