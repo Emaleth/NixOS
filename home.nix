@@ -27,7 +27,6 @@ in {
       wofi
       imagemagick
       gnome.simple-scan
-      libappindicator-gtk3
       libreoffice
       unstable.godot_4
       inkscape
@@ -177,18 +176,18 @@ in {
             };
           };
         };
-        treesitter-context = {
-          enable = true;
-        };
-        treesitter-refactor = {
-          enable = true;
-        };
-        treesitter = {
-          enable = true;
-          folding = true;
-          indent = true;
-          nixGrammars = true;
-        };
+#        treesitter-context = {
+#          enable = true;
+#        };
+#        treesitter-refactor = {
+#          enable = true;
+#        };
+#        treesitter = {
+#          enable = false;#true;
+#          folding = true;
+#          indent = true;
+#          nixGrammars = true;
+#        };
         bufferline = {
           enable = true;
           alwaysShowBufferline = true;
