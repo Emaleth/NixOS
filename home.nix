@@ -2,7 +2,14 @@
 
 with builtins;
 
-{
+let
+  lib = pkgs.lib;
+
+  old-unstable = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/744d35f6298ce1638c6de5ec1d752840b3d1bdd4.tar.gz";
+  }) {};
+  godot_beta_16 = old-unstable.godot_4;
+in {
   imports = [
     nixvim.homeManagerModules.nixvim
   ];
@@ -10,43 +17,47 @@ with builtins;
     username = "emaleth";
     homeDirectory = "/home/emaleth";
     stateVersion = "22.11";
-    packages = [
-      # UNSTABLE
-      pkgs-unstable.godot_4
-      
-      # STABLE
-      pkgs.wl-clipboard
-      pkgs.obsidian
-      pkgs.neofetch
-      pkgs.spotify
-      pkgs.blueman
-      pkgs.mpv
-      pkgs.yt-dlp
-      pkgs.ffmpeg
-      pkgs.zenith
-      pkgs.wofi
-      pkgs.imagemagick
-      pkgs.gnome.simple-scan
-      pkgs.libreoffice
-      pkgs.inkscape
-      pkgs.unzip
-      pkgs.zip
-      pkgs.imv
-      pkgs.killall
-      pkgs.ranger
-      pkgs.gimp
-      pkgs.discord
-      pkgs.autotiling
-      pkgs.krita
-      pkgs.blender
-      pkgs.pamixer
-      pkgs.libnotify
-      pkgs.bitwarden
-      pkgs.grim
-      pkgs.dconf
-      pkgs.slurp
-      pkgs.gcc
-    ];
+    packages = with pkgs; [
+      wl-clipboard
+      obsidian
+      neofetch
+      spotify
+      blueman
+      mpv
+      yt-dlp
+      ffmpeg
+      zenith
+      wofi
+      imagemagick
+      gnome.simple-scan
+      libreoffice
+      inkscape
+      unzip
+      zip
+      imv
+      killall
+      ranger
+      gimp
+      discord
+      autotiling
+      krita
+      blender
+      pamixer
+      libnotify
+      bitwarden
+      grim
+      dconf
+      slurp
+      gcc
+    ] 
+#    ++ 
+#    (with pkgs-unstable; [
+#      godot_4
+#    ])
+    ++
+    ([
+      godot_beta_16
+    ]);
     sessionVariables = {
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
@@ -64,7 +75,7 @@ with builtins;
       keybindings =  
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
-        in pkgs.lib.mkOptionDefault {
+        in lib.mkOptionDefault {
           "Shift+print" = "exec --no-startup-id slurp | grim -g - Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') && notify-send Grim ''";
           "print" = "exec --no-startup-id grim  Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') && notify-send Grim ''";
           "XF86AudioRaiseVolume" = "exec pamixer -i 5";
