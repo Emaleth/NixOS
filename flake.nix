@@ -2,16 +2,25 @@
   description = "Emaleth's NixOS configuration";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
-    home-manager = {
+    nixpkgs = {
+      url = github:NixOS/nixpkgs/nixos-22.11;
+    };
+    nixpkgs-unstable = {
+      url = github:NixOS/nixpkgs/nixos-unstable;
+    };
+   home-manager = {
       url = github:nix-community/home-manager/release-22.11;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim.url = github:pta2002/nixvim;
-    stylix.url = github:danth/stylix;
+    nixvim = {
+      url = github:pta2002/nixvim/0bf4313f229c7b057c7c0351db5ba28c5fb47710;
+    };
+    stylix = {
+      url = github:danth/stylix;
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixvim, stylix, ... }:
+  outputs = { nixpkgs, home-manager, nixvim, stylix, nixpkgs-unstable, ... }:
   let
     system = "x86_64-linux";
 
@@ -19,7 +28,12 @@
       inherit system;
       config = { allowUnfree = true; };
     };
-
+    
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config = { allowUnfree = true; };
+    };
+   
     lib = nixpkgs.lib;
 
     base16-schemes = pkgs.fetchFromGitHub {
@@ -46,11 +60,12 @@
             home-manager.users.emaleth = import ./home.nix;
 
             home-manager.extraSpecialArgs = {
-              inherit nixvim;
+              inherit nixvim pkgs-unstable;
             };
           }
           ({ lib, ... }: {
             nix.registry.nixpkgs.flake = nixpkgs;
+            nix.registry.nixpkgs-unstable.flake = nixpkgs-unstable;
             nix.registry.nixvim.flake = nixvim;
             nix.registry.stylix.flake = stylix;
           })
