@@ -68,6 +68,9 @@ in {
       gtk = true;
     };
     config = {
+      window = {
+        titlebar = false;
+      };
       keybindings =  
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
