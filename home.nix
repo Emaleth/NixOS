@@ -1,4 +1,4 @@
-{ config, pkgs, nixvim, pkgs-unstable, ... }:
+{ config, pkgs, nixvim, ... }:
 
 with builtins;
 
@@ -16,7 +16,7 @@ in {
   home = {
     username = "emaleth";
     homeDirectory = "/home/emaleth";
-    stateVersion = "22.11";
+    stateVersion = "23.05";
     packages = with pkgs; [
       wl-clipboard
       obsidian
@@ -50,10 +50,6 @@ in {
       slurp
       gcc
     ] 
-#    ++ 
-#    (with pkgs-unstable; [
-#      godot_4
-#    ])
     ++
     ([
       godot_beta_16
@@ -128,20 +124,20 @@ in {
       viAlias = true;
       vimAlias = true;
       options = {
-	autoindent = true;              
-	number = true;                  
+        autoindent = true;              
+        number = true;                  
         syntax = "true";                   
-	mouse = "a";                 
-	clipboard = "unnamedplus";   
-	ttyfast = true;                 
-	swapfile = false;              
-	backup = false;               
+        mouse = "a";                 
+        clipboard = "unnamedplus";   
+        ttyfast = true;                 
+        swapfile = false;              
+        backup = false;               
         completeopt = "menu,menuone,noselect";
-  	writebackup = false;           
-	undodir = "./.nixvim/undo";   
-	undofile = true;		    
-	undoreload = 10000;	    
-  	scrolloff = 10;            
+        writebackup = false;           
+        undodir = "./.nixvim/undo";   
+        undofile = true;		    
+        undoreload = 10000;	    
+        scrolloff = 10;            
         termguicolors = true;
       };
       colorschemes.gruvbox = {
@@ -150,14 +146,14 @@ in {
         #useTruecolor = true;
       };
       plugins = {
-#        indent_blankline = {
-#          enable = true;
-#          useTreesitterScope = true;
-#          useTreesitter = true;
-#        };
-#        nvim_colorizer = {
-#          enable = true;
-#        };
+        indent-blankline = {
+          enable = true;
+          useTreesitterScope = true;
+          useTreesitter = true;
+        };
+        nvim-colorizer = {
+          enable = true;
+        };
         trouble = {
           enable = true;
           icons = true;
@@ -186,18 +182,18 @@ in {
             };
           };
         };
-#        treesitter-context = {
-#          enable = true;
-#        };
-#        treesitter-refactor = {
-#          enable = true;
-#        };
-#        treesitter = {
-#          enable = false;#true;
-#          folding = true;
-#          indent = true;
-#          nixGrammars = true;
-#        };
+        treesitter-context = {
+          enable = true;
+        };
+        treesitter-refactor = {
+          enable = true;
+        };
+        treesitter = {
+          enable = true;
+          folding = true;
+          indent = true;
+          nixGrammars = true;
+        };
         bufferline = {
           enable = true;
           alwaysShowBufferline = true;
