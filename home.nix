@@ -120,7 +120,7 @@ in {
       ];
       extraPlugins = with pkgs.vimPlugins; [
         vim-nix
-        rnvimr
+        neovim-ayu
         mkdir-nvim
       ];
       enable = true;
@@ -143,11 +143,7 @@ in {
         scrolloff = 10;            
         termguicolors = true;
       };
-      colorschemes.gruvbox = {
-        enable = true;
-        contrastDark = "hard";
-        #useTruecolor = true;
-      };
+      colorscheme = "ayu-dark";
       plugins = {
         indent-blankline = {
           enable = true;
@@ -172,17 +168,25 @@ in {
           mapping = {
             "<CR>" = "cmp.mapping.confirm({ select = true })";
             "<Tab>" = {
-            modes = [ "i" "s" ];
-            action = ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                else
-                  fallback()
+              modes = [ "i" "s" ];
+              action = ''
+                function(fallback)
+                  if cmp.visible() then
+                    cmp.select_next_item()
+                  else
+                    fallback()
+                  end
                 end
-              end
-            '';
+              '';
             };
+#            "<C-Bslash>" = {
+#              modes = [ "i" "n" "v" ];
+#              action = ''<cmd>NvimTreeToggle<CR>'';
+#            };
+#            "<A-Bslash>" = {
+#              modes = [ "i" "n" "v" ];
+#              action = ''<cmd>TroubleToggle<CR>'';
+#            };
           };
         };
         treesitter-context = {
@@ -204,6 +208,16 @@ in {
       	lualine = {
           enable = true;
           alwaysDivideMiddle = true;
+        };
+        nvim-tree = {
+          enable = true;
+          disableNetrw = true;
+          git = {
+            enable = true;
+            ignore = false;
+          };
+          modified.enable = true;
+          openOnSetup = true;
         };
         nix = {
           enable = true;
@@ -394,7 +408,7 @@ in {
       userEmail = "";
       extraConfig = {
         core.editor = "vim";
-	      credential.helper = "cache";
+        credential.helper = "cache";
       };
     };
     zathura = {
@@ -447,14 +461,10 @@ in {
   };
   gtk = {
     enable = true;
-    iconTheme = {
-      name = "luna-icons";
-      package = pkgs.luna-icons;
-    };
-    cursorTheme = {
-      name = "numix-cursor-theme";
-      package = pkgs.numix-cursor-theme;
-    }; 
+#    theme = {
+#      name = "ayu-theme-gtk-unstable";
+#      package = pkgs.ayu-theme-gtk-unstable;
+#    };
   };
   services = {
     swayidle = {
