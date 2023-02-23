@@ -27,6 +27,7 @@ in {
       yt-dlp
       ffmpeg
       zenith
+      nurl
       wofi
       imagemagick
       gnome.simple-scan
@@ -109,6 +110,9 @@ in {
   };
   programs = {
     home-manager.enable = true;
+    rofi = {
+      enable = true;
+    };
     exa = {
       enable = true;
       enableAliases = true;
@@ -121,7 +125,9 @@ in {
       extraPlugins = with pkgs.vimPlugins; [
         vim-nix
         neovim-ayu
+        nvim-web-devicons
         mkdir-nvim
+        lsp-colors-nvim
       ];
       enable = true;
       viAlias = true;
@@ -144,6 +150,40 @@ in {
         termguicolors = true;
       };
       colorscheme = "ayu-dark";
+      maps = {
+        normal."<M-Up>" = {
+          silent = true;
+          action = "<cmd>move-2<CR>";
+        };
+        insert."<M-Up>" = {
+          silent = true;
+          action = "<cmd>move-2<CR>";
+        };
+        normal."<M-Down>" = {
+          silent = true;
+          action = "<cmd>move+<CR>";
+        };
+        insert."<M-Down>" = {
+          silent = true;
+          action = "<cmd>move+<CR>";
+        };
+        normal."<C-Bslash>" = {
+          silent = true;
+          action = "<cmd>NvimTreeToggle<CR>";
+        };
+        insert."<C-Bslash>" = {
+          silent = true;
+          action = "<cmd>NvimTreeToggle<CR>";
+        };
+        normal."<M-Bslash>" = {
+          silent = true;
+          action = "<cmd>TroubleToggle<CR>";
+        }; 
+        insert."<M-Bslash>" = {
+          silent = true;
+          action = "<cmd>TroubleToggle<CR>";
+        };
+      };
       plugins = {
         indent-blankline = {
           enable = true;
@@ -169,7 +209,7 @@ in {
             "<CR>" = "cmp.mapping.confirm({ select = true })";
             "<Tab>" = {
               modes = [ "i" "s" ];
-              action = ''
+              action = "
                 function(fallback)
                   if cmp.visible() then
                     cmp.select_next_item()
@@ -177,16 +217,8 @@ in {
                     fallback()
                   end
                 end
-              '';
+              ";
             };
-#            "<C-Bslash>" = {
-#              modes = [ "i" "n" "v" ];
-#              action = ''<cmd>NvimTreeToggle<CR>'';
-#            };
-#            "<A-Bslash>" = {
-#              modes = [ "i" "n" "v" ];
-#              action = ''<cmd>TroubleToggle<CR>'';
-#            };
           };
         };
         treesitter-context = {
@@ -229,9 +261,6 @@ in {
             jsonls.enable = true;
             rnix-lsp.enable = true;
           };
-        };
-        lsp-lines = {
-          enable = true;
         };
       };
     };
