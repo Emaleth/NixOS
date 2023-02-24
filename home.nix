@@ -437,7 +437,7 @@ in {
     git = {
       enable = true;
       userName = "Emaleth";
-      userEmail = "";
+      userEmail = "Emaleth@protonmail.com";
       extraConfig = {
         core.editor = "vim";
         credential.helper = "cache";
