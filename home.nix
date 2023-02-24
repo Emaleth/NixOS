@@ -443,7 +443,7 @@ in {
         credential.helper = "cache";
         commit.gpgsign = true;
         gpg.format = "ssh";
-        user.signingKey = "~/.ssh/id_ed25519.pub";
+        user.signingKey = "~/.ssh/id_ed25519";
       };
     };
     zathura = {
