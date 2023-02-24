@@ -463,7 +463,7 @@ in {
         eval "$(ssh-agent -c)"
         # autostart sway
         if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"
-	        exec sway
+          exec sway
         end
       '';
       shellInit = ''
