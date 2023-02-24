@@ -1,17 +1,16 @@
 { config, pkgs, lib, base16-schemes, modulesPath, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    /etc/nixos/hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  hardware.bluetooth.enable = true;
+  # hardware.bluetooth.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -38,9 +37,13 @@
       };
     };
   };
-  security.pam.services.swaylock = {
-    text = "auth include login";
+  security = {
+    pam.services.swaylock = {
+      text = "auth include login";
+    };
+    rtkit.enable = true;
   };
+
   nix = {
     package = pkgs.nixFlakes;
     settings.experimental-features = [ "nix-command" "flakes" ];
@@ -71,22 +74,22 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "it";
-    xkbVariant = "";
-  };
+  # services.xserver = {
+  #   layout = "it";
+  #   xkbVariant = "";
+  # };
 
   # Configure console keymap
   console.keyMap = "it2";
 
   # rtkit is optional but recommended
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  # };
 
   users.users.emaleth = {
     isNormalUser = true;
@@ -99,27 +102,43 @@
       "scanner" 
     ];
     shell = pkgs.fish;
-    packages = with pkgs; [];
+    # packages = with pkgs; [];
   };
 
+  # services = {
+  # };
+
+  nixpkgs.config.allowUnfree = true;
+  # environment = {
+    # systemPackages = with pkgs; [];
+  # };
+  
+  # programs.fish.enable = true;
+  
   services = {
+    xserver = {
+      layout = "it";
+      xkbVariant = "";
+    };
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+    };
     printing = {
       enable = true;
       drivers = [ pkgs.hplip ];
     };
-  };
-
-  services.getty.autologinUser = "emaleth";
-  nixpkgs.config.allowUnfree = true;
-  environment = {
-    systemPackages = with pkgs; [];
+    getty.autologinUser = "emaleth";
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
   };
   
-  programs.fish.enable = true;
-  
-  services.avahi.enable = true;
-  services.avahi.nssmdns = true;
-
   hardware = {
     sane = {
       enable = true;

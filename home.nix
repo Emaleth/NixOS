@@ -32,9 +32,6 @@ in {
       imagemagick
       gnome.simple-scan
       gnome.nautilus
-      gnome.sushi
-      # gnome.nixos-gsettings-overrides
-      # nautilus-open-any-terminal
       neovide
       libreoffice
       inkscape
@@ -64,6 +61,12 @@ in {
       SUDO_EDITOR = "nvim";
       VISUAL = "nvim";
     };  
+    pointerCursor = {
+      package = pkgs.catppuccin-cursors;
+      name = "mochaLight";
+      size = 16;
+      gtk.enable = true;
+    };
   };
   
   wayland.windowManager.sway = {
@@ -496,10 +499,6 @@ in {
   };
   gtk = {
     enable = true;
-#    theme = {
-#      name = "ayu-theme-gtk-unstable";
-#      package = pkgs.ayu-theme-gtk-unstable;
-#    };
   };
   services = {
     swayidle = {
@@ -508,9 +507,6 @@ in {
         { timeout = 300; command = "${pkgs.swaylock}/bin/swaylock -fF"; } 
       ];
     };
-    # blueman-applet = {
-    #   enable = true;
-    # };
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
