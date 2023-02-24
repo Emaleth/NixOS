@@ -31,13 +31,17 @@ in {
       wofi
       imagemagick
       gnome.simple-scan
+      gnome.nautilus
+      gnome.sushi
+      # gnome.nixos-gsettings-overrides
+      # nautilus-open-any-terminal
+      neovide
       libreoffice
       inkscape
       unzip
       zip
       imv
       killall
-      ranger
       gimp
       discord
       autotiling
@@ -437,6 +441,9 @@ in {
       extraConfig = {
         core.editor = "vim";
         credential.helper = "cache";
+        commit.gpgsign = true;
+        gpg.format = "ssh";
+        user.signingKey = "~/.ssh/id_ed25519.pub";
       };
     };
     zathura = {
@@ -501,13 +508,12 @@ in {
         { timeout = 300; command = "${pkgs.swaylock}/bin/swaylock -fF"; } 
       ];
     };
-    blueman-applet = {
-      enable = true;
-    };
+    # blueman-applet = {
+    #   enable = true;
+    # };
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      pinentryFlavor = "gtk2";
       enableFishIntegration = true;
       extraConfig = "
         AddKeysToAgent yes;
