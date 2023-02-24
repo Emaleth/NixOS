@@ -73,23 +73,7 @@
     LC_TIME = "it_IT.utf8";
   };
 
-  # Configure keymap in X11
-  # services.xserver = {
-  #   layout = "it";
-  #   xkbVariant = "";
-  # };
-
-  # Configure console keymap
   console.keyMap = "it2";
-
-  # rtkit is optional but recommended
-  # security.rtkit.enable = true;
-  # services.pipewire = {
-  #   enable = true;
-  #   alsa.enable = true;
-  #   alsa.support32Bit = true;
-  #   pulse.enable = true;
-  # };
 
   users.users.emaleth = {
     isNormalUser = true;
@@ -102,18 +86,9 @@
       "scanner" 
     ];
     shell = pkgs.fish;
-    # packages = with pkgs; [];
   };
 
-  # services = {
-  # };
-
   nixpkgs.config.allowUnfree = true;
-  # environment = {
-    # systemPackages = with pkgs; [];
-  # };
-  
-  # programs.fish.enable = true;
   
   services = {
     xserver = {
