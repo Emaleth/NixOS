@@ -175,16 +175,13 @@ in {
           silent = true;
           action = "<cmd>NvimTreeToggle<CR>";
         };
-        normal."<M-Bslash>" = {
-          silent = true;
-          action = "<cmd>TroubleToggle<CR>";
-        }; 
-        insert."<M-Bslash>" = {
-          silent = true;
-          action = "<cmd>TroubleToggle<CR>";
-        };
       };
       plugins = {
+        comment-nvim = {
+          enable = true;
+          opleader.line = "<C-k>";
+          toggler.line = "<C-k>";
+        };
         indent-blankline = {
           enable = true;
           useTreesitterScope = true;
@@ -196,6 +193,8 @@ in {
         trouble = {
           enable = true;
           icons = true;
+          autoClose = true;
+          autoOpen = true;
         };
         nvim-cmp = {
           enable = true;
