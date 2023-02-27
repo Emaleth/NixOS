@@ -62,10 +62,14 @@ in {
       VISUAL = "nvim";
     };  
     pointerCursor = {
-      package = pkgs.catppuccin-cursors;
-      name = "mochaLight";
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ";
       size = 16;
       gtk.enable = true;
+      x11 = {
+        enable = true;
+        defaultCursor = "Vanilla-DMZ";
+      };
     };
   };
   
@@ -117,9 +121,6 @@ in {
   };
   programs = {
     home-manager.enable = true;
-    rofi = {
-      enable = true;
-    };
     exa = {
       enable = true;
       enableAliases = true;
@@ -235,7 +236,6 @@ in {
         };
         treesitter = {
           enable = true;
-          folding = true;
           indent = true;
           nixGrammars = true;
         };
@@ -504,8 +504,22 @@ in {
     swayidle = {
       enable = true;
       timeouts = [ 
-        { timeout = 300; command = "${pkgs.swaylock}/bin/swaylock -fF"; } 
+        { 
+          timeout = 300; 
+          command = "${pkgs.swaylock}/bin/swaylock -fF"; 
+        } 
+        { 
+          timeout = 600; 
+          command = ''swaymsg "output * dpms off"''; 
+          resumeCommand = ''swaymsg "output * dpms on"'';
+        }
       ];
+      # events = [
+      #   {
+      #     event = "after-resume";
+      #     command = "sudo rmmod i2c_hid_acpi && sudo modprobe i2c_hid_acpi";
+      #   }
+      # ];
     };
     gpg-agent = {
       enable = true;
