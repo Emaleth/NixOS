@@ -18,7 +18,7 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
   stylix = {
-    image = /home/emaleth/Pictures/Wallpapers/wallhaven-9mw168.jpg;
+    image = /home/emaleth/Pictures/Wallpapers/NixOS-wopr11.png;
     base16Scheme = "${base16-schemes}/ayu-dark.yaml";
     polarity = "dark";
     fonts = { 

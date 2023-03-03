@@ -4,11 +4,6 @@ with builtins;
 
 let
   lib = pkgs.lib;
-
-  old-unstable = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/744d35f6298ce1638c6de5ec1d752840b3d1bdd4.tar.gz";
-  }) {};
-  godot_beta_16 = old-unstable.godot_4;
 in {
   imports = [
     nixvim.homeManagerModules.nixvim
@@ -18,44 +13,32 @@ in {
     homeDirectory = "/home/emaleth";
     stateVersion = "23.05";
     packages = with pkgs; [
-      wl-clipboard
-      obsidian
-      neofetch
-      spotify
-      blueman
-      mpv
-      yt-dlp
-      ffmpeg
-      zenith
-      nurl
-      wofi
-      imagemagick
-      gnome.simple-scan
-      gnome.nautilus
-      neovide
-      libreoffice
-      inkscape
-      unzip
-      zip
-      imv
-      killall
-      gimp
-      discord
-      autotiling
-      krita
-      blender
-      pamixer
-      libnotify
-      bitwarden
-      grim
-      dconf
-      slurp
-      gcc
-    ] 
-    ++
-    ([
-      godot_beta_16
-    ]);
+      wl-clipboard # clipboard manager
+      obsidian # note taking and maps
+      neofetch # fancy terminal system synopsis
+      mpv # video player
+      yt-dlp # youtube and similar downloader
+      ffmpeg # audio / video stuff 
+      nurl # get nixpkgs sha and rev for pinning
+      wofi # menu 
+      gnome.simple-scan # scanner program
+      gnome.nautilus # file manager
+      libreoffice # office but not office
+      inkscape # vector graphics
+      imv # terminal image viewer
+      killall # kill them all, save yourself
+      gimp # photoshop but not photoshop
+      godot_4 # Game Engine, road to success and stuff
+      discord # modern gamer chat
+      autotiling # make sway usable
+      krita # raster image editor
+      blender # 3d model editor
+      pamixer # audio controller
+      libnotify # desktop notifications
+      bitwarden # password and stuff
+      grim # 
+      slurp # 
+    ];
     sessionVariables = {
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
@@ -80,6 +63,27 @@ in {
       gtk = true;
     };
     config = {
+      gaps = {
+        inner = 2;
+      };
+      floating = {
+        titlebar = false;
+        criteria = [
+          { window_role = "pop-up"; }
+          { window_role = "Pop-up"; }
+          { window_role = "bubble"; }
+          { window_role = "Bubble"; }
+          { window_role = "dialog"; }
+          { window_role = "Dialog"; }
+          { window_role = "task_dialog"; }
+          { window_role = "About"; }
+          { window_type = "Dialog"; }
+          { window_type = "dialog"; }
+          { window_type = "menu"; }
+          { class = "dialog"; }
+          { class = "Dialog"; }
+        ];
+      };
       window = {
         titlebar = false;
       };
@@ -104,8 +108,8 @@ in {
         };
         "type:touchpad" = {
       	  dwt = "disabled";
-	        tap = "enabled";
-	        middle_emulation = "enabled";
+          tap = "enabled";
+          middle_emulation = "enabled";
           natural_scroll = "enabled";
       	};
       };
@@ -192,8 +196,8 @@ in {
         };
         indent-blankline = {
           enable = true;
-          useTreesitterScope = true;
-          useTreesitter = true;
+          # useTreesitterScope = true;
+          # useTreesitter = true;
         };
         nvim-colorizer = {
           enable = true;
@@ -204,6 +208,8 @@ in {
           autoClose = true;
           autoOpen = true;
         };
+        cmp_luasnip.enable = true;
+        # cmp-treesitter.enable = true;
         nvim-cmp = {
           enable = true;
           auto_enable_sources = true;
@@ -211,7 +217,15 @@ in {
             { name = "nvim_lsp"; }
             { name = "path"; }
             { name = "buffer"; }
+            { name = "luasnip"; }
           ];
+          snippet = {
+            expand = ''
+              function(args)
+                require('luasnip').lsp_expand(args.body)
+              end
+            '';
+          };
           mapping = {
             "<CR>" = "cmp.mapping.confirm({ select = true })";
             "<Tab>" = {
@@ -228,19 +242,20 @@ in {
             };
           };
         };
-        treesitter-context = {
-          enable = true;
-        };
-        treesitter-refactor = {
-          enable = true;
-        };
-        treesitter = {
-          enable = true;
-          indent = true;
-          nixGrammars = true;
-        };
+        # treesitter-context = {
+        #   enable = true;
+        # };
+        # treesitter-refactor = {
+        #   enable = true;
+        # };
+        # treesitter = {
+          # enable = true;
+          # indent = true;
+          # nixGrammars = true;
+        # };
         bufferline = {
           enable = true;
+          diagnostics = "nvim_lsp";
           alwaysShowBufferline = true;
         };
       	lualine = {
@@ -278,17 +293,37 @@ in {
           layer = "top";
           position = "top";
           spacing = 2;
+          margin-top = 2;
+          margin-right = 2;
+          margin-left = 2;
           modules-left = ["sway/workspaces"];
           modules-center = ["clock"];
           modules-right = ["tray" "pulseaudio" "network" "battery"];
           "sway/workspaces" = {
             "disable-scroll" = true;
-              "all-outputs" = false;
-              "format" = "{name}";
+            "all-outputs" = false;
+            "format" = "{icon}";
+            "persistent_workspaces" = {
+              "1" = [];
+              "2" = [];
+              "3" = [];
+              "4" = [];
+              "5" = [];
+              "6" = [];
+              "7" = [];
+              "8" = [];
+              "9" = [];
+            };
+            "format-icons" = {
+              "persistent" = "";
+              "default" = "";
+              "urgent" = "";
+              "focused" = "";
+            };
           };
           "tray" = {
-            "icon-size" = 20;
-            "spacing" = 10;
+            "icon-size" = 13;
+            "spacing" = 4;
             "show_passive_items" = true;
           };
           "clock" = {
@@ -335,106 +370,46 @@ in {
         };
       };
       style = "
-* {
-    transition: none;
-    box-shadow: none;
-    font-size: 13px;
-    color: #f2f2f2;
-}
+        * {
+          font-size: 13px;
+          color: @theme_text_color;
+        }
 
-#waybar {
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-left: 5px;
-    background: #060608;
-    /*border-radius: 10px;*/
-    border: none;
-}
+        window#waybar {
+          background: @theme_base_color;
+          border-radius: 14px;
+          border: none;
+        }
 
-#workspaces {
-    margin: 0 3px;
-    color: transparent;
-}
+        #battery, #bluetooth, #tray, #network, #pulseaudio, #clock, #user, #workspaces {
+          background-color: #32363d;
+          border-radius: 14px;
+          margin: 2px;
+          padding: 2px;
+        }
+        
+        #workspaces button {
+          min-height: 0px;
+          min-width: 16px;
+          margin: 0px;
+          padding: 0px;       
+        }
 
-#workspaces button {
-    margin: 3px 0;
-    padding: 0 3px;
-}
+        #workspaces button.focused {
+          color: #552373;
+        }
 
-#workspaces button.visible {
-}
+        #workspaces button.urgent * {
+          color: #ff0055;
+        }
 
-#workspaces button.focused {
-    background: #32363d;
-    border-radius: 10px;
-}
+        #battery.warning {
+          color: #e5c07a
+        } 
 
-#workspaces button.urgent * {
-    color: #ff0055;
-}
-
-
-#mode, #battery, #bluetooth, #cpu, #disk, #memory, #temperature, #network, #pulseaudio, #idle_inhibitor, #backlight, #mpd, #clock, #temperature {
-    margin: 4px 2px;
-    padding: 0 8px;
-    border-radius: 20px;
-    min-width: 8px;
-    background-color: #32363d;
-}
-
-#clock {
-    margin: 4px 2px;
-    padding: 0 10px;
-  }
-
-#tray {
-    margin: 3px 2px;
-    border-radius: 12px;
-    background-color: #060608;
-}
-  
-#tray * {
-    padding: 0 6px;
-    border-left: 1px solid #060608;
-}
-  
-#tray *:first-child {
-    border-left: none;
-}
-
-#mpd * {
-    min-width: 10px;
-    font-size: 11px;
-    font-family: JetBrainsMono;
-}
-  
-#custom-powermenu {
-    margin: 4px 5px 4px 1px;
-    padding: 0 6px;
-    background-color: #722F37;
-    border-radius: 10px;
-    min-width: 15px;
-}
-  
-#custom-launcher {
-    margin: 4px 1px 4px 5px;
-    padding: 0 6px;
-    background-color: #ff0055;
-    border-radius: 10px;
-    min-width: 15px;
-}
-
-#battery.warning {
-    color: #e5c07a
-} 
-
-#battery.critical {
-    color: #ff0055
-}
-
-#temperature.critical {
-    color: #e06b74;
-}
+        #battery.critical {
+          color: #ff0055
+        }
       ";
     };
     git = {
@@ -473,15 +448,6 @@ in {
         set fish_greeting
       '';
     };
-    mako = {
-      enable = true;
-      icons = true;
-      actions = true;
-      layer = "overlay";
-      defaultTimeout = 5000;
-      ignoreTimeout = true;
-      anchor = "bottom-right";
-    };
     brave.enable = true;
     starship = {
       enable = true;
@@ -501,30 +467,26 @@ in {
     enable = true;
   };
   services = {
+    mako = {
+      enable = true;
+      icons = true;
+      actions = true;
+      layer = "overlay";
+      defaultTimeout = 5000;
+      ignoreTimeout = true;
+      anchor = "bottom-right";
+    };
     swayidle = {
       enable = true;
       timeouts = [ 
-        { 
-          timeout = 300; 
-          command = "${pkgs.swaylock}/bin/swaylock -fF"; 
-        } 
-        { 
-          timeout = 600; 
-          command = ''swaymsg "output * dpms off"''; 
-          resumeCommand = ''swaymsg "output * dpms on"'';
-        }
+        { timeout = 300; command = "${pkgs.swaylock-effects}/bin/swaylock -fF"; } 
+        { timeout = 600; command = ''swaymsg "output * dpms off"''; resumeCommand = ''swaymsg "output * dpms on"''; }
       ];
-      # events = [
-      #   {
-      #     event = "after-resume";
-      #     command = "sudo rmmod i2c_hid_acpi && sudo modprobe i2c_hid_acpi";
-      #   }
-      # ];
     };
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
       extraConfig = "
         AddKeysToAgent yes;
       ";
