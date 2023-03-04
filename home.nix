@@ -1,4 +1,4 @@
-{ config, pkgs, nixvim, ... }:
+{ config, pkgs, ... }:
 
 with builtins;
 
@@ -6,7 +6,6 @@ let
   lib = pkgs.lib;
 in {
   imports = [
-    nixvim.homeManagerModules.nixvim
   ];
   home = {
     username = "emaleth";
@@ -38,11 +37,14 @@ in {
       bitwarden # password and stuff
       grim # 
       slurp # 
-    ];
+      # LSP
+      marksman
+      nil
+       ];
     sessionVariables = {
-      EDITOR = "nvim";
-      SUDO_EDITOR = "nvim";
-      VISUAL = "nvim";
+      EDITOR = "hx";
+      SUDO_EDITOR = "hx";
+      VISUAL = "hx";
     };  
     pointerCursor = {
       package = pkgs.vanilla-dmz;
@@ -129,159 +131,20 @@ in {
       enable = true;
       enableAliases = true;
     };
-    nixvim = {
-      extraPackages = with pkgs; [
-        ripgrep
-        fd
-      ];
-      extraPlugins = with pkgs.vimPlugins; [
-        vim-nix
-        neovim-ayu
-        nvim-web-devicons
-        mkdir-nvim
-        lsp-colors-nvim
-      ];
+    helix = {
       enable = true;
-      viAlias = true;
-      vimAlias = true;
-      options = {
-        autoindent = true;              
-        number = true;                  
-        syntax = "true";                   
-        mouse = "a";                 
-        clipboard = "unnamedplus";   
-        ttyfast = true;                 
-        swapfile = false;              
-        backup = false;               
-        completeopt = "menu,menuone,noselect";
-        writebackup = false;           
-        undodir = "./.nixvim/undo";   
-        undofile = true;		    
-        undoreload = 10000;	    
-        scrolloff = 10;            
-        termguicolors = true;
-      };
-      colorscheme = "ayu-dark";
-      maps = {
-        normal."<M-Up>" = {
-          silent = true;
-          action = "<cmd>move-2<CR>";
-        };
-        insert."<M-Up>" = {
-          silent = true;
-          action = "<cmd>move-2<CR>";
-        };
-        normal."<M-Down>" = {
-          silent = true;
-          action = "<cmd>move+<CR>";
-        };
-        insert."<M-Down>" = {
-          silent = true;
-          action = "<cmd>move+<CR>";
-        };
-        normal."<C-Bslash>" = {
-          silent = true;
-          action = "<cmd>NvimTreeToggle<CR>";
-        };
-        insert."<C-Bslash>" = {
-          silent = true;
-          action = "<cmd>NvimTreeToggle<CR>";
-        };
-      };
-      plugins = {
-        comment-nvim = {
-          enable = true;
-          opleader.line = "<C-k>";
-          toggler.line = "<C-k>";
-        };
-        indent-blankline = {
-          enable = true;
-          # useTreesitterScope = true;
-          # useTreesitter = true;
-        };
-        nvim-colorizer = {
-          enable = true;
-        };
-        trouble = {
-          enable = true;
-          icons = true;
-          autoClose = true;
-          autoOpen = true;
-        };
-        cmp_luasnip.enable = true;
-        # cmp-treesitter.enable = true;
-        nvim-cmp = {
-          enable = true;
-          auto_enable_sources = true;
-          sources = [
-            { name = "nvim_lsp"; }
-            { name = "path"; }
-            { name = "buffer"; }
-            { name = "luasnip"; }
-          ];
-          snippet = {
-            expand = ''
-              function(args)
-                require('luasnip').lsp_expand(args.body)
-              end
-            '';
-          };
-          mapping = {
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<Tab>" = {
-              modes = [ "i" "s" ];
-              action = "
-                function(fallback)
-                  if cmp.visible() then
-                    cmp.select_next_item()
-                  else
-                    fallback()
-                  end
-                end
-              ";
+#      languages = [
+#      ];
+      settings = {
+        editor = {
+          bufferline = "always"; 
+          color-modes = true;  
+          cursor-shape = {
+            normal = "block";
+            insert = "bar";
+            select = "block";
             };
-          };
-        };
-        # treesitter-context = {
-        #   enable = true;
-        # };
-        # treesitter-refactor = {
-        #   enable = true;
-        # };
-        # treesitter = {
-          # enable = true;
-          # indent = true;
-          # nixGrammars = true;
-        # };
-        bufferline = {
-          enable = true;
-          diagnostics = "nvim_lsp";
-          alwaysShowBufferline = true;
-        };
-      	lualine = {
-          enable = true;
-          alwaysDivideMiddle = true;
-        };
-        nvim-tree = {
-          enable = true;
-          disableNetrw = true;
-          git = {
-            enable = true;
-            ignore = false;
-          };
-          modified.enable = true;
-          openOnSetup = true;
-        };
-        nix = {
-          enable = true;
-        };
-        lsp = {
-          enable = true;
-          servers = {
-            gdscript.enable = true;
-            jsonls.enable = true;
-            rnix-lsp.enable = true;
-          };
+          indent-guides.render = true;
         };
       };
     };
@@ -417,7 +280,7 @@ in {
       userName = "Emaleth";
       userEmail = "Emaleth@protonmail.com";
       extraConfig = {
-        core.editor = "vim";
+        core.editor = "hx";
         credential.helper = "cache";
         commit.gpgsign = true;
         gpg.format = "ssh";
@@ -486,7 +349,7 @@ in {
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      # enableFishIntegration = true;
+      enableFishIntegration = true;
       extraConfig = "
         AddKeysToAgent yes;
       ";

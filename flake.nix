@@ -5,20 +5,16 @@
     nixpkgs = {
       url = github:NixOS/nixpkgs/nixos-unstable;
     };
-   home-manager = {
+    home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixvim = {
-      url = github:pta2002/nixvim;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    }; 
     stylix = {
       url = github:danth/stylix;
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixvim, stylix, ... }:
+  outputs = { nixpkgs, home-manager, stylix, ... }:
   let
     system = "x86_64-linux";
 
@@ -40,7 +36,7 @@
       nixos = lib.nixosSystem {
         inherit system;
         specialArgs = { 
-          inherit nixvim stylix base16-schemes; 
+          inherit stylix base16-schemes; 
         };
 
         modules = [
@@ -53,12 +49,11 @@
             home-manager.users.emaleth = import ./home.nix;
 
             home-manager.extraSpecialArgs = {
-              inherit nixvim;
+            #  inherit 
             };
           }
           ({ lib, ... }: {
             nix.registry.nixpkgs.flake = nixpkgs;
-            nix.registry.nixvim.flake = nixvim;
             nix.registry.stylix.flake = stylix;
           })
         ];
