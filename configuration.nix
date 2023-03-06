@@ -2,6 +2,7 @@
 
 {
   imports = [ # Include the results of the hardware scan.
+    # inputs.hyprland.nixosModules.default
     /etc/nixos/hardware-configuration.nix
   ];
 
@@ -13,6 +14,8 @@
   # hardware.bluetooth.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
+
+  # programs.hyprland.enable = true;
 
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })

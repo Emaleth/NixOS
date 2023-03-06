@@ -6,6 +6,7 @@ let
   lib = pkgs.lib;
 in {
   imports = [
+    # inputs.hyprland.homeManagerModules.default
   ];
   home = {
     username = "emaleth";
@@ -37,6 +38,7 @@ in {
       bitwarden # password and stuff
       grim # 
       slurp # 
+      butler
       # LSP
       marksman
       nil
@@ -58,6 +60,9 @@ in {
     };
   };
   
+  # wayland.windowManager.hyprland = {
+    # enable = true;
+  # };
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures = {
@@ -136,6 +141,41 @@ in {
 #      languages = [
 #      ];
       settings = {
+        keys = {
+          normal = {
+            "C-s" = ":w";
+            "C-4" = "file_picker_in_current_directory"; 
+            "A-up" = "move_line_up";
+            "A-down" = "move_line_down";
+            "C-z" = "undo";
+            "C-y" = "redo";
+            "tab" = "indent";
+            "S-tab" = "unindent";                     
+            "C-k" = "toggle_comments";
+          };
+          insert = {                 
+            "C-s" = ":w";
+            "C-4" = "file_picker_in_current_directory"; 
+            "A-up" = "move_line_up";
+            "A-down" = "move_line_down";
+            "C-z" = "undo";
+            "C-y" = "redo";
+            "tab" = "indent";
+            "S-tab" = "unindent";           
+            "C-k" = "toggle_comments";
+          };  
+          select = {          
+            "C-s" = ":w";
+            "C-4" = "file_picker_in_current_directory"; 
+            "A-up" = "move_line_up";
+            "A-down" = "move_line_down";
+            "C-z" = "undo";
+            "C-y" = "redo";
+            "tab" = "indent";
+            "S-tab" = "unindent";        
+            "C-k" = "toggle_comments";
+          };
+        };
         editor = {
           bufferline = "always"; 
           color-modes = true;  
@@ -311,6 +351,14 @@ in {
         set fish_greeting
       '';
     };
+    chromium = {
+      enable = true;
+      extensions = [
+        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+        { id = "dmkamcknogkgcdfhhbddcghachkejeap"; } # keplr
+        { id = "cfhdojbkjhnklbpkdaibdccddilifddb"; } # adblock plus
+      ];
+    };
     brave.enable = true;
     starship = {
       enable = true;
@@ -343,7 +391,7 @@ in {
       enable = true;
       timeouts = [ 
         { timeout = 300; command = "${pkgs.swaylock-effects}/bin/swaylock -fF"; } 
-        { timeout = 600; command = ''swaymsg "output * dpms off"''; resumeCommand = ''swaymsg "output * dpms on"''; }
+        { timeout = 600; command = "swaymsg 'output * dpms off'"; resumeCommand = "swaymsg 'output * dpms on'"; }
       ];
     };
     gpg-agent = {
