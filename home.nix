@@ -19,9 +19,11 @@ in {
       mpv # video player
       yt-dlp # youtube and similar downloader
       ffmpeg # audio / video stuff 
+      styx # static site generator in nix 
       nurl # get nixpkgs sha and rev for pinning
       wofi # menu 
       gnome.simple-scan # scanner program
+      steam-run # binary runner
       gnome.nautilus # file manager
       libreoffice # office but not office
       inkscape # vector graphics
@@ -135,6 +137,8 @@ in {
     exa = {
       enable = true;
       enableAliases = true;
+      git = true;
+      icons = true;
     };
     helix = {
       enable = true;
@@ -239,14 +243,14 @@ in {
               "warning" = 30;
               "critical" = 15;
             };
-            "format" = "{capacity}% {icon}";
+            "format" = "{icon} {capacity}%";
             "format-charging" = "{capacity}% ";
             "format-plugged" = "{capacity}% ";
             "format-alt" = "{time} {icon}";
             "format-icons" = ["" "" "" "" ""];
           };
           "network" = {
-            "format-wifi" = "{signalStrength}% ";
+            "format-wifi" = " {signalStrength}%";
             "format-ethernet" = "";
             "tooltip-format" = "{ifname} via {gwaddr} ";
             "format-linked" = "{ifname} (No IP) ";
@@ -254,7 +258,7 @@ in {
             "format-alt" = "{essid}";
           };
           "pulseaudio" = {
-            "format" = "{volume}% {icon}";
+            "format" = "{icon} {volume}%";
             "format-bluetooth" = "{volume}% {icon}";
             "format-bluetooth-muted" = "{icon} {format_source}";
             "format-muted" = "{format_source}";
@@ -285,10 +289,10 @@ in {
         }
 
         #battery, #bluetooth, #tray, #network, #pulseaudio, #clock, #user, #workspaces {
-          background-color: #32363d;
-          border-radius: 14px;
-          margin: 2px;
-          padding: 2px;
+          /*background-color: #32363d;*/
+          /*border-radius: 14px;*/
+          margin: 0px 4px;
+          /*padding: 2px;*/
         }
         
         #workspaces button {
@@ -332,10 +336,13 @@ in {
     };
     kitty = {
       enable = true;
-      font.size = 10;
+      # font.size = 10;
       settings = {
-        allow_remote_control = true;
+        allow_remote_control = "yes";
       };
+      # extraConfig = "
+        # allow_remote_control yes
+      # ";
     };
     fish = {
       enable = true;

@@ -17,26 +17,35 @@
 
   # programs.hyprland.enable = true;
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
-  ];
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    ];
+  };
   stylix = {
-    image = /home/emaleth/Pictures/Wallpapers/NixOS-wopr11.png;
+    image = /home/emaleth/Pictures/Wallpapers/wallhaven-8oev1j.jpg;
     base16Scheme = "${base16-schemes}/ayu-dark.yaml";
     polarity = "dark";
     fonts = { 
       serif = config.stylix.fonts.sansSerif;
       sansSerif = {
-        package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
-        name = "FiraCode";
+        package = pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; };
+        name = "CascadiaCode";
       };
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
-        name = "FiraCode";
+        package = pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; };
+        name = "CascadiaCode";
       };
       emoji = {
-        package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
-        name = "FiraCode";
+        package = pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; };
+        name = "CascadiaCode";
+      };
+      sizes = {
+        desktop = 10;
+        applications = 10;
+        terminal = 10;
+        popups = 10;
       };
     };
   };
@@ -49,7 +58,10 @@
 
   nix = {
     package = pkgs.nixFlakes;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
     gc = {
       automatic = true;
       dates = "03:15";
