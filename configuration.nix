@@ -22,7 +22,7 @@
     pkgs.helix
     pkgs.chromium
     pkgs.starship
-    
+
     # LSP
     pkgs.marksman
     pkgs.nil
@@ -113,7 +113,6 @@
       enable = true;
       drivers = [ pkgs.hplip ];
     };
-    # getty.autologinUser = "emaleth";
     avahi = {
       enable = true;
       nssmdns = true;
