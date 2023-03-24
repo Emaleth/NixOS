@@ -1,8 +1,7 @@
-{ config, pkgs, lib, base16-schemes, modulesPath, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
-    # inputs.hyprland.nixosModules.default
     /etc/nixos/hardware-configuration.nix
   ];
 
@@ -12,10 +11,23 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # hardware.bluetooth.enable = true;
-
+  environment.systemPackages = [
+    pkgs.git
+    pkgs.steam-run
+    pkgs.godot_4
+    pkgs.discord
+    pkgs.krita
+    pkgs.blender
+    pkgs.bitwarden
+    pkgs.helix
+    pkgs.chromium
+    pkgs.starship
+    
+    # LSP
+    pkgs.marksman
+    pkgs.nil
+  ];
   networking.hostName = "nixos"; # Define your hostname.
-
-  # programs.hyprland.enable = true;
 
   fonts = {
     fontDir.enable = true;
@@ -23,36 +35,7 @@
       (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
     ];
   };
-  stylix = {
-    image = /home/emaleth/Pictures/Wallpapers/wallhaven-8oev1j.jpg;
-    base16Scheme = "${base16-schemes}/ayu-dark.yaml";
-    polarity = "dark";
-    fonts = { 
-      serif = config.stylix.fonts.sansSerif;
-      sansSerif = {
-        package = pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; };
-        name = "CascadiaCode";
-      };
-      monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; };
-        name = "CascadiaCode";
-      };
-      emoji = {
-        package = pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; };
-        name = "CascadiaCode";
-      };
-      sizes = {
-        desktop = 10;
-        applications = 10;
-        terminal = 10;
-        popups = 10;
-      };
-    };
-  };
   security = {
-    pam.services.swaylock = {
-      text = "auth include login";
-    };
     rtkit.enable = true;
   };
 
@@ -109,6 +92,14 @@
     xserver = {
       layout = "it";
       xkbVariant = "";
+      enable = true;
+      displayManager = {
+        defaultSession = "plasmawayland";
+        sddm.enable = true;
+      };
+      desktopManager = {
+        plasma5.enable = true;
+      };
     };
     pipewire = {
       enable = true;
@@ -122,7 +113,7 @@
       enable = true;
       drivers = [ pkgs.hplip ];
     };
-    getty.autologinUser = "emaleth";
+    # getty.autologinUser = "emaleth";
     avahi = {
       enable = true;
       nssmdns = true;
