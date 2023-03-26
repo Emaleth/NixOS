@@ -5,9 +5,12 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
  };
 
-  outputs = { nixpkgs, ... }:
+  outputs = { nixpkgs, hyprland, ... }:
   let
     system = "x86_64-linux";
 
@@ -17,6 +20,7 @@
        
       modules = [
         ./configuration.nix
+        hyprland.nixosModules.default
         ];
       };
       

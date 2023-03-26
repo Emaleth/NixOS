@@ -12,23 +12,53 @@
 
   # hardware.bluetooth.enable = true;
   environment.systemPackages = [
-    pkgs.git
     pkgs.steam-run
     pkgs.godot_4
+    pkgs.neofetch
     pkgs.discord
     pkgs.krita
     pkgs.blender
     pkgs.bitwarden
     pkgs.helix
-    pkgs.chromium
-    pkgs.starship
+    pkgs.kitty
 
     # LSP
     pkgs.marksman
     pkgs.nil
   ];
   networking.hostName = "nixos"; # Define your hostname.
-
+  
+  programs = {
+    fish = {
+      enable = true;
+      vendor = {
+        functions.enable = true;
+        config.enable = true;
+        completions.enable = true;
+      };
+    };
+    hyprland.enable = true;
+    git.enable = true;
+    starship.enable = true;
+    neovim = {
+      defaultEditor = true;
+      enable = true;
+      withRuby = true;
+      withPython3 = true;
+      withNodeJs = true;
+      vimAlias = true;
+      viAlias = true;
+    };
+    chromium = {
+      enable = true;
+      extensions = [
+        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
+        "dmkamcknogkgcdfhhbddcghachkejeap" # keplr
+        "cfhdojbkjhnklbpkdaibdccddilifddb" # adblock plus
+      ];
+    };
+  };
+  
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
@@ -42,7 +72,16 @@
   nix = {
     package = pkgs.nixFlakes;
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [
+        "https://hyprland.cachix.org"
+      ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+      experimental-features = [
+        "nix-command"
+        "flakes" 
+      ];
       auto-optimise-store = true;
     };
     gc = {
@@ -57,18 +96,19 @@
   time.timeZone = "Europe/Rome";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.utf8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "it_IT.utf8";
-    LC_IDENTIFICATION = "it_IT.utf8";
-    LC_MEASUREMENT = "it_IT.utf8";
-    LC_MONETARY = "it_IT.utf8";
-    LC_NAME = "it_IT.utf8";
-    LC_NUMERIC = "it_IT.utf8";
-    LC_PAPER = "it_IT.utf8";
-    LC_TELEPHONE = "it_IT.utf8";
-    LC_TIME = "it_IT.utf8";
+  i18n = {
+    defaultLocale = "en_US.utf8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "it_IT.utf8";
+      LC_IDENTIFICATION = "it_IT.utf8";
+      LC_MEASUREMENT = "it_IT.utf8";
+      LC_MONETARY = "it_IT.utf8";
+      LC_NAME = "it_IT.utf8";
+      LC_NUMERIC = "it_IT.utf8";
+      LC_PAPER = "it_IT.utf8";
+      LC_TELEPHONE = "it_IT.utf8";
+      LC_TIME = "it_IT.utf8";
+    };
   };
 
   console.keyMap = "it2";
@@ -95,7 +135,10 @@
       enable = true;
       displayManager = {
         defaultSession = "plasmawayland";
-        sddm.enable = true;
+        sddm = {
+          enable = true;
+          autoNumlock = true;
+        };
       };
       desktopManager = {
         plasma5.enable = true;
