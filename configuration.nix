@@ -6,29 +6,60 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+  };
 
   # hardware.bluetooth.enable = true;
-  environment.systemPackages = [
-    pkgs.steam-run
-    pkgs.godot_4
-    pkgs.neofetch
-    pkgs.discord
-    pkgs.krita
-    pkgs.blender
-    pkgs.bitwarden
-    pkgs.helix
-    pkgs.kitty
+  environment = {
+    variables = {
+      EDITOR = "hx";
+      VISUAL = "hx";
+    };
+    systemPackages = [
+      pkgs.steam-run
+      pkgs.godot_4
+      pkgs.neofetch
+      pkgs.discord
+      pkgs.krita
+      pkgs.blender
+      pkgs.bitwarden
+      pkgs.kitty
+      pkgs.chromium
+      pkgs.helix
+      pkgs.vscode
+      pkgs.waybar
+      pkgs.mako
+      pkgs.wofi
+      pkgs.hyprpaper
 
-    # LSP
-    pkgs.marksman
-    pkgs.nil
-  ];
+      # LSP
+      pkgs.nil
+      pkgs.marksman
+    ];
+    plasma5.excludePackages = [
+      pkgs.libsForQt5.plasma-browser-integration
+      pkgs.libsForQt5.konsole
+      pkgs.libsForQt5.khelpcenter
+      pkgs.libsForQt5.oxygen
+      pkgs.libsForQt5.elisa
+    ];
+  };
+  
   networking.hostName = "nixos"; # Define your hostname.
   
+  documentation = {
+    man.enable = false;
+    doc.enable = false;
+    dev.enable = false;
+  };
+  
   programs = {
+    dconf.enable = true;
     fish = {
       enable = true;
       vendor = {
@@ -40,23 +71,6 @@
     hyprland.enable = true;
     git.enable = true;
     starship.enable = true;
-    neovim = {
-      defaultEditor = true;
-      enable = true;
-      withRuby = true;
-      withPython3 = true;
-      withNodeJs = true;
-      vimAlias = true;
-      viAlias = true;
-    };
-    chromium = {
-      enable = true;
-      extensions = [
-        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
-        "dmkamcknogkgcdfhhbddcghachkejeap" # keplr
-        "cfhdojbkjhnklbpkdaibdccddilifddb" # adblock plus
-      ];
-    };
   };
   
   fonts = {
@@ -173,6 +187,16 @@
     };
   };
 
+    systemd.services.restart-trackpad= {
+    serviceConfig.Type = "oneshot";
+    wantedBy = [ "wpa_supplicant.service" ];
+    after = [ "wpa_supplicant.service" ];
+    path = with pkgs; [ bash ];
+    script = ''
+      bash "sudo rmmod i2c_hid_acpi && sudo modprobe i2c_hid_acpi"
+    '';
+  };
+  
   system.stateVersion = "22.11"; 
 
 }
