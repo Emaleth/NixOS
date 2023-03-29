@@ -1,11 +1,10 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [ 
     /etc/nixos/hardware-configuration.nix
   ];
 
-  # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
     efi = {
@@ -14,7 +13,6 @@
     };
   };
 
-  # hardware.bluetooth.enable = true;
   environment = {
     variables = {
       EDITOR = "hx";
@@ -36,21 +34,16 @@
       pkgs.mako
       pkgs.wofi
       pkgs.hyprpaper
+      pkgs.libsForQt5.dolphin
+      pkgs.libsForQt5.polkit-kde-agent
 
       # LSP
       pkgs.nil
       pkgs.marksman
     ];
-    plasma5.excludePackages = [
-      pkgs.libsForQt5.plasma-browser-integration
-      pkgs.libsForQt5.konsole
-      pkgs.libsForQt5.khelpcenter
-      pkgs.libsForQt5.oxygen
-      pkgs.libsForQt5.elisa
-    ];
   };
   
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos"; 
   
   documentation = {
     man.enable = false;
@@ -103,13 +96,10 @@
       dates = "03:15";
     };
   };
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Europe/Rome";
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.utf8";
     extraLocaleSettings = {
@@ -143,20 +133,19 @@
   nixpkgs.config.allowUnfree = true;
   
   services = {
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --user-menu --cmd Hyprland";
+          user = "greeter";
+        };
+      };
+    };
     xserver = {
       layout = "it";
       xkbVariant = "";
       enable = true;
-      displayManager = {
-        defaultSession = "plasmawayland";
-        sddm = {
-          enable = true;
-          autoNumlock = true;
-        };
-      };
-      desktopManager = {
-        plasma5.enable = true;
-      };
     };
     pipewire = {
       enable = true;
