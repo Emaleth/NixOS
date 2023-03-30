@@ -1,0 +1,14 @@
+theme = "papercolor-dark"
+
+[editor]
+scrolloff = 10
+bufferline = "always"
+color-modes = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true

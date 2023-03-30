@@ -33,11 +33,14 @@
       pkgs.mako
       pkgs.wofi
       pkgs.hyprpaper
-      pkgs.libsForQt5.dolphin
-      pkgs.libsForQt5.polkit-kde-agent
       pkgs.gparted
       pkgs.grim
+      pkgs.slurp
       pkgs.hyprpicker
+      pkgs.ranger
+      pkgs.gnome.nautilus
+      pkgs.libsForQt5.qt5ct
+      pkgs.lxappearance
       
       # LSP
       pkgs.nil
@@ -79,6 +82,7 @@
   };
   security = {
     rtkit.enable = true;
+    polkit.enable = true;
   };
 
   nix = {
@@ -147,11 +151,6 @@
         };
       };
     };
-    xserver = {
-      layout = "it";
-      xkbVariant = "";
-      enable = true;
-    };
     pipewire = {
       enable = true;
       alsa = {
@@ -181,16 +180,17 @@
     };
   };
 
-    systemd.services.restart-trackpad= {
-    serviceConfig.Type = "oneshot";
-    wantedBy = [ "wpa_supplicant.service" ];
-    after = [ "wpa_supplicant.service" ];
-    path = with pkgs; [ bash ];
-    script = ''
-      bash "sudo rmmod i2c_hid_acpi && sudo modprobe i2c_hid_acpi"
-    '';
+  systemd = {
+    # serviceConfig.restart-trackpad= {
+    #   serviceConfig.Type = "oneshot";
+    #   wantedBy = [ "wpa_supplicant.service" ];
+    #   after = [ "wpa_supplicant.service" ];
+    #   path = with pkgs; [ bash ];
+    #   script = ''
+    #     bash "sudo rmmod i2c_hid_acpi && sudo modprobe i2c_hid_acpi"
+    #   '';
+    # };
   };
   
   system.stateVersion = "22.11"; 
-
 }
