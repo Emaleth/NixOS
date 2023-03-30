@@ -29,17 +29,21 @@
       pkgs.kitty
       pkgs.chromium
       pkgs.helix
-      pkgs.vscode
       pkgs.waybar
       pkgs.mako
       pkgs.wofi
       pkgs.hyprpaper
       pkgs.libsForQt5.dolphin
       pkgs.libsForQt5.polkit-kde-agent
-
+      pkgs.gparted
+      pkgs.grim
+      pkgs.hyprpicker
+      
       # LSP
       pkgs.nil
       pkgs.marksman
+      pkgs.nodePackages.bash-language-server
+      pkgs.nodePackages.yaml-language-server
     ];
   };
   
@@ -52,6 +56,7 @@
   };
   
   programs = {
+    light.enable = true;
     dconf.enable = true;
     fish = {
       enable = true;
