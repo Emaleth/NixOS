@@ -32,7 +32,7 @@
       pkgs.waybar
       pkgs.mako
       pkgs.wofi
-      pkgs.hyprpaper
+      pkgs.swaybg
       pkgs.gparted
       pkgs.grim
       pkgs.slurp

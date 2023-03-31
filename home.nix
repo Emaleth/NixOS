@@ -9,7 +9,6 @@ in
     file = {
       ".config/kitty/kitty.conf".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/kitty/kitty.conf;
       ".config/hypr/hyprland.conf".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/hypr/hyprland.conf;
-      ".config/hypr/hyprpaper.conf".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/hypr/hyprpaper.conf;
       ".config/helix/config.toml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/helix/config.toml;
       ".config/ranger/rc.conf".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/ranger/rc.conf;
       ".config/udiskie/config.yaml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/udiskie/config.yaml;
