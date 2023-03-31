@@ -39,8 +39,13 @@
       pkgs.hyprpicker
       pkgs.ranger
       pkgs.gnome.nautilus
-      pkgs.libsForQt5.qt5ct
-      pkgs.lxappearance
+      
+      # pkgs.libsForQt5.polkit-qt
+      pkgs.udiskie
+      pkgs.qt6.qtwayland
+      pkgs.libsForQt5.qt5.qtwayland
+      pkgs.libnotify
+      pkgs.xorg.xhost
       
       # LSP
       pkgs.nil
@@ -59,6 +64,7 @@
   };
   
   programs = {
+    gnome-disks.enable = true;
     light.enable = true;
     dconf.enable = true;
     fish = {
@@ -142,6 +148,10 @@
   nixpkgs.config.allowUnfree = true;
   
   services = {
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
+    };
     greetd = {
       enable = true;
       settings = {
@@ -181,15 +191,19 @@
   };
 
   systemd = {
-    # serviceConfig.restart-trackpad= {
-    #   serviceConfig.Type = "oneshot";
-    #   wantedBy = [ "wpa_supplicant.service" ];
-    #   after = [ "wpa_supplicant.service" ];
-    #   path = with pkgs; [ bash ];
-    #   script = ''
-    #     bash "sudo rmmod i2c_hid_acpi && sudo modprobe i2c_hid_acpi"
-    #   '';
-    # };
+    user.services.polkit-agent-helper-1 = {
+      description = "polkit-agent-helper-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.libsForQt5.polkit-qt}/libexec/polkit-agent-helper-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
   };
   
   system.stateVersion = "22.11"; 
