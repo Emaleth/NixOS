@@ -38,9 +38,7 @@
       pkgs.slurp
       pkgs.hyprpicker
       pkgs.ranger
-      pkgs.gnome.nautilus
-      
-      # pkgs.libsForQt5.polkit-qt
+      pkgs.libsForQt5.polkit-qt
       pkgs.udiskie
       pkgs.qt6.qtwayland
       pkgs.libsForQt5.qt5.qtwayland
