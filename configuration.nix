@@ -31,7 +31,6 @@
       pkgs.helix
       pkgs.waybar
       pkgs.mako
-      pkgs.wofi
       pkgs.rofi-wayland
       pkgs.swaybg
       pkgs.grim

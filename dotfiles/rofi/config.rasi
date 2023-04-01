@@ -5,10 +5,14 @@ configuration {
 	font: "Cascadia Code 10";
 	show-icons: true;
 	terminal: "kitty";
-	drun-show-actions: true;
+	drun-show-actions: false;
 	hover-select: true;
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+}
+
+window {
+    width: 360px;    
 }
