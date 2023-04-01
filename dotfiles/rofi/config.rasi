@@ -1,0 +1,14 @@
+@theme "/nix/store/9qr37xd2drhm5mgblb3wscww6i5wlfci-rofi-1.7.5+wayland1/share/rofi/themes/Monokai.rasi"
+
+configuration {
+    modes: "drun";
+	font: "Cascadia Code 10";
+	show-icons: true;
+	terminal: "kitty";
+	drun-show-actions: true;
+	hover-select: true;
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+}

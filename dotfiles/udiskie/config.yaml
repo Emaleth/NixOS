@@ -1,4 +1,4 @@
-tray: "auto"
+tray: auto
 menu: flat
 file-manager: kitty ranger
 terminal: kitty

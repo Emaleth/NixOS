@@ -1,2 +1,2 @@
-/run/current-system/sw/bin/rmmod i2c_hid_acpi
-/run/current-system/sw/bin/modprobe i2c_hid_acpi
+#!/bin/sh
+rmmod i2c_hid_acpi && modprobe i2c_hid_acpi

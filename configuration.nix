@@ -32,18 +32,14 @@
       pkgs.waybar
       pkgs.mako
       pkgs.wofi
+      pkgs.rofi-wayland
       pkgs.swaybg
-      pkgs.gparted
       pkgs.grim
       pkgs.slurp
       pkgs.hyprpicker
-      pkgs.ranger
-      pkgs.libsForQt5.polkit-qt
       pkgs.udiskie
-      pkgs.qt6.qtwayland
-      pkgs.libsForQt5.qt5.qtwayland
       pkgs.libnotify
-      pkgs.xorg.xhost
+      pkgs.gnome.nautilus
       
       # LSP
       pkgs.nil
@@ -86,7 +82,7 @@
   };
   security = {
     rtkit.enable = true;
-    polkit.enable = true;
+    # pam.services.emaleth.enableGnomeKeyring = true;
   };
 
   nix = {
@@ -175,6 +171,7 @@
       enable = true;
       nssmdns = true;
     };
+    gnome.gnome-keyring.enable = true;
   };
   
   hardware = {
@@ -188,21 +185,21 @@
     };
   };
 
-  systemd = {
-    user.services.polkit-agent-helper-1 = {
-      description = "polkit-agent-helper-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.libsForQt5.polkit-qt}/libexec/polkit-agent-helper-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
+  # systemd = {
+  #   user.services.polkit-agent-helper-1 = {
+  #     description = "polkit-agent-helper-1";
+  #     wantedBy = [ "graphical-session.target" ];
+  #     wants = [ "graphical-session.target" ];
+  #     after = [ "graphical-session.target" ];
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.libsForQt5.polkit-qt}/libexec/polkit-agent-helper-1";
+  #       Restart = "on-failure";
+  #       RestartSec = 1;
+  #       TimeoutStopSec = 10;
+  #     };
+  #   };
+  #};
   
   system.stateVersion = "22.11"; 
 }
