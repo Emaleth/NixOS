@@ -20,6 +20,8 @@ in
       ".config/fish/config.fish".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/fish/config.fish;
       ".config/starship.toml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/starship/starship.toml;
       ".config/rofi/config.rasi".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/rofi/config.rasi;
+      ".config/waybar/config".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/waybar/config;
+      ".config/waybar/style.css".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/waybar/style.css;
     };
     stateVersion = "22.11";
   };

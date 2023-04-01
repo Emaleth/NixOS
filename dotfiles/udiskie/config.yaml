@@ -1,5 +1,6 @@
-tray: auto
-menu: flat
-file-manager: kitty ranger
-terminal: kitty
-builtin: gui
+program_options:
+  tray: auto
+  menu: flat
+  file-manager: nautilus
+  terminal: kitty
+  builtin: gui
