@@ -5,7 +5,7 @@
     "spacing": 4,
     "modules-left": ["wlr/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "idle_inhibitor", "wireplumber", "backlight", "network", "battery"],
+    "modules-right": ["custom/weather", "tray", "idle_inhibitor", "wireplumber", "backlight", "network", "battery"],
     "wlr/workspaces": {
         "format": "{icon}",
         "on-click": "activate",
@@ -65,5 +65,10 @@
         "format-muted": "",
         "format-icons": ["", "", ""]
     },
+    "custom/weather": {
+        "format": "{}",
+        "exec": "curl 'https://wttr.in/Viareggio?M&format=%c+%t+(%f)'",
+        "interval": 6000
+    }
 }
 
