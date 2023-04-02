@@ -1,0 +1,5 @@
+# on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+font=Cascadia Code 5
+icons=1
+default-timeout=5000
+ignore-timeout=1

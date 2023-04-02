@@ -22,6 +22,8 @@ in
       ".config/rofi/config.rasi".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/rofi/config.rasi;
       ".config/waybar/config".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/waybar/config;
       ".config/waybar/style.css".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/waybar/style.css;
+      ".config/neofetch/config.conf".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/neofetch/config.conf;
+      ".config/mako/config".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/mako/config;
     };
     stateVersion = "22.11";
   };
