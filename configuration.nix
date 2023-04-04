@@ -12,7 +12,14 @@
       efiSysMountPoint = "/boot/efi";
     };
   };
-
+  stylix = {
+    image = /home/emaleth/Pictures/Wallpapers/wallhaven-8xgkv2.jpg;
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin.yaml";
+    targets = {
+      chromium.enable = false;
+    };
+  };
   environment = {
     variables = {
       EDITOR = "hx";
@@ -32,14 +39,15 @@
       pkgs.waybar
       pkgs.mako
       pkgs.rofi-wayland
-      pkgs.swaybg
+      # pkgs.swaybg
       pkgs.grim
       pkgs.slurp
       pkgs.hyprpicker
       pkgs.udiskie
       pkgs.libnotify
       pkgs.gnome.nautilus
-      
+      pkgs.libsForQt5.polkit-qt      
+
       # LSP
       pkgs.nil
       pkgs.marksman
@@ -81,7 +89,6 @@
   };
   security = {
     rtkit.enable = true;
-    # pam.services.emaleth.enableGnomeKeyring = true;
   };
 
   nix = {
@@ -187,21 +194,5 @@
     };
   };
 
-  # systemd = {
-  #   user.services.polkit-agent-helper-1 = {
-  #     description = "polkit-agent-helper-1";
-  #     wantedBy = [ "graphical-session.target" ];
-  #     wants = [ "graphical-session.target" ];
-  #     after = [ "graphical-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.libsForQt5.polkit-qt}/libexec/polkit-agent-helper-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  #};
-  
   system.stateVersion = "22.11"; 
 }

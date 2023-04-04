@@ -12,10 +12,12 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    stylix = {
+      url = "github:danth/stylix";
+    };
  };
 
-  outputs = inputs@{ nixpkgs, home-manager, hyprland, ... }: 
-  {  
+  outputs = {nixpkgs, home-manager, hyprland, stylix, ...}: {  
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -23,24 +25,14 @@
         ./configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.users.emaleth = import ./home.nix;
-          #homeConfiguration.emaleth = home-manager.lib.homeManagerConfiguration {
-          #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          #  modules = [
-          #    hyprland.homeManagerModules.default
-          #  ];
-          #};
           home-manager.extraSpecialArgs = {
             inherit hyprland;
           };
         }
         hyprland.nixosModules.default
+        stylix.nixosModules.stylix
         ];
       };   
     };
-#    homeConfigurations."emaleth" = home-manager.lib.homeManagerConfiguration {
-#      modules = [
-#        hyprland.homeManagerModules.default
-#      ];
-#    };
   };
 }
