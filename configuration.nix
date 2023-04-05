@@ -15,7 +15,7 @@
   stylix = {
     image = /home/emaleth/Pictures/Wallpapers/wallhaven-8xgkv2.jpg;
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/atelier-dune.yaml";
     targets = {
       chromium.enable = false;
     };
@@ -32,6 +32,8 @@
       pkgs.discord
       pkgs.krita
       pkgs.blender
+      pkgs.imv
+      pkgs.zathura
       pkgs.bitwarden
       pkgs.kitty
       pkgs.chromium
@@ -39,7 +41,8 @@
       pkgs.waybar
       pkgs.mako
       pkgs.rofi-wayland
-      # pkgs.swaybg
+      pkgs.zenith
+      pkgs.swaybg
       pkgs.grim
       pkgs.slurp
       pkgs.hyprpicker

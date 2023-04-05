@@ -1,4 +1,4 @@
-theme = "catppuccin_mocha"
+theme = "autumn"
 [editor]
 scrolloff = 10
 bufferline = "always"

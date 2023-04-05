@@ -27,7 +27,10 @@ in
     };
     stateVersion = "22.11";
   };
-  #programs.home-manager.enable = true;
+  programs = {
+    # home-manager.enable = true;
+#    helix.enable = true;
+  };
   wayland.windowManager.hyprland = {
     enable = true;
       extraConfig = ''
