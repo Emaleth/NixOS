@@ -34,12 +34,13 @@
       pkgs.blender
       pkgs.imv
       pkgs.zathura
+      pkgs.ranger
       pkgs.bitwarden
       pkgs.kitty
       pkgs.chromium
       pkgs.helix
       pkgs.waybar
-      pkgs.mako
+#      pkgs.mako
       pkgs.rofi-wayland
       pkgs.zenith
       pkgs.swaybg
