@@ -22,10 +22,25 @@ in
       ".config/neofetch/config.conf".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/neofetch/config.conf;
      # ".config/mako/config".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/mako/config;
     };
+
+    pointerCursor = {
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ";
+      size = 16;
+      gtk.enable = true;
+      x11 = {
+        enable = true;
+        defaultCursor = "Vanilla-DMZ";
+      };
+    };
     stateVersion = "22.11";
   };
   programs = {
     home-manager.enable = true;
+    exa = {
+      enable = true;
+      enableAliases = true;
+    };
     # helix = {
     #   enable = true;
     #   #settings = builtins.readfile /home/emaleth/repositories/nixos/dotfiles/helix/config.toml;
