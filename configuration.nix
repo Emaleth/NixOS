@@ -12,14 +12,6 @@
       efiSysMountPoint = "/boot/efi";
     };
   };
-  stylix = {
-    image = /home/emaleth/Pictures/Wallpapers/wallhaven-8xgkv2.jpg;
-    polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/atelier-dune.yaml";
-    targets = {
-      chromium.enable = false;
-    };
-  };
   environment = {
     variables = {
       EDITOR = "hx";
@@ -27,9 +19,14 @@
     };
     systemPackages = [
       pkgs.steam-run
+      pkgs.cliphist
+      pkgs.wl-clipboard
       pkgs.godot_4
-      pkgs.neofetch
+      pkgs.libreoffice-qt
+      pkgs.hunspell
+      pkgs.hunspellDicts.it_IT
       pkgs.discord
+      pkgs.mpv
       pkgs.krita
       pkgs.blender
       pkgs.imv
@@ -40,7 +37,7 @@
       pkgs.chromium
       pkgs.helix
       pkgs.waybar
-#      pkgs.mako
+      pkgs.mako
       pkgs.rofi-wayland
       pkgs.zenith
       pkgs.swaybg
@@ -49,12 +46,15 @@
       pkgs.hyprpicker
       pkgs.udiskie
       pkgs.libnotify
-      pkgs.gnome.nautilus
       pkgs.libsForQt5.polkit-qt      
+      pkgs.parted
+      pkgs.gcc
+      pkgs.hugo
 
       # LSP
       pkgs.nil
       pkgs.marksman
+      pkgs.taplo
       pkgs.nodePackages.bash-language-server
       pkgs.nodePackages.yaml-language-server
     ];
@@ -69,7 +69,7 @@
   };
   
   programs = {
-    gnome-disks.enable = true;
+    adb.enable = true;
     light.enable = true;
     dconf.enable = true;
     fish = {
@@ -145,6 +145,7 @@
       "lpadmin" 
       "video" 
       "scanner" 
+      "adbusers"
     ];
     shell = pkgs.fish;
   };
@@ -184,7 +185,6 @@
       enable = true;
       nssmdns = true;
     };
-    gnome.gnome-keyring.enable = true;
   };
   
   hardware = {

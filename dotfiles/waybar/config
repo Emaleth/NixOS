@@ -1,11 +1,31 @@
 {
-    "layer": "bottom",
+    "layer": "top",
     "position": "bottom",
     "height": 36,
     "spacing": 4,
-    "modules-left": ["wlr/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["tray", "idle_inhibitor", "custom/weather", "wireplumber", "backlight", "network", "battery"],
+    "modules-left": [
+        "wlr/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray", 
+        "custom/clipboard", 
+        "idle_inhibitor", 
+        "custom/weather", 
+        "wireplumber", 
+        "backlight", 
+        "network", 
+        "battery"
+    ],
+    "custom/clipboard": {
+      "format": "🄯",
+      "interval": "once",
+      "return-type": "json",
+      "on-click": "exec cliphist list | rofi -dmenu | cliphist decode | wl-copy",
+      "signal": 9
+    },
     "wlr/workspaces": {
         "format": "{icon}",
         "on-click": "activate",
@@ -68,7 +88,7 @@
     "custom/weather": {
         "format": "{}",
         "exec": "curl 'https://wttr.in/Viareggio?M&format=%c+%t'",
-        "interval": 6000
+        "interval": 1800
     }
 }
 

@@ -1,4 +1,5 @@
-theme = "autumn_night"
+theme = "autumn"
+
 [editor]
 scrolloff = 10
 bufferline = "always"

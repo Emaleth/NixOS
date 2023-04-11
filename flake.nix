@@ -12,12 +12,9 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
-    stylix = {
-      url = "github:danth/stylix";
-    };
  };
 
-  outputs = {nixpkgs, home-manager, hyprland, stylix, ...}: {  
+  outputs = {nixpkgs, home-manager, hyprland, ...}: {  
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -30,7 +27,6 @@
           };
         }
         hyprland.nixosModules.default
-        stylix.nixosModules.stylix
         ];
       };   
     };
