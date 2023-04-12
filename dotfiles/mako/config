@@ -1,3 +1,4 @@
+#!/bin/sh <- tmp fix for hx highlight
 # on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
 
 font=Cascadia Code 10
@@ -5,4 +6,4 @@ icons=1
 default-timeout=5000
 ignore-timeout=true
 border-size=0
-border-radius=2
+border-radius=0

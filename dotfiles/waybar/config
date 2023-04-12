@@ -1,3 +1,4 @@
+#!/bin/sh <- tmp fix for hx highlight
 {
     "layer": "top",
     "position": "bottom",

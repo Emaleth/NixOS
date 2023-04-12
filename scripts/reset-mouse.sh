@@ -1,2 +1,4 @@
 #!/bin/sh
-rmmod i2c_hid_acpi && modprobe i2c_hid_acpi
+sudo echo -n
+sudo rmmod i2c_hid_acpi
+sudo modprobe i2c_hid_acpi
