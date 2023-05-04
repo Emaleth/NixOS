@@ -5,28 +5,25 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
+    nur = {
+      url = github:nix-community/NUR;
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-    };
  };
 
-  outputs = {nixpkgs, home-manager, hyprland, ...}: {  
+  outputs = {nixpkgs, nur, home-manager, ...}: {  
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager {
-          home-manager.users.emaleth = import ./home.nix;
-          home-manager.extraSpecialArgs = {
-            inherit hyprland;
-          };
-        }
-        hyprland.nixosModules.default
+          ./configuration.nix
+          nur.nixosModules.nur
+          home-manager.nixosModules.home-manager {
+            home-manager.users.emaleth = import ./home.nix;
+          }
         ];
       };   
     };

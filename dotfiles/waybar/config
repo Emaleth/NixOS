@@ -1,62 +1,32 @@
-#!/bin/sh <- tmp fix for hx highlight
 {
     "layer": "top",
-    "position": "bottom",
-    "height": 36,
-    "spacing": 4,
+    "position": "top",
+    "height": 24,
+    "spacing": 0,
     "modules-left": [
-        "wlr/workspaces"
+        "sway/workspaces"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
         "tray", 
-        "custom/clipboard", 
-        "idle_inhibitor", 
-        "custom/weather", 
         "wireplumber", 
         "backlight", 
         "network", 
         "battery"
     ],
-    "custom/clipboard": {
-      "format": "🄯",
-      "interval": "once",
-      "return-type": "json",
-      "on-click": "exec cliphist list | rofi -dmenu | cliphist decode | wl-copy",
-      "signal": 9
-    },
-    "wlr/workspaces": {
+    "sway/workspaces": {
         "format": "{icon}",
         "on-click": "activate",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "active": "",
-            "default": ""
-        },
         "sort-by-number": true
     },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
     "tray": {
-        // "icon-size": 21,
-        "spacing": 10
+        "spacing": 4
     },
     "clock": {
         "timezone": "Europe/Rome",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
     },
     "backlight": {
         "format": "{icon} {percent}%",
@@ -79,17 +49,11 @@
         "tooltip-format": "{essid}",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{essid}"
     },
    "wireplumber": {
         "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": ["", "", ""]
     },
-    "custom/weather": {
-        "format": "{}",
-        "exec": "curl 'https://wttr.in/Viareggio?M&format=%c+%t'",
-        "interval": 1800
-    }
 }
 

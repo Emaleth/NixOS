@@ -19,9 +19,13 @@
     };
     systemPackages = [
       pkgs.steam-run
-      pkgs.cliphist
-      pkgs.wl-clipboard
+      pkgs.gnome.nautilus
+      pkgs.gnome.gnome-keyring
+      pkgs.gnome.sushi
+      pkgs.autotiling
       pkgs.godot_4
+      pkgs.polkit_gnome
+      pkgs.nox
       pkgs.libreoffice-qt
       pkgs.hunspell
       pkgs.hunspellDicts.it_IT
@@ -31,23 +35,19 @@
       pkgs.blender
       pkgs.imv
       pkgs.zathura
-      pkgs.ranger
       pkgs.bitwarden
-      pkgs.kitty
       pkgs.chromium
       pkgs.helix
-      pkgs.waybar
       pkgs.mako
-      pkgs.rofi-wayland
+      pkgs.tofi
       pkgs.zenith
       pkgs.swaybg
       pkgs.grim
       pkgs.slurp
-      pkgs.hyprpicker
-      pkgs.udiskie
       pkgs.libnotify
-      pkgs.libsForQt5.polkit-qt      
-      pkgs.parted
+      pkgs.netflix
+      pkgs.gnome.sushi
+      pkgs.gnome.simple-scan
       pkgs.gcc
       pkgs.hugo
 
@@ -62,16 +62,17 @@
   
   networking.hostName = "nixos"; 
   
-  documentation = {
-    man.enable = false;
-    doc.enable = false;
-    dev.enable = false;
-  };
-  
   programs = {
+    seahorse.enable = true;
+    gnome-disks.enable = true;
     adb.enable = true;
     light.enable = true;
     dconf.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryFlavor = "gnome3";
+    };
     fish = {
       enable = true;
       vendor = {
@@ -80,29 +81,26 @@
         completions.enable = true;
       };
     };
-    hyprland.enable = true;
     git.enable = true;
     starship.enable = true;
   };
   
   fonts = {
-    fontDir.enable = true;
     fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
     ];
   };
   security = {
     rtkit.enable = true;
+    polkit.enable = true;
   };
 
   nix = {
     package = pkgs.nixFlakes;
     settings = {
       substituters = [
-        "https://hyprland.cachix.org"
       ];
       trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
       experimental-features = [
         "nix-command"
@@ -153,15 +151,14 @@
   nixpkgs.config.allowUnfree = true;
   
   services = {
-    udisks2 = {
-      enable = true;
-      mountOnMedia = true;
-    };
+    gvfs.enable = true;
+    gnome.gnome-keyring.enable = true;
+    blueman.enable = true;
     greetd = {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --user-menu --cmd Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --user-menu --cmd sway";
           user = "greeter";
         };
       };
@@ -188,6 +185,7 @@
   };
   
   hardware = {
+    bluetooth.enable = true;
     sane = {
       enable = true;
       extraBackends = [ pkgs.hplipWithPlugin ];
