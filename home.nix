@@ -29,7 +29,7 @@ in
         defaultCursor = "Vanilla-DMZ";
       };
     };
-    stateVersion = "22.11";
+    stateVersion = "23.05";
   };
   wayland.windowManager.sway = {
     enable = true;
@@ -51,7 +51,7 @@ in
       ";
     };
     waybar.enable = true;
-    exa = {
+    eza = {
       enable = true;
       enableAliases = true;
     };

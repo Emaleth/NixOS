@@ -19,6 +19,9 @@
     };
     systemPackages = [
       pkgs.steam-run
+      pkgs.trenchbroom
+      pkgs.pixelorama
+      pkgs.firefox
       pkgs.gnome.nautilus
       pkgs.gnome.gnome-keyring
       pkgs.gnome.sushi
@@ -35,18 +38,19 @@
       pkgs.blender
       pkgs.imv
       pkgs.zathura
+      pkgs.pixelorama
+      pkgs.android-tools
       pkgs.bitwarden
       pkgs.chromium
       pkgs.helix
       pkgs.mako
+      pkgs.gimp
       pkgs.tofi
       pkgs.zenith
       pkgs.swaybg
       pkgs.grim
       pkgs.slurp
       pkgs.libnotify
-      pkgs.netflix
-      pkgs.gnome.sushi
       pkgs.gnome.simple-scan
       pkgs.gcc
       pkgs.hugo
@@ -86,7 +90,7 @@
   };
   
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
     ];
   };
@@ -196,5 +200,5 @@
     };
   };
 
-  system.stateVersion = "22.11"; 
+  system.stateVersion = "23.05"; 
 }
