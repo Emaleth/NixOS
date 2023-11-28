@@ -13,10 +13,7 @@ in
       ".config/helix/config.toml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/helix/config.toml;
       ".config/fish/config.fish".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/fish/config.fish;
       ".config/starship.toml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/starship/starship.toml;
-      ".config/waybar/config".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/waybar/config;
-      ".config/waybar/style.css".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/waybar/style.css;
-      ".config/mako/config".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/mako/config;
-      ".config/tofi/config".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/tofi/config;
+      ".config/yambar/config.yml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/yambar/config.yml;
     };
 
     pointerCursor = {
@@ -44,13 +41,6 @@ in
   };
   programs = {
     home-manager.enable = true;
-    kitty = {
-      enable = true;
-      extraConfig = "
-        ${builtins.readFile /home/emaleth/Repositories/NixOS/dotfiles/kitty/kitty.conf}
-      ";
-    };
-    waybar.enable = true;
     eza = {
       enable = true;
       enableAliases = true;

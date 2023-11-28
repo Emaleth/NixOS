@@ -4,4 +4,6 @@ end
 
 set fish_greeting
 
-alias xterm kitty
+alias kitty=xterm
+alias trenchbroom="env -u WAYLAND_DISPLAY trenchbroom"
+

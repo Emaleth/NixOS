@@ -19,16 +19,16 @@
     };
     systemPackages = [
       pkgs.steam-run
+      pkgs.android-studio
+      pkgs.fuzzel
+      pkgs.megacmd
       pkgs.trenchbroom
-      pkgs.pixelorama
-      pkgs.firefox
       pkgs.gnome.nautilus
       pkgs.gnome.gnome-keyring
       pkgs.gnome.sushi
       pkgs.autotiling
       pkgs.godot_4
       pkgs.polkit_gnome
-      pkgs.nox
       pkgs.libreoffice-qt
       pkgs.hunspell
       pkgs.hunspellDicts.it_IT
@@ -43,16 +43,16 @@
       pkgs.bitwarden
       pkgs.chromium
       pkgs.helix
-      pkgs.mako
+      pkgs.fnott
       pkgs.gimp
-      pkgs.tofi
-      pkgs.zenith
       pkgs.swaybg
       pkgs.grim
+      pkgs.foot
       pkgs.slurp
       pkgs.libnotify
       pkgs.gnome.simple-scan
       pkgs.gcc
+      pkgs.yambar
       pkgs.hugo
 
       # LSP
@@ -67,6 +67,10 @@
   networking.hostName = "nixos"; 
   
   programs = {
+    java = {
+      enable = true;
+      package = pkgs.jdk17;
+    };
     seahorse.enable = true;
     gnome-disks.enable = true;
     adb.enable = true;
@@ -148,6 +152,7 @@
       "video" 
       "scanner" 
       "adbusers"
+      "plugdev"
     ];
     shell = pkgs.fish;
   };
