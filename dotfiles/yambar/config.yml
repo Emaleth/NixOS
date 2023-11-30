@@ -1,9 +1,6 @@
 awesome: &awesome Font Awesome 6 Free:style=solid:pixelsize=14
 awesome_brands: &awesome_brands Font Awesome 6 Brands:pixelsize=16
 
-std_underline: &std_underline {underline: { size: 2, color: ff0000ff}}
-
-# This is THE bar configuration
 bar:
   height: 26
   location: top
@@ -20,18 +17,13 @@ bar:
     - i3:
         anchors: # Not used (directly) by f00bar; used here to avoid duplication
           - string: &i3_common {margin: 5, on-click: "swaymsg --quiet workspace {name}"}
-          - string: &default {<<: *i3_common, text: "? {name}"}
-          - string: &main    {<<: *i3_common, text: , font: *awesome}
-          - string: &surfing {<<: *i3_common, text: , font: *awesome_brands}
-          - string: &misc    {<<: *i3_common, text: , font: *awesome}
-          - string: &mail    {<<: *i3_common, text: , font: *awesome}
-          - string: &music   {<<: *i3_common, text: , font: *awesome}
+          - string: &default {<<: *i3_common, text: "{name}"}
           - focused: &focused
-              deco: {stack: [background: {color: ffa0a04c}, <<: *std_underline]}
+              deco: {stack: [background: {color: ffa0a04c}]}
           - invisible: &invisible {foreground: ffffff55}
           - urgent: &urgent
               foreground: 000000ff
-              deco: {stack: [background: {color: bc2b3fff}, <<: *std_underline]}
+              deco: {stack: [background: {color: bc2b3fff}]}
           - map: &i3_mode
               default:
                 - string:
@@ -49,81 +41,14 @@ bar:
                 state == unfocused: {string: {<<: *default}}
                 state == invisible: {string: {<<: [*default, *invisible]}}
                 state == urgent:    {string: {<<: [*default, *urgent]}}
-          main:
-            map:
-              conditions:
-                state == focused:   {string: {<<: [*main, *focused]}}
-                state == unfocused: {string: {<<: *main}}
-                state == invisible: {string: {<<: [*main, *invisible]}}
-                state == urgent:    {string: {<<: [*main, *urgent]}}
-          surfing:
-            map:
-              conditions:
-                state == focused: {string: {<<: [*surfing, *focused]}}
-                state == unfocused: {string: {<<: *surfing}}
-                state == invisible: {string: {<<: [*surfing, *invisible]}}
-                state == urgent:    {string: {<<: [*surfing, *urgent]}}
-          misc:
-            map:
-              conditions:
-                state == focused: {string: {<<: [*misc, *focused]}}
-                state == unfocused: {string: {<<: *misc}}
-                state == invisible: {string: {<<: [*misc, *invisible]}}
-                state == urgent:    {string: {<<: [*misc, *urgent]}}
-
-          mail:
-            map:
-              conditions:
-                state == focused: {string: {<<: [*mail, *focused]}}
-                state == unfocused: {string: {<<: *mail}}
-                state == invisible: {string: {<<: [*mail, *invisible]}}
-                state == urgent:    {string: {<<: [*mail, *urgent]}}
-          music:
-            map:
-              conditions:
-                state == focused: {string: {<<: [*music, *focused]}}
-                state == unfocused: {string: {<<: *music}}
-                state == invisible: {string: {<<: [*music, *invisible]}}
-                state == urgent:    {string: {<<: [*music, *urgent]}}
-
-    - foreign-toplevel:
-        content:
-          map:
-            conditions:
-              ~activated: {empty: {}}
-              activated:
-                - string: {text: "{app-id}", foreground: ffa0a0ff}
-                - string: {text: ": {title}"}
+        persistent: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                
   center:
-    - mpd:
-        host: /run/mpd/socket
-        anchors:
-          list: &artist_album_title
-            spacing: 0
-            items:
-              - map:
-                  conditions:
-                    state == playing: {string: {text: "{artist}"}}
-                    state == paused: {string: {text: "{artist}", foreground: ffffff66}}
-              - string: {text: " | ", foreground: ffffff66}
-              - map:
-                  conditions:
-                    state == playing: {string: {text: "{album}"}}
-                    state == paused: {string: {text: "{album}", foreground: ffffff66}}
-              - string: {text: " | ", foreground: ffffff66}
-              - map:
-                  conditions:
-                    state == playing: {string: {text: "{title}", foreground: ffa0a0ff}}
-                    state == paused: {string: {text: "{title}", foreground: ffffff66}}
-
+    - clock:
+        time-format: "%H:%M"
         content:
-          map:
-            margin: 10
-            conditions:
-              state == offline: {string: {text: offline, foreground: ff0000ff}}
-              state == stopped: {string: {text: stopped}}
-              state == paused: {list: *artist_album_title}
-              state == playing: {list: *artist_album_title}
+          - string: {text: "{date}", right-margin: 5}
+          - string: {text: "{time}"}
 
   right:
     - removables:
@@ -145,10 +70,10 @@ bar:
                   on-click: udisksctl unmount -b {device}
                   conditions:
                     ~optical:
-                      - string: {<<: *drive, deco: *std_underline}
+                      - string: {<<: *drive}
                       - string: {text: "{label}"}
                     optical:
-                      - string: {<<: *optical, deco: *std_underline}
+                      - string: {<<: *optical}
                       - string: {text: "{label}"}
     - network:
         name: enp1s0
@@ -244,15 +169,11 @@ bar:
                       - string: {text:  , foreground: 00ff00ff, font: *awesome}
                       - string: {text:  , foreground: 00ff00ff, font: *awesome}
                       - string: {text:  , foreground: 00ff00ff, font: *awesome}
-    - clock:
-        time-format: "%H:%M %Z"
-        content:
-          - string: {text: "{date}", right-margin: 5}
-          - string: {text: "{time}"}
+            right-margin: 5
     - label:
         content:
           string:
-            on-click: systemctl poweroff
+            on-click: swaynag -t warning -m "asdas" -B `Yes` `systemctl shutdown`
             text:  
             right-margin: 10
             font: *awesome

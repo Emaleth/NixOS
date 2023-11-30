@@ -7,6 +7,7 @@ set $up k
 set $right l
 set $term foot
 set $menu fuzzel
+set $bar yambar
 
 output * bg /home/emaleth/Pictures/Wallpapers/wallhaven-jxlwpm.jpg fill
 
@@ -15,7 +16,7 @@ exec fnott
 exec bitwarden
 exec autotiling
 
-# exec_always sh -c "killall yambar && yambar &"
+exec_always sh -c "killall $bar && $bar &"
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
@@ -23,10 +24,10 @@ bindsym $mod+d exec $menu
 floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
-for_window [app_id=".*"] floating enable
-for_window [class=".*"] floating enable
-for_window [instance=".*"] floating enable
-for_window [title=".*"] floating enable
+# for_window [app_id=".*"] floating enable
+# for_window [class=".*"] floating enable
+# for_window [instance=".*"] floating enable
+# for_window [title=".*"] floating enable
 
 
 input type:keyboard {
@@ -131,7 +132,7 @@ bindsym Print exec grim Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S
 bindsym Shift+Print exec grim -g "$(slurp)" Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') && notify-send Grim+Slurp 'Screenshot Taken'
 
 bar {
-   swaybar_command yambar
+   swaybar_command $bar
 }
 
 # bg 1c1b1b
