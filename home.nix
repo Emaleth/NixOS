@@ -26,7 +26,7 @@ in
         defaultCursor = "Vanilla-DMZ";
       };
     };
-    stateVersion = "23.05";
+    stateVersion = "23.11";
   };
   wayland.windowManager.sway = {
     enable = true;

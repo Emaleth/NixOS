@@ -23,9 +23,8 @@
       pkgs.fuzzel
       pkgs.megacmd
       pkgs.trenchbroom
-      pkgs.gnome.nautilus
+      pkgs.cinnamon.nemo-with-extensions
       pkgs.gnome.gnome-keyring
-      pkgs.gnome.sushi
       pkgs.autotiling
       pkgs.godot_4
       pkgs.polkit_gnome
@@ -38,8 +37,6 @@
       pkgs.blender
       pkgs.imv
       pkgs.zathura
-      pkgs.pixelorama
-      pkgs.android-tools
       pkgs.bitwarden
       pkgs.chromium
       pkgs.helix
@@ -205,5 +202,5 @@
     };
   };
 
-  system.stateVersion = "23.05"; 
+  system.stateVersion = "24.05"; 
 }
