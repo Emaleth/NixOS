@@ -13,6 +13,7 @@ in
       ".config/helix/config.toml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/helix/config.toml;
       ".config/fish/config.fish".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/fish/config.fish;
       ".config/starship.toml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/starship/starship.toml;
+      ".config/sway/config".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/sway/config;
       ".config/yambar/config.yml".source = symlink /home/emaleth/Repositories/NixOS/dotfiles/yambar/config.yml;
     };
 
@@ -28,17 +29,17 @@ in
     };
     stateVersion = "23.11";
   };
-  wayland.windowManager.sway = {
-    enable = true;
-    config = null;
-    extraConfig = "
-      include /home/emaleth/Repositories/NixOS/dotfiles/sway/config
-    ";
-    wrapperFeatures = {
-      base = true;
-      gtk = true;
-    };
-  };
+#  wayland.windowManager.sway = {
+#    enable = true;
+#    config = null;
+#    extraConfig = "
+#      include /home/emaleth/Repositories/NixOS/dotfiles/sway/config
+#    ";
+#    wrapperFeatures = {
+#      base = true;
+#      gtk = true;
+#    };
+#  };
   programs = {
     home-manager.enable = true;
     eza = {

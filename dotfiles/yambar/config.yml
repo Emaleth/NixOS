@@ -102,25 +102,29 @@ bar:
                   conditions:
                     ipv4 == "":
                       - string: {text: , font: *awesome, foreground: ffffff66}
-    - alsa:
-        card: hw:PCH
-        mixer: Master
-        content:
-          map:
+    - pipewire:
+        anchors:
+          volume: &volume
             conditions:
-              ~online: {string: {text: , font: *awesome, foreground: ff0000ff}}
-              online:
-                map:
-                  on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
+              muted: {string: {text: "{linear_volume}%", foreground: ff0000ff}}
+              ~muted: {string: {text: "{linear_volume}%"}}
+        content:
+          list:
+            items:
+              - map:
                   conditions:
-                    muted: {string: {text: , font: *awesome, foreground: ffffff66}}
-                    ~muted:
-                      ramp:
-                        tag: percent
-                        items:
-                          - string: {text: , font: *awesome}
-                          - string: {text: , font: *awesome}
-                          - string: {text: , font: *awesome}
+                    type == "sink":
+                      map:
+                        conditions:
+                          icon == "audio-headset-bluetooth":
+                            string: {text: "󰥰 "}
+                        default:
+                          - ramp:
+                              tag: linear_volume
+                              items:
+                                - string: {text: "  "}
+                                - string: {text: "  "}
+                                - string: {text: "  "}
     - backlight:
         name: intel_backlight
         content: [ string: {text: , font: *awesome}, string: {text: "{percent}%"}]

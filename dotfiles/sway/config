@@ -15,6 +15,8 @@ exec blueman-applet
 exec fnott
 exec bitwarden
 exec autotiling
+exec dbus-sway-environment
+exec configure-gtk
 
 exec_always sh -c "killall $bar && $bar &"
 
@@ -23,12 +25,6 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 floating_modifier $mod normal
 bindsym $mod+Shift+c reload
-
-# for_window [app_id=".*"] floating enable
-# for_window [class=".*"] floating enable
-# for_window [instance=".*"] floating enable
-# for_window [title=".*"] floating enable
-
 
 input type:keyboard {
     xkb_layout "it"
