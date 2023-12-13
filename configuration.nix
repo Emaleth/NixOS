@@ -50,6 +50,7 @@ in
       pkgs.steam-run
       pkgs.android-studio
       pkgs.fuzzel
+      pkgs.sway
       pkgs.megacmd
       pkgs.trenchbroom
       pkgs.cinnamon.nemo-with-extensions
@@ -68,7 +69,6 @@ in
       pkgs.blender
       pkgs.imv
       pkgs.zathura
-      pkgs.bitwarden
       pkgs.chromium
       pkgs.helix
       pkgs.fnott
@@ -103,6 +103,10 @@ in
     gnome-disks.enable = true;
     adb.enable = true;
     light.enable = true;
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
     dconf.enable = true;
     gnupg.agent = {
       enable = true;
@@ -185,21 +189,17 @@ in
     shell = pkgs.fish;
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
+  };
   
   services = {
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
     blueman.enable = true;
-#    greetd = {
-#      enable = true;
-#      settings = {
-#        default_session = {
-#          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --user-menu --cmd sway";
-#          user = "greeter";
-#        };
-#      };
-#    };
     pipewire = {
       enable = true;
       audio.enable = true;

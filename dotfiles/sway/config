@@ -7,18 +7,17 @@ set $up k
 set $right l
 set $term foot
 set $menu fuzzel
-set $bar yambar
 
 output * bg /home/emaleth/Pictures/Wallpapers/wallhaven-jxlwpm.jpg fill
 
 exec blueman-applet
 exec fnott
-exec bitwarden
+# exec bitwarden
 exec autotiling
 exec dbus-sway-environment
 exec configure-gtk
 
-exec_always sh -c "killall $bar && $bar &"
+exec_always sh -c 'killall yambar && yambar &'
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
@@ -128,7 +127,7 @@ bindsym Print exec grim Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S
 bindsym Shift+Print exec grim -g "$(slurp)" Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') && notify-send Grim+Slurp 'Screenshot Taken'
 
 bar {
-   swaybar_command $bar
+    swaybar_command yambar
 }
 
 # bg 1c1b1b
