@@ -23,7 +23,6 @@
       pkgs.firefox
       pkgs.megacmd
       pkgs.libsForQt5.kate
-      pkgs.libsForQt5.kdeconnect-kde
       pkgs.godot_4
       pkgs.bitwarden
       pkgs.libreoffice-qt
