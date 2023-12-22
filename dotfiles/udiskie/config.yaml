@@ -1,6 +1,0 @@
-program_options:
-  tray: auto
-  menu: flat
-  file-manager: nautilus
-  terminal: kitty
-  builtin: gui

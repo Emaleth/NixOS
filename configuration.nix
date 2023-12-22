@@ -1,34 +1,5 @@
 { config, pkgs, lib, inputs, ... }:
 
-let
-  dbus-sway-environment = pkgs.writeTextFile {
-    name = "dbus-sway-environment";
-    destination = "/bin/dbus-sway-environment";
-    executable = true;
-
-    text = ''
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-      systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-    '';
-  };
-
-  configure-gtk = pkgs.writeTextFile {
-    name = "configure-gtk";
-    destination = "/bin/configure-gtk";
-    executable = true;
-    text = let
-      schema = pkgs.gsettings-desktop-schemas;
-      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-    in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme 'Dracula'
-    '';
-  };
-
-in
-
 {
   imports = [ 
     /etc/nixos/hardware-configuration.nix
@@ -44,51 +15,26 @@ in
   environment = {
     variables = {
       EDITOR = "hx";
-      VISUAL = "hx";
+      VISUAL = "kate";
     };
     systemPackages = [
       pkgs.steam-run
       pkgs.android-studio
-      pkgs.fuzzel
-      pkgs.sway
+      pkgs.firefox
       pkgs.megacmd
-      pkgs.trenchbroom
-      pkgs.cinnamon.nemo-with-extensions
-      pkgs.gnome.gnome-keyring
-      pkgs.autotiling
+      pkgs.libsForQt5.kate
+      pkgs.libsForQt5.kdeconnect-kde
       pkgs.godot_4
-      pkgs.polkit_gnome
+      pkgs.bitwarden
       pkgs.libreoffice-qt
       pkgs.hunspell
-      pkgs.dracula-theme
-      pkgs.gnome3.adwaita-icon-theme
       pkgs.hunspellDicts.it_IT
       pkgs.discord
-      pkgs.mpv
       pkgs.krita
       pkgs.blender
-      pkgs.imv
-      pkgs.zathura
       pkgs.chromium
       pkgs.helix
-      pkgs.fnott
       pkgs.gimp
-      pkgs.swaybg
-      pkgs.grim
-      pkgs.foot
-      pkgs.slurp
-      pkgs.libnotify
-      pkgs.gnome.simple-scan
-      pkgs.gcc
-      pkgs.yambar
-      pkgs.hugo
-
-      # LSP
-      pkgs.nil
-      pkgs.marksman
-      pkgs.taplo
-      pkgs.nodePackages.bash-language-server
-      pkgs.nodePackages.yaml-language-server
     ];
   };
   
@@ -99,20 +45,8 @@ in
       enable = true;
       package = pkgs.jdk17;
     };
-    seahorse.enable = true;
-    gnome-disks.enable = true;
     adb.enable = true;
-    light.enable = true;
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
     dconf.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryFlavor = "gnome3";
-    };
     fish = {
       enable = true;
       vendor = {
@@ -198,8 +132,14 @@ in
   
   services = {
     gvfs.enable = true;
-    gnome.gnome-keyring.enable = true;
-    blueman.enable = true;
+    xserver = {
+      enable = true;
+      desktopManager.plasma5.enable = true;
+      displayManager = {
+        sddm.enable = true;
+        defaultSession = "plasmawayland";
+      };
+    };
     pipewire = {
       enable = true;
       audio.enable = true;
@@ -217,7 +157,7 @@ in
     };
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
     };
   };
   
