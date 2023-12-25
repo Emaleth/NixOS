@@ -1,5 +1,21 @@
 { config, pkgs, lib, inputs, ... }:
 
+let
+
+  catppuccin-kde-override = pkgs.catppuccin-kde.override {
+      flavour = [ "mocha" ];
+      accents = [ "green" ];
+      winDecStyles = [ "modern" ];
+  };
+  catppuccin-gtk-override = pkgs.catppuccin-gtk.override {
+    accents = [ "green" ];
+    size = "compact";
+    tweaks = [ "normal" ];
+    variant = "mocha";
+  };
+
+in
+
 {
   imports = [ 
     /etc/nixos/hardware-configuration.nix
@@ -20,9 +36,17 @@
     systemPackages = [
       pkgs.steam-run
       pkgs.android-studio
-      pkgs.firefox
       pkgs.megacmd
+      pkgs.catppuccin
+      catppuccin-kde-override
+      catppuccin-gtk-override
+      pkgs.catppuccin-cursors.mochaDark
+      pkgs.catppuccin-papirus-folders
+      pkgs.papirus-folders
+      pkgs.lightly-qt
       pkgs.libsForQt5.kate
+      pkgs.itch
+      pkgs.butler
       pkgs.godot_4
       pkgs.bitwarden
       pkgs.libreoffice-qt
@@ -30,8 +54,8 @@
       pkgs.hunspellDicts.it_IT
       pkgs.discord
       pkgs.krita
-      pkgs.blender
       pkgs.chromium
+      pkgs.blender
       pkgs.helix
       pkgs.gimp
     ];
@@ -40,29 +64,20 @@
   networking.hostName = "nixos"; 
   
   programs = {
+    bash.enableCompletion = true;
+    firefox.enable = true;
+    steam.enable = true;
+    kdeconnect.enable = true;
     java = {
       enable = true;
       package = pkgs.jdk17;
     };
     adb.enable = true;
     dconf.enable = true;
-    fish = {
-      enable = true;
-      vendor = {
-        functions.enable = true;
-        config.enable = true;
-        completions.enable = true;
-      };
-    };
     git.enable = true;
     starship.enable = true;
   };
   
-  fonts = {
-    packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
-    ];
-  };
   security = {
     rtkit.enable = true;
     polkit.enable = true;
@@ -119,14 +134,10 @@
       "adbusers"
       "plugdev"
     ];
-    shell = pkgs.fish;
   };
 
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = [
-      "electron-25.9.0"
-    ];
   };
   
   services = {
