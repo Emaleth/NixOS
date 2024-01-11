@@ -13,6 +13,10 @@ let
     tweaks = [ "normal" ];
     variant = "mocha";
   };
+  catppuccin-kvantum-override = pkgs.catppuccin-kvantum.override {
+    accent = "Green";
+    variant = "Mocha";
+  };
 
 in
 
@@ -36,17 +40,19 @@ in
     systemPackages = [
       pkgs.steam-run
       pkgs.android-studio
-      pkgs.megacmd
+      pkgs.etcher
+      pkgs.spotify
+      pkgs.gparted
       pkgs.catppuccin
       catppuccin-kde-override
       catppuccin-gtk-override
+      catppuccin-kvantum-override
       pkgs.catppuccin-cursors.mochaDark
       pkgs.catppuccin-papirus-folders
       pkgs.papirus-folders
       pkgs.lightly-qt
       pkgs.libsForQt5.kate
       pkgs.itch
-      pkgs.butler
       pkgs.godot_4
       pkgs.bitwarden
       pkgs.libreoffice-qt
@@ -54,7 +60,14 @@ in
       pkgs.hunspellDicts.it_IT
       pkgs.discord
       pkgs.krita
-      pkgs.chromium
+      pkgs.clinfo
+      pkgs.wayland-utils
+      pkgs.vulkan-tools
+      pkgs.glxinfo
+      pkgs.pciutils
+      pkgs.fwupd
+      pkgs.google-chrome
+      pkgs.netflix
       pkgs.blender
       pkgs.helix
       pkgs.gimp
@@ -62,7 +75,13 @@ in
   };
   
   networking.hostName = "nixos"; 
-  
+
+  powerManagement = {
+    enable = true;
+    resumeCommands = builtins.readFile "/home/emaleth/Repositories/NixOS/scripts/reset-mouse.sh";
+    powertop.enable = true;
+  };
+
   programs = {
     bash.enableCompletion = true;
     firefox.enable = true;
@@ -138,6 +157,9 @@ in
 
   nixpkgs.config = {
     allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-19.1.9"
+    ];
   };
   
   services = {
@@ -172,6 +194,7 @@ in
   };
   
   hardware = {
+    cpu.intel.updateMicrocode = true;
     bluetooth.enable = true;
     sane = {
       enable = true;
