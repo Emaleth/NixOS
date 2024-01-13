@@ -78,7 +78,7 @@ in
 
   powerManagement = {
     enable = true;
-    resumeCommands = builtins.readFile "/home/emaleth/Repositories/NixOS/scripts/reset-mouse.sh";
+    resumeCommands = builtins.readFile ./scripts/reset-mouse.sh;
     powertop.enable = true;
   };
 
@@ -105,10 +105,6 @@ in
   nix = {
     package = pkgs.nixFlakes;
     settings = {
-      substituters = [
-      ];
-      trusted-public-keys = [
-      ];
       experimental-features = [
         "nix-command"
         "flakes" 
