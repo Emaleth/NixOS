@@ -1,35 +1,30 @@
 { config, pkgs, lib, inputs, ... }:
-
-let
-
-  catppuccin-kde-override = pkgs.catppuccin-kde.override {
-      flavour = [ "mocha" ];
-      accents = [ "green" ];
-      winDecStyles = [ "modern" ];
-  };
-  catppuccin-gtk-override = pkgs.catppuccin-gtk.override {
-    accents = [ "green" ];
-    size = "compact";
-    tweaks = [ "normal" ];
-    variant = "mocha";
-  };
-  catppuccin-kvantum-override = pkgs.catppuccin-kvantum.override {
-    accent = "Green";
-    variant = "Mocha";
-  };
-
-in
-
+#let
+#kernel_fix = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-22.11.tar.gz") {};
+#in
 {
-  imports = [ 
+  imports = [
     /etc/nixos/hardware-configuration.nix
   ];
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+  boot = {
+    kernelPackages = pkgs.linuxPackages_5_15;
+#    kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_6.override {
+#    argsOverride = rec {
+#      src = pkgs.fetchurl {
+#            url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
+#            sha256 = "sha256-sm98vL+AMe/EnxHyNvNy/DSk/V/GrTFRuJPRqgOO1gM=";
+#      };
+#      version = "6.1.34";
+#      modDirVersion = "6.1.34";
+#      };
+#    });
+    loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
     };
   };
   environment = {
@@ -40,27 +35,21 @@ in
     systemPackages = [
       pkgs.steam-run
       pkgs.android-studio
-      pkgs.etcher
+#      pkgs.etcher
+      pkgs.kdePackages.isoimagewriter
       pkgs.spotify
       pkgs.gparted
-      pkgs.catppuccin
-      catppuccin-kde-override
-      catppuccin-gtk-override
-      catppuccin-kvantum-override
-      pkgs.catppuccin-cursors.mochaDark
-      pkgs.catppuccin-papirus-folders
-      pkgs.papirus-folders
-      pkgs.lightly-qt
       pkgs.libsForQt5.kate
-      pkgs.itch
       pkgs.godot_4
       pkgs.bitwarden
       pkgs.libreoffice-qt
       pkgs.hunspell
       pkgs.hunspellDicts.it_IT
+      pkgs.hunspellDicts.pl_PL
       pkgs.discord
       pkgs.krita
       pkgs.clinfo
+      pkgs.isoimagewriter
       pkgs.wayland-utils
       pkgs.vulkan-tools
       pkgs.glxinfo
@@ -71,6 +60,7 @@ in
       pkgs.blender
       pkgs.helix
       pkgs.gimp
+      pkgs.libsForQt5.skanpage
     ];
   };
   
@@ -78,7 +68,6 @@ in
 
   powerManagement = {
     enable = true;
-    resumeCommands = builtins.readFile ./scripts/reset-mouse.sh;
     powertop.enable = true;
   };
 
@@ -154,18 +143,20 @@ in
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
+      "electron-11.5.0"
+      "electron-12.2.3"
       "electron-19.1.9"
     ];
   };
   
   services = {
+    desktopManager.plasma6.enable = true;
     gvfs.enable = true;
     xserver = {
       enable = true;
-      desktopManager.plasma5.enable = true;
       displayManager = {
         sddm.enable = true;
-        defaultSession = "plasmawayland";
+        defaultSession = "plasma";
       };
     };
     pipewire = {
@@ -187,6 +178,7 @@ in
       enable = true;
       nssmdns4 = true;
     };
+    acpid.enable = true;
   };
   
   hardware = {
