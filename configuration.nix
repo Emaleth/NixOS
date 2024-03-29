@@ -1,7 +1,4 @@
 { config, pkgs, lib, inputs, ... }:
-#let
-#kernel_fix = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-22.11.tar.gz") {};
-#in
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
@@ -9,16 +6,6 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_5_15;
-#    kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_6.override {
-#    argsOverride = rec {
-#      src = pkgs.fetchurl {
-#            url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-#            sha256 = "sha256-sm98vL+AMe/EnxHyNvNy/DSk/V/GrTFRuJPRqgOO1gM=";
-#      };
-#      version = "6.1.34";
-#      modDirVersion = "6.1.34";
-#      };
-#    });
     loader = {
       systemd-boot.enable = true;
       efi = {
@@ -35,7 +22,6 @@
     systemPackages = [
       pkgs.steam-run
       pkgs.android-studio
-#      pkgs.etcher
       pkgs.kdePackages.isoimagewriter
       pkgs.spotify
       pkgs.gparted
@@ -49,7 +35,6 @@
       pkgs.discord
       pkgs.krita
       pkgs.clinfo
-      pkgs.isoimagewriter
       pkgs.wayland-utils
       pkgs.vulkan-tools
       pkgs.glxinfo
@@ -67,6 +52,7 @@
   networking.hostName = "nixos"; 
 
   powerManagement = {
+    resumeCommands = "sh ./Repositories/NixOS/scripts/reset-mouse.sh";
     enable = true;
     powertop.enable = true;
   };
