@@ -5,12 +5,23 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_5_15;
+#    kernelPackages = pkgs.linuxPackages_5_15;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = false;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
+      };
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        extraEntriesBeforeNixOS = false;
+        extraEntries = ''
+          menuentry "NixOS"
+          chainloader /boot/loader/entries/nixos-generation-18.conf
+        '';
       };
     };
   };
@@ -34,10 +45,7 @@
       pkgs.hunspellDicts.pl_PL
       pkgs.discord
       pkgs.krita
-      pkgs.clinfo
       pkgs.wayland-utils
-      pkgs.vulkan-tools
-      pkgs.glxinfo
       pkgs.pciutils
       pkgs.fwupd
       pkgs.google-chrome
@@ -52,7 +60,11 @@
   networking.hostName = "nixos"; 
 
   powerManagement = {
-    resumeCommands = "sh ./Repositories/NixOS/scripts/reset-mouse.sh";
+    resumeCommands = "
+      sudo echo -n
+      sudo /run/current-system/sw/bin/rmmod i2c_hid_acpi
+      sudo /run/current-system/sw/bin/modprobe i2c_hid_acpi
+    ";
     enable = true;
     powertop.enable = true;
   };
@@ -87,7 +99,7 @@
       auto-optimise-store = true;
     };
     gc = {
-      automatic = true;
+      automatic = false;
       dates = "03:15";
     };
   };
