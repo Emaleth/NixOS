@@ -61,9 +61,9 @@
 
   powerManagement = {
     resumeCommands = "
-      sudo echo -n
-      sudo /run/current-system/sw/bin/rmmod i2c_hid_acpi
-      sudo /run/current-system/sw/bin/modprobe i2c_hid_acpi
+      sleep 5
+      wait
+      sh ./Repositories/NixOS/scripts/reset-mouse.sh
     ";
     enable = true;
     powertop.enable = true;
