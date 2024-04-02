@@ -6,7 +6,7 @@
 
   boot = {
 #    kernelPackages = pkgs.linuxPackages_5_15;
-    kernelParams = ["psmouse.synaptics_intertouch=0"]; # fix touchpad not working after wake-up
+#    kernelParams = [""]; # fix touchpad not working after wake-up
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = false;
@@ -20,8 +20,8 @@
         device = "nodev";
         extraEntriesBeforeNixOS = false;
         extraEntries = ''
-          menuentry "NixOS"
-          chainloader /boot/loader/entries/nixos-generation-18.conf
+          menuentry "NixOS Recovery"
+          chainloader /boot/loader/entries/nixos-generation-28.conf
         '';
       };
     };
@@ -46,9 +46,6 @@
       pkgs.hunspellDicts.pl_PL
       pkgs.discord
       pkgs.krita
-      pkgs.wayland-utils
-      pkgs.pciutils
-      pkgs.fwupd
       pkgs.google-chrome
       pkgs.netflix
       pkgs.blender
@@ -62,7 +59,6 @@
 
   powerManagement = {
     enable = true;
-    powertop.enable = true;
   };
 
   programs = {
