@@ -6,6 +6,7 @@
 
   boot = {
 #    kernelPackages = pkgs.linuxPackages_5_15;
+    kernelParams = ["psmouse.synaptics_intertouch=0"]; # fix touchpad not working after wake-up
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = false;
@@ -60,11 +61,6 @@
   networking.hostName = "nixos"; 
 
   powerManagement = {
-    resumeCommands = "
-      sleep 5
-      wait
-      sh ./Repositories/NixOS/scripts/reset-mouse.sh
-    ";
     enable = true;
     powertop.enable = true;
   };
