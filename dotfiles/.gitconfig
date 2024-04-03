@@ -2,4 +2,6 @@
 	email = emaleth@protonmail.com
 	name = Emaleth
 [core]
-	editor = kate -b
+	editor = kdialog --title "Input dialog" --inputbox "Commit message:" > tmp.out
+#	editor = kate -b
+

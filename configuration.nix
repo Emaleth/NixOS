@@ -30,28 +30,30 @@
       EDITOR = "hx";
       VISUAL = "kate";
     };
-    systemPackages = [
-      pkgs.steam-run
-      pkgs.android-studio
-      pkgs.kdePackages.isoimagewriter
-      pkgs.spotify
-      pkgs.gparted
-      pkgs.libsForQt5.kate
-      pkgs.godot_4
-      pkgs.bitwarden
-      pkgs.libreoffice-qt
-      pkgs.hunspell
-      pkgs.hunspellDicts.it_IT
-      pkgs.hunspellDicts.pl_PL
-      pkgs.discord
-      pkgs.krita
-      pkgs.google-chrome
-      pkgs.netflix
-      pkgs.blender
-      pkgs.helix
-      pkgs.hstr
-      pkgs.gimp
-      pkgs.libsForQt5.skanpage
+    systemPackages = with pkgs; [
+      steam-run
+      android-studio
+      kdePackages.isoimagewriter
+      spotify
+      gparted
+      kdePackages.kdialog
+      kdePackages.kate
+      godot_4
+      bitwarden
+      libreoffice-qt
+      lightly-qt
+      hunspell
+      hunspellDicts.it_IT
+      hunspellDicts.pl_PL
+      discord
+      krita
+      google-chrome
+      netflix
+      blender
+      helix
+      hstr
+      gimp
+      kdePackages.skanpage
     ];
   };
   
