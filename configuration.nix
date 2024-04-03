@@ -20,7 +20,7 @@
         device = "nodev";
         extraEntries = ''
           menuentry "NixOS Recovery"
-          chainloader /boot/loader/entries/nixos-generation-28.conf
+          chainloader /boot/loader/entries/nixos-generation-34.conf
         '';
       };
     };
@@ -63,6 +63,7 @@
     resumeCommands = "
       ${pkgs.kmod}/bin/rmmod i2c_hid_acpi
       ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
+      ln -sfn /run/media/emaleth/Keychain/.ssh /home/emaleth/.ssh
     ";
     enable = true;
   };
