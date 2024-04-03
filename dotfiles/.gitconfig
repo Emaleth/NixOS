@@ -3,5 +3,5 @@
 	name = Emaleth
 [core]
 	editor = kate -b
-	sshCommand = ssh -i git_auth
+	sshCommand = ssh -i .ssh/git_auth
 
