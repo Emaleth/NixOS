@@ -1,0 +1,5 @@
+[user]
+	email = emaleth@protonmail.com
+	name = Emaleth
+[core]
+	editor = kate -b

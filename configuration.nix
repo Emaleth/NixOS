@@ -50,6 +50,7 @@
       pkgs.netflix
       pkgs.blender
       pkgs.helix
+      pkgs.hstr
       pkgs.gimp
       pkgs.libsForQt5.skanpage
     ];
