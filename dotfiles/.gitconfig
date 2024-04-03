@@ -1,6 +1,7 @@
 [user]
 	email = emaleth@protonmail.com
 	name = Emaleth
+	signingkey = /home/emaleth/.ssh/git_sign
 [core]
 	editor = kate -b
 	sshCommand = ssh -i /home/emaleth/.ssh/git_auth
