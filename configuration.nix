@@ -54,7 +54,6 @@
       hstr
       gimp
       kdePackages.skanpage
-      zapzap
     ];
   };
   
