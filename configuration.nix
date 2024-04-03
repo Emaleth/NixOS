@@ -6,7 +6,7 @@
 
   boot = {
 #    kernelPackages = pkgs.linuxPackages_5_15;
-#    kernelParams = [""]; # fix touchpad not working after wake-up
+#    kernelParams = [""];
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = false;
@@ -138,11 +138,7 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = [
-      "electron-11.5.0"
-      "electron-12.2.3"
-      "electron-19.1.9"
-    ];
+    permittedInsecurePackages = [];
   };
   
   services = {
@@ -195,6 +191,7 @@
     activationScripts = {symlinks.text =
       "
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.gitconfig /home/emaleth/.gitconfig
+        ln -sfn /run/media/emaleth/Keychain/.ssh /home/emaleth/.ssh
       ";
     };
   };
