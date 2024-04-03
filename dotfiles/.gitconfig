@@ -6,3 +6,5 @@
 	editor = kate -b
 	sshCommand = ssh -i /home/emaleth/.ssh/git_auth
 
+[gpg]
+	format = ssh

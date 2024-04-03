@@ -185,7 +185,7 @@
       driSupport = true;
     };
   };
-# test sas
+# test sa
   system ={
     stateVersion = "24.05";
     activationScripts = {symlinks.text =
