@@ -18,7 +18,6 @@
         enable = true;
         efiSupport = true;
         device = "nodev";
-        extraEntriesBeforeNixOS = false;
         extraEntries = ''
           menuentry "NixOS Recovery"
           chainloader /boot/loader/entries/nixos-generation-28.conf
@@ -59,6 +58,10 @@
   networking.hostName = "nixos"; 
 
   powerManagement = {
+    resumeCommands = "
+      ${pkgs.kmod}/bin/rmmod i2c_hid_acpi
+      ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
+    ";
     enable = true;
   };
 
@@ -185,5 +188,12 @@
     };
   };
 
-  system.stateVersion = "24.05"; 
+  system ={
+    stateVersion = "24.05";
+    activationScripts = {symlinks.text =
+      "
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.gitconfig /home/emaleth/.gitconfig
+      ";
+    };
+  };
 }
