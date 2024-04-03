@@ -40,8 +40,8 @@
       kdePackages.kate
       godot_4
       bitwarden
-      libreoffice-qt
-      lightly-qt
+      libreoffice
+      lightly-boehs
       hunspell
       hunspellDicts.it_IT
       hunspellDicts.pl_PL
@@ -54,6 +54,7 @@
       hstr
       gimp
       kdePackages.skanpage
+      zapzap
     ];
   };
   
