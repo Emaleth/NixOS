@@ -5,8 +5,6 @@
   ];
 
   boot = {
-#    kernelPackages = pkgs.linuxPackages_5_15;
-#    kernelParams = [""];
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = false;
@@ -59,12 +57,22 @@
   
   networking.hostName = "nixos"; 
 
+  fileSystems."/mnt/keychain" = {
+    device = "/dev/disk/by-label/Keychain";
+    fsType = "ext4";
+    options = [
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+    ];
+  };
+
   powerManagement = {
     resumeCommands = "
       ${pkgs.kmod}/bin/rmmod i2c_hid_acpi
       ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
-      ln -sfn /run/media/emaleth/Keychain/.ssh /home/emaleth/.ssh
+      ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
     ";
+#      ln -sfn /run/media/emaleth/Keychain/.ssh /home/emaleth/.ssh
     enable = true;
   };
 
@@ -192,7 +200,7 @@
     activationScripts = {symlinks.text =
       "
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.gitconfig /home/emaleth/.gitconfig
-        ln -sfn /run/media/emaleth/Keychain/.ssh /home/emaleth/.ssh
+        ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
       ";
     };
   };
