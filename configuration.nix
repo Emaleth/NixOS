@@ -30,6 +30,7 @@
     };
     systemPackages = with pkgs; [
       steam-run
+      dig
       android-studio
       kdePackages.isoimagewriter
       spotify
