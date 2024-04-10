@@ -31,6 +31,9 @@
     systemPackages = with pkgs; [
       steam-run
       dig
+      osslsigncode
+      wine64
+      winetricks
       android-studio
       kdePackages.isoimagewriter
       spotify
