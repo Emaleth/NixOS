@@ -18,7 +18,7 @@
         device = "nodev";
         extraEntries = ''
           menuentry "NixOS Recovery"
-          chainloader /boot/loader/entries/nixos-generation-34.conf
+          chainloader /boot/loader/entries/nixos-generation-42.conf
         '';
       };
     };
