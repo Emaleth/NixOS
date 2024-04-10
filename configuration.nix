@@ -73,7 +73,6 @@
       ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
       ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
     ";
-#      ln -sfn /run/media/emaleth/Keychain/.ssh /home/emaleth/.ssh
     enable = true;
   };
 
@@ -81,7 +80,7 @@
     bash.enableCompletion = true;
     firefox.enable = true;
     steam.enable = true;
-    kdeconnect.enable = true;
+#    kdeconnect.enable = true;
     java = {
       enable = true;
       package = pkgs.jdk17;
