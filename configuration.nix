@@ -31,10 +31,13 @@
     systemPackages = with pkgs; [
       steam-run
       dig
+      nmap
+      gawk
       osslsigncode
       wine64
       winetricks
       android-studio
+      inkscape
       kdePackages.isoimagewriter
       spotify
       gparted
@@ -156,12 +159,18 @@
   services = {
     desktopManager.plasma6.enable = true;
     gvfs.enable = true;
-    xserver = {
-      enable = true;
-      displayManager = {
-        sddm.enable = true;
-        defaultSession = "plasma";
+#    xserver = {
+#      enable = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland = {
+          enable = true;
+          compositor = "kwin";
+        };
       };
+      defaultSession = "plasma";
+#      };
     };
     pipewire = {
       enable = true;
@@ -186,6 +195,7 @@
   };
   
   hardware = {
+    enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;
     bluetooth.enable = true;
     sane = {
