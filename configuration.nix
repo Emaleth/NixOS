@@ -34,11 +34,13 @@
       nmap
       gawk
       osslsigncode
+      haruna
       wine64
       winetricks
       android-studio
       inkscape
       kdePackages.isoimagewriter
+      kdePackages.ktorrent
       spotify
       gparted
       kdePackages.kdialog
