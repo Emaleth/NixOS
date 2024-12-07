@@ -34,8 +34,14 @@
       steam-run
       osslsigncode
       wine64
+      yazi
+      udiskie
       winetricks
+      wofi
+      mako
+      waybar
       github-desktop
+      nil
       godot_4-export-templates
       inkscape
       kdePackages.isoimagewriter
@@ -45,6 +51,7 @@
       kdePackages.kdialog
       kdePackages.kate
       godot_4
+#      hyprpolkitagent
       bitwarden
       libreoffice
       lightly-boehs
@@ -111,7 +118,10 @@
   
   security = {
     rtkit.enable = true;
-    polkit.enable = true;
+    polkit = {
+      enable = true;
+#      package = pkgs.hyprpolkitagent;
+    };
   };
 
   nix = {
@@ -129,7 +139,7 @@
     };
   };
   networking.networkmanager.enable = true;
-  #networking.wireless.enable = true;
+
   time.timeZone = "Europe/Rome";
 
   i18n = {
@@ -222,6 +232,10 @@
     activationScripts = {symlinks.text =
       "
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.gitconfig /home/emaleth/.gitconfig
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprland.conf /home/emaleth/.config/hypr/hyprland.conf
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/kitty/kitty.conf /home/emaleth/.config/kitty/kitty.conf
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/helix/config.toml /home/emaleth/.config/helix/config.toml
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/yazi/yazi.toml /home/emaleth/.config/yazi/yazi.toml        
         ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
       ";
     };
