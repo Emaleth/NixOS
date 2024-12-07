@@ -14,6 +14,7 @@
       };
       grub = {
         enable = true;
+        extraEntriesBeforeNixOS = true;
         efiSupport = true;
         device = "nodev";
         extraEntries = ''
@@ -24,20 +25,18 @@
     };
   };
   environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
     variables = {
       EDITOR = "hx";
       VISUAL = "kate";
     };
     systemPackages = with pkgs; [
       steam-run
-      dig
-      nmap
-      gawk
       osslsigncode
-      haruna
       wine64
       winetricks
-      android-studio
+      github-desktop
+      godot_4-export-templates
       inkscape
       kdePackages.isoimagewriter
       kdePackages.ktorrent
@@ -50,6 +49,7 @@
       libreoffice
       lightly-boehs
       hunspell
+      kitty
       hunspellDicts.it_IT
       hunspellDicts.pl_PL
       discord
@@ -85,10 +85,20 @@
   };
 
   programs = {
-    bash.enableCompletion = true;
+    uwsm = {
+      enable = true;
+      waylandCompositors.hyprland = {
+        prettyName = "Hyprland";
+        comment = "Hyprland compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/Hyprland";
+      };
+    };
+    hyprlock.enable = true;
+    bash.completion.enable = true;
     firefox.enable = true;
     steam.enable = true;
-#    kdeconnect.enable = true;
+    hyprland.enable = true;
+  # hyprland.withUWSM = true;
     java = {
       enable = true;
       package = pkgs.jdk17;
@@ -119,7 +129,7 @@
     };
   };
   networking.networkmanager.enable = true;
-
+  #networking.wireless.enable = true;
   time.timeZone = "Europe/Rome";
 
   i18n = {
@@ -159,10 +169,9 @@
   };
   
   services = {
+    hypridle.enable = true;
     desktopManager.plasma6.enable = true;
     gvfs.enable = true;
-#    xserver = {
-#      enable = true;
     displayManager = {
       sddm = {
         enable = true;
@@ -204,14 +213,12 @@
       enable = true;
       extraBackends = [ pkgs.hplipWithPlugin ];
     };
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
     };
   };
-# test sa
   system ={
-    stateVersion = "24.05";
+    stateVersion = "24.11";
     activationScripts = {symlinks.text =
       "
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.gitconfig /home/emaleth/.gitconfig
