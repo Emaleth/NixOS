@@ -65,7 +65,6 @@
       netflix
       blender
       helix
-      hstr
       gimp
       kdePackages.skanpage
     ];
@@ -110,7 +109,6 @@
       enable = true;
       package = pkgs.jdk17;
     };
-    adb.enable = true;
     dconf.enable = true;
     git.enable = true;
     starship.enable = true;
@@ -180,18 +178,7 @@
   
   services = {
     hypridle.enable = true;
-    desktopManager.plasma6.enable = true;
     gvfs.enable = true;
-    displayManager = {
-      sddm = {
-        enable = true;
-        wayland = {
-          enable = true;
-          compositor = "kwin";
-        };
-      };
-      defaultSession = "plasma";
-#      };
     };
     pipewire = {
       enable = true;
@@ -235,7 +222,8 @@
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprland.conf /home/emaleth/.config/hypr/hyprland.conf
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/kitty/kitty.conf /home/emaleth/.config/kitty/kitty.conf
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/helix/config.toml /home/emaleth/.config/helix/config.toml
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/yazi/yazi.toml /home/emaleth/.config/yazi/yazi.toml        
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/yazi/yazi.toml /home/emaleth/.config/yazi/yazi.toml       
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/config /home/emaleth/.config/waybar/config 
         ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
       ";
     };
