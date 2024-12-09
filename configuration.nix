@@ -19,7 +19,7 @@
         device = "nodev";
         extraEntries = ''
           menuentry "NixOS Recovery"
-          chainloader /boot/loader/entries/nixos-generation-42.conf
+          chainloader /boot/loader/entries/nixos-generation-46.conf
         '';
       };
     };
@@ -32,15 +32,17 @@
     };
     systemPackages = with pkgs; [
       steam-run
-      osslsigncode
-      wine64
+      avizo
+      brightnessctl
       yazi
       udiskie
-      winetricks
-      wofi
+      wttrbar
+      nwg-look
+      walker
+      zathura
+      hyprcursor
+      hyprpaper
       mako
-      waybar
-      github-desktop
       nil
       godot_4-export-templates
       inkscape
@@ -54,7 +56,6 @@
 #      hyprpolkitagent
       bitwarden
       libreoffice
-      lightly-boehs
       hunspell
       kitty
       hunspellDicts.it_IT
@@ -91,6 +92,8 @@
   };
 
   programs = {
+    fish.enable = true;
+    waybar.enable = true;
     uwsm = {
       enable = true;
       waylandCompositors.hyprland = {
@@ -100,11 +103,22 @@
       };
     };
     hyprlock.enable = true;
-    bash.completion.enable = true;
+    bash = {
+      interactiveShellInit = ''
+        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+        then
+          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+        fi
+      '';
+    };
     firefox.enable = true;
     steam.enable = true;
-    hyprland.enable = true;
-  # hyprland.withUWSM = true;
+    hyprland = {
+      enable = true;
+#      withUWSM = true;
+      xwayland.enable = true;
+      };
     java = {
       enable = true;
       package = pkgs.jdk17;
@@ -113,6 +127,8 @@
     git.enable = true;
     starship.enable = true;
   };
+  
+  fonts.packages = with pkgs; [ pkgs.nerdfonts ];
   
   security = {
     rtkit.enable = true;
@@ -179,6 +195,10 @@
   services = {
     hypridle.enable = true;
     gvfs.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
     pipewire = {
       enable = true;
       audio.enable = true;
@@ -223,6 +243,9 @@
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/helix/config.toml /home/emaleth/.config/helix/config.toml
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/yazi/yazi.toml /home/emaleth/.config/yazi/yazi.toml       
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/config /home/emaleth/.config/waybar/config 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprpaper.conf /home/emaleth/.config/hypr/hyprpaper.conf 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/fish/config.fish /home/emaleth/.config/fish/config.fish 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hypridle.conf /home/emaleth/.config/hypr/hypridle.conf 
         ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
       ";
     };
