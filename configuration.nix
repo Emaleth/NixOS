@@ -28,11 +28,10 @@
     sessionVariables.NIXOS_OZONE_WL = "1";
     variables = {
       EDITOR = "hx";
-      VISUAL = "kate";
+      VISUAL = "hx";
     };
     systemPackages = with pkgs; [
       steam-run
-      avizo
       brightnessctl
       yazi
       udiskie
@@ -51,9 +50,7 @@
       spotify
       gparted
       kdePackages.kdialog
-      kdePackages.kate
       godot_4
-#      hyprpolkitagent
       bitwarden
       libreoffice
       hunspell
@@ -116,7 +113,7 @@
     steam.enable = true;
     hyprland = {
       enable = true;
-#      withUWSM = true;
+      withUWSM = true;
       xwayland.enable = true;
       };
     java = {
@@ -128,18 +125,19 @@
     starship.enable = true;
   };
   
-  fonts.packages = with pkgs; [ pkgs.nerdfonts ];
+  fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
+  fonts.fontDir.enable = true;
   
   security = {
     rtkit.enable = true;
     polkit = {
       enable = true;
-#      package = pkgs.hyprpolkitagent;
     };
+    soteria.enable = true;
   };
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.latest;
     settings = {
       experimental-features = [
         "nix-command"
@@ -243,9 +241,13 @@
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/helix/config.toml /home/emaleth/.config/helix/config.toml
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/yazi/yazi.toml /home/emaleth/.config/yazi/yazi.toml       
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/config /home/emaleth/.config/waybar/config 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/style.css /home/emaleth/.config/waybar/style.css 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprpaper.conf /home/emaleth/.config/hypr/hyprpaper.conf 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/fish/config.fish /home/emaleth/.config/fish/config.fish 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hypridle.conf /home/emaleth/.config/hypr/hypridle.conf 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprlock.conf /home/emaleth/.config/hypr/hyprlock.conf 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/mako/config /home/emaleth/.config/mako/config 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/power_menu.xml /home/emaleth/.config/waybar/power_menu.xml
         ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
       ";
     };
