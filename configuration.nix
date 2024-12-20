@@ -19,7 +19,7 @@
         device = "nodev";
         extraEntries = ''
           menuentry "NixOS Recovery"
-          chainloader /boot/loader/entries/nixos-generation-46.conf
+          chainloader /boot/loader/entries/nixos-generation-86.conf
         '';
       };
     };
@@ -32,8 +32,12 @@
     };
     systemPackages = with pkgs; [
       steam-run
+      hyprwall
+      hyprsunset
+      hyprgui
       brightnessctl
       yazi
+      #hyprpanel
       udiskie
       wttrbar
       nwg-look
@@ -41,6 +45,7 @@
       zathura
       hyprcursor
       hyprpaper
+      hyprshot
       mako
       nil
       godot_4-export-templates
@@ -87,7 +92,7 @@
     ";
     enable = true;
   };
-
+ 
   programs = {
     fish.enable = true;
     waybar.enable = true;
