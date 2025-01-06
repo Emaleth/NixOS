@@ -32,21 +32,18 @@
     };
     systemPackages = with pkgs; [
       steam-run
-      hyprwall
+      upower
+      upower-notify
       hyprsunset
-      hyprgui
       brightnessctl
       yazi
-      #hyprpanel
+      hyprpanel
       udiskie
-      wttrbar
       nwg-look
       walker
       zathura
       hyprcursor
       hyprpaper
-      hyprshot
-      mako
       nil
       godot_4-export-templates
       inkscape
@@ -95,7 +92,6 @@
  
   programs = {
     fish.enable = true;
-    waybar.enable = true;
     uwsm = {
       enable = true;
       waylandCompositors.hyprland = {
@@ -245,14 +241,12 @@
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/kitty/kitty.conf /home/emaleth/.config/kitty/kitty.conf
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/helix/config.toml /home/emaleth/.config/helix/config.toml
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/yazi/yazi.toml /home/emaleth/.config/yazi/yazi.toml       
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/config /home/emaleth/.config/waybar/config 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/style.css /home/emaleth/.config/waybar/style.css 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprpaper.conf /home/emaleth/.config/hypr/hyprpaper.conf 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/fish/config.fish /home/emaleth/.config/fish/config.fish 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hypridle.conf /home/emaleth/.config/hypr/hypridle.conf 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprlock.conf /home/emaleth/.config/hypr/hyprlock.conf 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/mako/config /home/emaleth/.config/mako/config 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/power_menu.xml /home/emaleth/.config/waybar/power_menu.xml
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hyprpanel/config.json /home/emaleth/.config/hyprpanel/config.json 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/walke/config.json /home/emaleth/.config/walker/config.json 
         ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
       ";
     };

@@ -1,10 +1,11 @@
-theme = "onedark"
+theme = "papercolor-dark"
 
 [editor]
 bufferline = "multiple"
 line-number = "absolute"
 mouse = true
 true-color = true
+scrolloff = 10
 
 [editor.cursor-shape]
 insert = "bar"
@@ -12,6 +13,7 @@ normal = "block"
 select = "underline"
 
 [editor.indent-guides]
+render = true
 character = "╎"
 
 [editor.file-picker]
