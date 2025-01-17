@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
   outputs = inputs @ {nixpkgs, ...}: {
@@ -12,7 +11,6 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         ];
       };   
     };

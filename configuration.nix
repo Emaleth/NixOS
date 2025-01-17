@@ -32,12 +32,11 @@
     };
     systemPackages = with pkgs; [
       steam-run
-      upower
-      upower-notify
       hyprsunset
+      hyprnotify
       brightnessctl
       yazi
-      hyprpanel
+      trash-cli
       udiskie
       nwg-look
       walker
@@ -124,6 +123,7 @@
     dconf.enable = true;
     git.enable = true;
     starship.enable = true;
+    waybar.enable = true;
   };
   
   fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
@@ -245,8 +245,11 @@
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/fish/config.fish /home/emaleth/.config/fish/config.fish 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hypridle.conf /home/emaleth/.config/hypr/hypridle.conf 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprlock.conf /home/emaleth/.config/hypr/hyprlock.conf 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hyprpanel/config.json /home/emaleth/.config/hyprpanel/config.json 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/walke/config.json /home/emaleth/.config/walker/config.json 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/walker/config.json /home/emaleth/.config/walker/config.json 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/config.jsonc /home/emaleth/.config/waybar/config.jsonc 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/style.css /home/emaleth/.config/waybar/style.css 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/power_menu.xml /home/emaleth/.config/waybar/power_menu.xml 
+        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/mediaplayer.py /home/emaleth/.config/waybar/mediaplayer.py
         ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
       ";
     };
