@@ -19,7 +19,7 @@
         device = "nodev";
         extraEntries = ''
           menuentry "NixOS Recovery"
-          chainloader /boot/loader/entries/nixos-generation-86.conf
+          chainloader /boot/loader/entries/nixos-generation-104.conf
         '';
       };
     };
@@ -32,23 +32,11 @@
     };
     systemPackages = with pkgs; [
       steam-run
-      hyprsunset
-      hyprnotify
-      brightnessctl
-      yazi
-      trash-cli
-      udiskie
-      nwg-look
-      walker
-      zathura
-      hyprcursor
-      hyprpaper
       nil
       godot_4-export-templates
       inkscape
       kdePackages.isoimagewriter
       kdePackages.ktorrent
-      spotify
       gparted
       kdePackages.kdialog
       godot_4
@@ -61,11 +49,14 @@
       discord
       krita
       google-chrome
-      netflix
       blender
       helix
       gimp
       kdePackages.skanpage
+    ];
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      plasma-browser-integration
+      konsole
     ];
   };
   
@@ -88,18 +79,13 @@
     ";
     enable = true;
   };
- 
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
   programs = {
     fish.enable = true;
-    uwsm = {
-      enable = true;
-      waylandCompositors.hyprland = {
-        prettyName = "Hyprland";
-        comment = "Hyprland compositor managed by UWSM";
-        binPath = "/run/current-system/sw/bin/Hyprland";
-      };
-    };
-    hyprlock.enable = true;
     bash = {
       interactiveShellInit = ''
         if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
@@ -110,12 +96,6 @@
       '';
     };
     firefox.enable = true;
-    steam.enable = true;
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-      xwayland.enable = true;
-      };
     java = {
       enable = true;
       package = pkgs.jdk17;
@@ -123,7 +103,6 @@
     dconf.enable = true;
     git.enable = true;
     starship.enable = true;
-    waybar.enable = true;
   };
   
   fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
@@ -134,7 +113,6 @@
     polkit = {
       enable = true;
     };
-    soteria.enable = true;
   };
 
   nix = {
@@ -192,11 +170,16 @@
   };
   
   services = {
-    hypridle.enable = true;
+    xserver.enable = true;
     gvfs.enable = true;
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    };
+    desktopManager = {
+      plasma6.enable = true;
     };
     pipewire = {
       enable = true;
@@ -237,19 +220,9 @@
     activationScripts = {symlinks.text =
       "
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.gitconfig /home/emaleth/.gitconfig
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprland.conf /home/emaleth/.config/hypr/hyprland.conf
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/kitty/kitty.conf /home/emaleth/.config/kitty/kitty.conf
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/helix/config.toml /home/emaleth/.config/helix/config.toml
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/yazi/yazi.toml /home/emaleth/.config/yazi/yazi.toml       
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprpaper.conf /home/emaleth/.config/hypr/hyprpaper.conf 
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/fish/config.fish /home/emaleth/.config/fish/config.fish 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hypridle.conf /home/emaleth/.config/hypr/hypridle.conf 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/hypr/hyprlock.conf /home/emaleth/.config/hypr/hyprlock.conf 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/walker/config.json /home/emaleth/.config/walker/config.json 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/config.jsonc /home/emaleth/.config/waybar/config.jsonc 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/style.css /home/emaleth/.config/waybar/style.css 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/power_menu.xml /home/emaleth/.config/waybar/power_menu.xml 
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/waybar/mediaplayer.py /home/emaleth/.config/waybar/mediaplayer.py
         ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
       ";
     };
