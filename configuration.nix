@@ -5,7 +5,6 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = false;
       efi = {
@@ -32,7 +31,6 @@
     };
     systemPackages = with pkgs; [
       steam-run
-      nil
       godot_4-export-templates
       inkscape
       kdePackages.isoimagewriter
@@ -43,7 +41,6 @@
       bitwarden
       libreoffice
       hunspell
-      kitty
       hunspellDicts.it_IT
       hunspellDicts.pl_PL
       discord
@@ -56,7 +53,6 @@
     ];
     plasma6.excludePackages = with pkgs.kdePackages; [
       plasma-browser-integration
-      konsole
     ];
   };
   
@@ -170,7 +166,6 @@
   };
   
   services = {
-    xserver.enable = true;
     gvfs.enable = true;
     displayManager = {
       sddm = {
@@ -220,7 +215,6 @@
     activationScripts = {symlinks.text =
       "
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.gitconfig /home/emaleth/.gitconfig
-        ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/kitty/kitty.conf /home/emaleth/.config/kitty/kitty.conf
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/helix/config.toml /home/emaleth/.config/helix/config.toml
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/fish/config.fish /home/emaleth/.config/fish/config.fish 
         ln -sfn /mnt/keychain/.ssh /home/emaleth/.ssh
