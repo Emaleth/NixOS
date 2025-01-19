@@ -6,20 +6,10 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = false;
+      systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
-      };
-      grub = {
-        enable = true;
-        extraEntriesBeforeNixOS = true;
-        efiSupport = true;
-        device = "nodev";
-        extraEntries = ''
-          menuentry "NixOS Recovery"
-          chainloader /boot/loader/entries/nixos-generation-104.conf
-        '';
       };
     };
   };
@@ -27,7 +17,7 @@
     sessionVariables.NIXOS_OZONE_WL = "1";
     variables = {
       EDITOR = "hx";
-      VISUAL = "hx";
+      VISUAL = "kate";
     };
     systemPackages = with pkgs; [
       steam-run
