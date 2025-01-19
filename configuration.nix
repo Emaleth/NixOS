@@ -22,6 +22,7 @@
     systemPackages = with pkgs; [
       steam-run
       godot_4-export-templates
+      github
       inkscape
       kdePackages.isoimagewriter
       kdePackages.ktorrent
