@@ -2,7 +2,7 @@
   description = "Emaleth's NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
   };
 
   outputs = inputs @ {nixpkgs, ...}: {

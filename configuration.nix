@@ -68,8 +68,8 @@
   };
   qt = {
     enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
+#    platformTheme = "gnome";
+#    style = "adwaita-dark";
   };
   programs = {
     fish.enable = true;
@@ -92,7 +92,7 @@
     starship.enable = true;
   };
   
-  fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
+  fonts.packages = [ pkgs.nerdfonts ];
   fonts.fontDir.enable = true;
   
   security = {
