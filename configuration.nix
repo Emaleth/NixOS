@@ -20,6 +20,7 @@
       VISUAL = "kate";
     };
     systemPackages = with pkgs; [
+      haruna
       steam-run
       godot_4-export-templates
       github-desktop
