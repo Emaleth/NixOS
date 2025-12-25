@@ -3,11 +3,14 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/release-24.11";
+      url = "github:NixOS/nixpkgs/nixos-unstable";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    impermanence = {
+      url = "github:nix-community/impermanence";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -19,7 +22,7 @@
     };
   };
 
-  outputs = inputs @ {nixpkgs, home-manager, sops-nix, stylix, ...}: {
+  outputs = inputs @ {nixpkgs, home-manager, impermanence, sops-nix, stylix, ...}: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -29,8 +32,16 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.emaleth = import ./home.nix;
+            home-manager.users.emaleth = {
+            #import ./home.nix;
+              imports = [
+                #impermanence.homeManagerModules.impermanence
+                sops-nix.homeManagerModules.sops
+                ./home.nix
+              ];
+            };
           }
+          #impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
           stylix.nixosModules.stylix
         ];

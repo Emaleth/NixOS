@@ -20,28 +20,26 @@
       VISUAL = "kate";
     };
     systemPackages = with pkgs; [
-      haruna
-      steam-run
-      godot_4-export-templates
-      github-desktop
-      inkscape
-      kdePackages.isoimagewriter
-      kdePackages.ktorrent
-      gparted
-      kdePackages.kdialog
-      godot_4
-      bitwarden
-      libreoffice
-      hunspell
-      hunspellDicts.it_IT
-      hunspellDicts.pl_PL
-      discord
-      krita
-      google-chrome
-      blender
-      helix
-      gimp
-      kdePackages.skanpage
+      #steam-run
+      #godot-export-templates-bin
+      #kdePackages.isoimagewriter
+      #kdePackages.ktorrent
+      #gparted
+      #kdePackages.kdialog
+      #godot
+      #bitwarden-desktop
+      #libreoffice
+      #hunspell
+      #hunspellDicts.it_IT
+      #hunspellDicts.pl_PL
+      #discord
+      #krita
+      #google-chrome
+      #nil
+      #blender
+      #helix
+      #gimp
+      #kdePackages.skanpage
     ];
     plasma6.excludePackages = with pkgs.kdePackages; [
       plasma-browser-integration
@@ -73,6 +71,7 @@
 #    style = "adwaita-dark";
   };
   programs = {
+    niri.enable = true;
     fish.enable = true;
     bash = {
       interactiveShellInit = ''
@@ -93,7 +92,7 @@
     starship.enable = true;
   };
   
-  fonts.packages = [ pkgs.nerdfonts ];
+  fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
   fonts.fontDir.enable = true;
   
   security = {
@@ -101,6 +100,7 @@
     polkit = {
       enable = true;
     };
+    soteria.enable = true;
   };
 
   nix = {
@@ -122,17 +122,17 @@
   time.timeZone = "Europe/Rome";
 
   i18n = {
-    defaultLocale = "en_US.utf8";
+    defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_ADDRESS = "it_IT.utf8";
-      LC_IDENTIFICATION = "it_IT.utf8";
-      LC_MEASUREMENT = "it_IT.utf8";
-      LC_MONETARY = "it_IT.utf8";
-      LC_NAME = "it_IT.utf8";
-      LC_NUMERIC = "it_IT.utf8";
-      LC_PAPER = "it_IT.utf8";
-      LC_TELEPHONE = "it_IT.utf8";
-      LC_TIME = "it_IT.utf8";
+      LC_ADDRESS = "it_IT.UTF-8";
+      LC_IDENTIFICATION = "it_IT.UTF-8";
+      LC_MEASUREMENT = "it_IT.UTF-8";
+      LC_MONETARY = "it_IT.UTF-8";
+      LC_NAME = "it_IT.UTF-8";
+      LC_NUMERIC = "it_IT.UTF-8";
+      LC_PAPER = "it_IT.UTF-8";
+      LC_TELEPHONE = "it_IT.UTF-8";
+      LC_TIME = "it_IT.UTF-8";
     };
   };
 

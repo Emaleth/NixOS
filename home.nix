@@ -1,21 +1,53 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
   home.username = "emaleth";
   home.homeDirectory = "/home/emaleth";
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "24.11";
+  home.packages = with pkgs; [
+    godot
+    godot-export-templates-bin
+    bitwarden-desktop
+    libreoffice
+    hunspell
+    hunspellDicts.it_IT
+    hunspellDicts.pl_PL
+    krita
+    google-chrome
+    nil
+    blender
+    gimp
+    kdePackages.skanpage
+    steam-run
+    kdePackages.isoimagewriter
+    kdePackages.ktorrent
+    gparted
+    kdePackages.kdialog
+    nautilus
+    xwayland-satellite
+    swaybg
+  ];
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  home.stateVersion = "25.11";
+
+  programs = {
+    home-manager.enable = true;
+    discord.enable = true;
+    helix.enable = true;
+    mako.enable = true;
+    waybar = {
+      enable = true;
+      sytemd.enable = true;
+    };
+  };
+
+  xdg.portal.extraPortals = [
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-gnome
+    gnome-keyring
+  ];
+
+  services = {
+    swayidle.enable = true;
+  };
 }
