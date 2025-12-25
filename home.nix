@@ -34,10 +34,17 @@
     home-manager.enable = true;
     discord.enable = true;
     helix.enable = true;
+    nixvim.enable = true;
     mako.enable = true;
     waybar = {
       enable = true;
       sytemd.enable = true;
+    };
+    rofi = {
+      enable = true;
+    };
+    kitty = {
+      enable = true;
     };
   };
 

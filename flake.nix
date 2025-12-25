@@ -16,13 +16,16 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ {nixpkgs, home-manager, impermanence, sops-nix, stylix, ...}: {
+  outputs = inputs @ {nixpkgs, home-manager, impermanence, sops-nix, nixvim, stylix, ...}: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -37,12 +40,14 @@
               imports = [
                 #impermanence.homeManagerModules.impermanence
                 sops-nix.homeManagerModules.sops
+                nixvim.homeModules.nixvim
                 ./home.nix
               ];
             };
           }
           #impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
+          nixvim.nixosModules.nixvim
           stylix.nixosModules.stylix
         ];
       };   
