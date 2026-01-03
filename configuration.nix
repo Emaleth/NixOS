@@ -20,6 +20,7 @@
       VISUAL = "kate";
     };
     systemPackages = with pkgs; [
+      kitty
       #steam-run
       #godot-export-templates-bin
       #kdePackages.isoimagewriter
@@ -71,7 +72,6 @@
 #    style = "adwaita-dark";
   };
   programs = {
-    niri.enable = true;
     fish.enable = true;
     bash = {
       interactiveShellInit = ''
@@ -158,6 +158,7 @@
   };
   
   services = {
+    upower.enable = true;
     gvfs.enable = true;
     displayManager = {
       sddm = {
@@ -179,6 +180,7 @@
       };
       pulse.enable = true;
     };
+    power-profiles-daemon.enable = true;
     printing = {
       enable = true;
       drivers = [ pkgs.hplip ];
