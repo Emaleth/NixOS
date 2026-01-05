@@ -39,7 +39,8 @@
     discord.enable = true;
     helix.enable = true;
     nixvim.enable = true;
-    noctalia-shell = ( enable = true;
+    noctalia-shell = {
+      enable = true;
       settings = {
         bar = {
           density = "compact";
@@ -91,7 +92,7 @@
           name = "Marseille, France";
         };
       };
-    });
+    }};
     kitty = {
       enable = true;
     };

@@ -158,6 +158,7 @@
   };
   
   services = {
+    noctalia-shell = enable = true;
     upower.enable = true;
     gvfs.enable = true;
     displayManager = {
