@@ -16,31 +16,10 @@
   environment = {
     sessionVariables.NIXOS_OZONE_WL = "1";
     variables = {
-      EDITOR = "hx";
+      EDITOR = "nvim";
       VISUAL = "kate";
     };
-    systemPackages = with pkgs; [
-      kitty
-      #steam-run
-      #godot-export-templates-bin
-      #kdePackages.isoimagewriter
-      #kdePackages.ktorrent
-      #gparted
-      #kdePackages.kdialog
-      #godot
-      #bitwarden-desktop
-      #libreoffice
-      #hunspell
-      #hunspellDicts.it_IT
-      #hunspellDicts.pl_PL
-      #discord
-      #krita
-      #google-chrome
-      #nil
-      #blender
-      #helix
-      #gimp
-      #kdePackages.skanpage
+    systemPackages = with pkgs; [ 
     ];
     plasma6.excludePackages = with pkgs.kdePackages; [
       plasma-browser-integration
@@ -72,6 +51,7 @@
 #    style = "adwaita-dark";
   };
   programs = {
+    niri.enable = true;
     fish.enable = true;
     bash = {
       interactiveShellInit = ''
@@ -158,7 +138,7 @@
   };
   
   services = {
-    noctalia-shell = enable = true;
+    noctalia-shell.enable = true;
     upower.enable = true;
     gvfs.enable = true;
     displayManager = {
