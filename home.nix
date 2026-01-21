@@ -24,12 +24,6 @@
     kdePackages.ktorrent
     gparted
     kdePackages.kdialog
-    nautilus
-    xwayland-satellite
-    swaybg
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
-    gnome-keyring
   ];
 
   home.stateVersion = "25.11";
@@ -37,29 +31,10 @@
   programs = {
     home-manager.enable = true;
     discord.enable = true;
-    helix.enable = true;
-    nixvim.enable = true;
-    noctalia-shell = {
-      systemd.enable = true;
-      enable = true;
-      #package = null;
-    };
     kitty = {
       enable = true;
     };
   };
-
-  xdg.portal.extraPortals = [
-    #xdg-desktop-portal-gtk
-    #xdg-desktop-portal-gnome
-    #gnome-keyring
-  ];
-
-
-
-
   services = {
-    swayidle.enable = true;
-    mako.enable = true;
   };
 }

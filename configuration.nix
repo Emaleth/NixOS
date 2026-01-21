@@ -20,9 +20,8 @@
       VISUAL = "kate";
     };
     systemPackages = with pkgs; [ 
-    ];
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      plasma-browser-integration
+      nvim
+      kdePackages.kate
     ];
   };
   
@@ -138,7 +137,7 @@
   };
   
   services = {
-    noctalia-shell.enable = true;
+    xserver.enable = true;
     upower.enable = true;
     gvfs.enable = true;
     displayManager = {
@@ -148,7 +147,7 @@
       };
     };
     desktopManager = {
-      plasma6.enable = true;
+      budgie.enable = true;
     };
     pipewire = {
       enable = true;
