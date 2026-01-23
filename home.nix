@@ -30,6 +30,7 @@
 
   programs = {
     home-manager.enable = true;
+    nixvim.enable = true;
     discord.enable = true;
     kitty = {
       enable = true;

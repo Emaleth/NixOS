@@ -12,13 +12,16 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ {nixpkgs, home-manager, impermanence, stylix, ...}: {
+  outputs = inputs @ {nixpkgs, home-manager, impermanence, nixvim, stylix, ...}: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -31,11 +34,13 @@
             home-manager.users.emaleth = {
               imports = [
                 #impermanence.homeManagerModules.impermanence
+                nixvim.homeModules.nixvim
                 ./home.nix
               ];
             };
           }
           #impermanence.nixosModules.impermanence
+          nixvim.nixosModules.nixvim
           stylix.nixosModules.stylix
         ];
       };   

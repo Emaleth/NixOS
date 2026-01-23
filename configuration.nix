@@ -20,7 +20,6 @@
       VISUAL = "kate";
     };
     systemPackages = with pkgs; [ 
-      nvim
       kdePackages.kate
     ];
   };
@@ -50,7 +49,8 @@
 #    style = "adwaita-dark";
   };
   programs = {
-    niri.enable = true;
+    steam.enable = true;
+    nixvim.enable = true;
     fish.enable = true;
     bash = {
       interactiveShellInit = ''
@@ -79,7 +79,6 @@
     polkit = {
       enable = true;
     };
-    soteria.enable = true;
   };
 
   nix = {
