@@ -28,6 +28,12 @@
 
   home.stateVersion = "25.11";
 
+  stylix = {
+    enable = true;
+    autoEnable = true;
+    image = ./wallhaven-g7d5y3.jpg;
+  };
+
   programs = {
     home-manager.enable = true;
     nixvim.enable = true;

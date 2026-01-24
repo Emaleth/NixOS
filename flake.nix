@@ -34,6 +34,7 @@
             home-manager.users.emaleth = {
               imports = [
                 #impermanence.homeManagerModules.impermanence
+                stylix.homeModules.stylix
                 nixvim.homeModules.nixvim
                 ./home.nix
               ];
