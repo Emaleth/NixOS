@@ -24,6 +24,7 @@
     kdePackages.ktorrent
     gparted
     kdePackages.kdialog
+    kdePackages.kate
   ];
 
   home.stateVersion = "25.11";
@@ -31,7 +32,8 @@
   stylix = {
     enable = true;
     autoEnable = true;
-    image = ./wallhaven-g7d5y3.jpg;
+    image = ./wallhaven-nme51y.jpg;
+    polarity = "dark";
   };
 
   programs = {

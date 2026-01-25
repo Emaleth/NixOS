@@ -19,12 +19,18 @@
       EDITOR = "nvim";
       VISUAL = "kate";
     };
+
     systemPackages = with pkgs; [ 
-      kdePackages.kate
     ];
+
   };
-  
-  networking.hostName = "nixos"; 
+#  stylix = {
+#    enable = true;
+#    autoEnable = true;
+#    image = ./wallhaven-g7d5y3.jpg;
+#  };
+
+  networking.hostName = "nixos";
 
   fileSystems."/mnt/keychain" = {
     device = "/dev/disk/by-label/Keychain";
