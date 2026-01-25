@@ -32,7 +32,7 @@
   stylix = {
     enable = true;
     autoEnable = true;
-    image = ./wallhaven-nme51y.jpg;
+    image = ./wallpapers/wallhaven-nme51y.jpg;
     polarity = "dark";
   };
 

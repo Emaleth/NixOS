@@ -28,21 +28,21 @@
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
+          #impermanence.nixosModules.impermanence
+          nixvim.nixosModules.nixvim
+          stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.emaleth = {
               imports = [
                 #impermanence.homeManagerModules.impermanence
-                stylix.homeModules.stylix
                 nixvim.homeModules.nixvim
+                stylix.homeModules.stylix
                 ./home.nix
               ];
             };
           }
-          #impermanence.nixosModules.impermanence
-          nixvim.nixosModules.nixvim
-          stylix.nixosModules.stylix
         ];
       };   
     };
