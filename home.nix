@@ -38,7 +38,13 @@
 
   programs = {
     home-manager.enable = true;
-    nixvim.enable = true;
+    nixvim = {
+      enable = true;
+      plugins = {
+        nil.sources.formatting.nixfmt.enable = true;
+        nil.sources.formatting.nixfmt.package = nixfmt-rfc-style;
+      };
+    };
     discord.enable = true;
     kitty = {
       enable = true;
