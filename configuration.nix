@@ -25,12 +25,12 @@
 
   };
 
-  stylix = {
-    enable = true;
-    autoEnable = true;
-    image = ./wallpapers/wallhaven-nme51y.jpg;
-    polarity = "dark";
-  };
+#  stylix = {
+#    enable = true;
+#    autoEnable = true;
+#    image = ./wallpapers/wallhaven-nme51y.jpg;
+#    polarity = "dark";
+#  };
 
   networking.hostName = "nixos";
 

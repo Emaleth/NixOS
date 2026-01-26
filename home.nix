@@ -51,5 +51,10 @@
     };
   };
   services = {
+    random-background = {
+      enable = true;
+      interval = "15m"; # how often the background is swapped
+      imageDirectory = "./wallpapers";
+    };
   };
 }
