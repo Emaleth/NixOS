@@ -42,7 +42,7 @@
       enable = true;
       plugins = {
         nil.sources.formatting.nixfmt.enable = true;
-        nil.sources.formatting.nixfmt.package = nixfmt-rfc-style;
+        nil.sources.formatting.nixfmt.package = pkgs.nixfmt-rfc-style;
       };
     };
     discord.enable = true;
