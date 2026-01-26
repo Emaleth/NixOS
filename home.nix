@@ -29,12 +29,12 @@
 
   home.stateVersion = "25.11";
 
-  stylix = {
-    enable = true;
-    autoEnable = true;
-    image = ./wallpapers/wallhaven-nme51y.jpg;
-    polarity = "dark";
-  };
+#  stylix = {
+#    enable = true;
+#    autoEnable = true;
+#    image = ./wallpapers/wallhaven-nme51y.jpg;
+#    polarity = "dark";
+#  };
 
   programs = {
     home-manager.enable = true;
