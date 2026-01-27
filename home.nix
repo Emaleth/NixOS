@@ -15,7 +15,7 @@
     hunspellDicts.pl_PL
     krita
     google-chrome
-    nil
+    nixd
     blender
     gimp
     kdePackages.skanpage
@@ -29,12 +29,12 @@
 
   home.stateVersion = "25.11";
 
-  stylix = {
-    enable = true;
-    autoEnable = true;
-    image = ./wallpapers/wallhaven-nme51y.jpg;
-    polarity = "dark";
-  };
+#  stylix = {
+#    enable = true;
+#    autoEnable = true;
+#    image = ./wallpapers/1765746613073274.jpg;
+#    polarity = "dark";
+#  };
 
   programs = {
     home-manager.enable = true;
@@ -54,7 +54,7 @@
     random-background = {
       enable = true;
       interval = "15m"; # how often the background is swapped
-      imageDirectory = "./wallpapers";
+      imageDirectory = "./wallpapers/";
     };
   };
 }

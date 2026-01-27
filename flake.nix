@@ -38,7 +38,6 @@
               imports = [
                 #impermanence.homeManagerModules.impermanence
                 nixvim.homeModules.nixvim
-                stylix.homeModules.stylix
                 ./home.nix
               ];
             };
