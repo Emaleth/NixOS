@@ -28,7 +28,9 @@
   stylix = {
     enable = true;
     autoEnable = true;
-    image = ./wallpapers/wallhaven-ym163k.jpg;
+    #image = ./wallpapers/wallhaven-q256k5.jpg;
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/front-end-delight.yaml";
     polarity = "dark";
   };
 

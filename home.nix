@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     godot
     kitty
+    urbanterror
     godot-export-templates-bin
     bitwarden-desktop
     libreoffice
@@ -14,6 +15,7 @@
     hunspellDicts.it_IT
     hunspellDicts.pl_PL
     krita
+    ani-cli
     google-chrome
     nixd
     blender
