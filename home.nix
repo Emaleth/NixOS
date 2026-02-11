@@ -1,51 +1,61 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "emaleth";
-  home.homeDirectory = "/home/emaleth";
-
-  home.packages = with pkgs; [
-    godot
-    kitty
-    urbanterror
-    godot-export-templates-bin
-    bitwarden-desktop
-    libreoffice
-    hunspell
-    hunspellDicts.it_IT
-    hunspellDicts.pl_PL
-    krita
-    ani-cli
-    google-chrome
-    nixd
-    blender
-    gimp
-    kdePackages.skanpage
-    steam-run
-    kdePackages.isoimagewriter
-    kdePackages.ktorrent
-    gparted
-    kdePackages.kdialog
-    kdePackages.kate
-  ];
-
+  home = {
+    username = "emaleth";
+    homeDirectory = "/home/emaleth";
+    packages = with pkgs; [
+      godot
+      kitty
+      urbanterror
+      godot-export-templates-bin
+      bitwarden-desktop
+      libreoffice
+      hunspell
+      hunspellDicts.it_IT
+      hunspellDicts.pl_PL
+      krita
+      ani-cli
+      google-chrome
+      nixd
+      blender
+      gimp
+      kdePackages.skanpage
+      steam-run
+      kdePackages.isoimagewriter
+      kdePackages.ktorrent
+      gparted
+      kdePackages.kdialog
+      kdePackages.kate
+    ];
+  };
   home.stateVersion = "25.11";
-
-#  stylix = {
-#    enable = true;
-#    autoEnable = true;
-#    image = ./wallpapers/1765746613073274.jpg;
-#    polarity = "dark";
-#  };
 
   programs = {
     home-manager.enable = true;
     nixvim = {
       enable = true;
       plugins = {
-        nil.sources.formatting.nixfmt.enable = true;
-        nil.sources.formatting.nixfmt.package = pkgs.nixfmt-rfc-style;
+        nil.sources.formatting.nixfmt = {
+          enable = true;
+          package = pkgs.nixfmt-rfc-style;
+        };
       };
+    };
+    niri = {
+      enable = true;
+      settings = {
+        spawn-at-startup = [
+          {
+            command = [
+              "noctalia-shell"
+            ];
+          }
+        ];
+      };
+    };
+    noctalia-shell = {
+      enable = true;
     };
     discord.enable = true;
     kitty = {
@@ -53,10 +63,5 @@
     };
   };
   services = {
-    random-background = {
-      enable = true;
-      interval = "15m"; # how often the background is swapped
-      imageDirectory = "./wallpapers/";
-    };
   };
 }

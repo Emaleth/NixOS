@@ -30,12 +30,16 @@
     autoEnable = true;
     #image = ./wallpapers/wallhaven-q256k5.jpg;
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/front-end-delight.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/helios.yaml";
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-city-terminal-dark.yaml";
+    #base24Scheme = "${pkgs.base24-schemes}/share/themes/front-end-delight.yaml";
     polarity = "dark";
   };
 
-  networking.hostName = "nixos";
-
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+  };
   fileSystems."/mnt/keychain" = {
     device = "/dev/disk/by-label/Keychain";
     fsType = "ext4";
@@ -59,6 +63,18 @@
 #    style = "adwaita-dark";
   };
   programs = {
+#    niri = {
+#      enable = true;
+#      settings = {
+#        spawn-at-startup = [
+#          {
+#            command = [
+#              "noctalia-shell"
+#            ];
+#          }
+#        ];
+#      };
+#    };
     steam.enable = true;
     nixvim.enable = true;
     fish.enable = true;
@@ -105,7 +121,6 @@
       dates = "03:15";
     };
   };
-  networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Rome";
 
