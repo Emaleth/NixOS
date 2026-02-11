@@ -24,6 +24,7 @@
       steam-run
       kdePackages.isoimagewriter
       kdePackages.ktorrent
+      xwayland-satellite
       gparted
       kdePackages.kdialog
       kdePackages.kate
