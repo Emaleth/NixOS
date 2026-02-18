@@ -158,6 +158,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [];
+    #overlays = [ niri.overlays.niri ];
   };
   
   services = {
