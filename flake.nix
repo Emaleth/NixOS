@@ -12,10 +12,6 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,7 +33,6 @@
           ./configuration.nix
           home-manager.nixosModules.home-manager
           #impermanence.nixosModules.impermanence
-          #niri.nixosModules.niri
           #noctalia.nixosModules.default
           nixvim.nixosModules.nixvim
           stylix.nixosModules.stylix
@@ -47,7 +42,6 @@
             home-manager.users.emaleth = {
               imports = [
                 #impermanence.homeManagerModules.impermanence
-                niri.homeModules.niri
                 nixvim.homeModules.nixvim
                 noctalia.homeModules.default
                 ./home.nix
