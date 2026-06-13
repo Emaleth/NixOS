@@ -17,23 +17,32 @@
     sessionVariables.NIXOS_OZONE_WL = "1";
     variables = {
       EDITOR = "nvim";
-      VISUAL = "kate";
+      VISUAL = "nvim";
     };
 
     systemPackages = with pkgs; [ 
+      discord
+      kitty
+      godot
+      bitwarden-desktop
+      libreoffice
+      hunspell
+      hunspellDicts.it_IT
+      hunspellDicts.pl_PL
+      krita
+      ani-cli
+      fuzzel
+      google-chrome
+      nixd
+      blender
+      gimp
+      kdePackages.skanpage
+      steam-run
+      kdePackages.isoimagewriter
+      kdePackages.ktorrent
+      gparted
+      kdePackages.kdialog
     ];
-
-  };
-
-  stylix = {
-    enable = true;
-    autoEnable = true;
-    #image = ./wallpapers/wallhaven-q256k5.jpg;
-    #base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/helios.yaml";
-    #base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-city-terminal-dark.yaml";
-    #base24Scheme = "${pkgs.base24-schemes}/share/themes/front-end-delight.yaml";
-    polarity = "dark";
   };
 
   networking = {
@@ -59,22 +68,10 @@
   };
   qt = {
     enable = true;
-#    platformTheme = "gnome";
-#    style = "adwaita-dark";
+   # style = "kvantum";
   };
   programs = {
-#    niri = {
-#      enable = true;
-#      settings = {
-#        spawn-at-startup = [
-#          {
-#            command = [
-#              "noctalia-shell"
-#            ];
-#          }
-#        ];
-#      };
-#    };
+    niri.package = pkgs.niri-unstable;
     steam.enable = true;
     nixvim.enable = true;
     fish.enable = true;
@@ -87,7 +84,6 @@
         fi
       '';
     };
-    firefox.enable = true;
     java = {
       enable = true;
       package = pkgs.jdk17;
@@ -139,7 +135,7 @@
     };
   };
 
-  console.keyMap = "it2";
+  console.keyMap = "it";
 
   users.users.emaleth = {
     isNormalUser = true;
@@ -155,25 +151,29 @@
     ];
   };
 
+
+
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = [];
-    #overlays = [ niri.overlays.niri ];
+    permittedInsecurePackages = [
+      "electron-39.8.10"
+    ];
   };
-  
+
   services = {
+    # Enable Plasma 
+#    desktopManager.plasma6.enable = true;
+    # Default display manager for Plasma
+    displayManager.sddm = {
+      enable = true;
+      # To use Wayland (Experimental for SDDM)
+      wayland.enable = true;
+    };
+
     xserver.enable = true;
+    xserver.layout = "it";
     upower.enable = true;
     gvfs.enable = true;
-    displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    };
-    desktopManager = {
-      budgie.enable = true;
-    };
     pipewire = {
       enable = true;
       audio.enable = true;
