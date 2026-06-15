@@ -18,6 +18,7 @@
     variables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
+      XCURSOR_SIZE = "24";
     };
 
     systemPackages = with pkgs; [ 
@@ -72,6 +73,17 @@
     enable = true;
   };
   programs = {
+    noctalia-greeter = {
+      enable = true;
+      package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      # Optional configuration
+      greeter-args = "";
+      settings.cursor = {
+        theme = "Adwaita";
+        size = 24;
+        package = pkgs.adwaita-icon-theme;
+      };
+    };
     niri.enable = true;
     yazi.enable = true;
     steam.enable = true;
@@ -163,11 +175,7 @@
   };
 
   services = {
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
-
+    greetd.enable = true;
     xserver.enable = true;
     xserver.xkb.layout = "it";
     upower.enable = true;

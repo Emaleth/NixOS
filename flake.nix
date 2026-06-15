@@ -8,6 +8,10 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia";
     };
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     niri ={
       url = "github:sodiboo/niri-flake";
     };
@@ -19,7 +23,7 @@
     };
   };
 
-  outputs = inputs @ {nixpkgs, noctalia, niri, impermanence, nixvim, ...}: {
+  outputs = inputs @ {nixpkgs, noctalia, noctalia-greeter, niri, impermanence, nixvim, ...}: {
     nixConfig = {
       extra-substituters = [ "https://noctalia.cachix.org" ];
       extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
@@ -30,6 +34,7 @@
 	system = "x86_64-linux";
         modules = [
           ./configuration.nix
+	  noctalia-greeter.nixosModules.default
           niri.nixosModules.niri
           #impermanence.nixosModules.impermanence
           nixvim.nixosModules.nixvim
