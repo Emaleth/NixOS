@@ -21,19 +21,21 @@
     };
 
     systemPackages = with pkgs; [ 
+      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       discord
       kitty
       godot
       bitwarden-desktop
+#      noctalia-shell
       libreoffice
       hunspell
       hunspellDicts.it_IT
       hunspellDicts.pl_PL
       krita
       ani-cli
-      fuzzel
       google-chrome
       nixd
+      xwayland-satellite
       blender
       gimp
       kdePackages.skanpage
@@ -68,10 +70,10 @@
   };
   qt = {
     enable = true;
-   # style = "kvantum";
   };
   programs = {
-    niri.package = pkgs.niri-unstable;
+    niri.enable = true;
+    yazi.enable = true;
     steam.enable = true;
     nixvim.enable = true;
     fish.enable = true;
@@ -111,6 +113,8 @@
         "flakes" 
       ];
       auto-optimise-store = true;
+      extra-substituters = [ "https://noctalia.cachix.org" ];
+      extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
     };
     gc = {
       automatic = false;
@@ -151,8 +155,6 @@
     ];
   };
 
-
-
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
@@ -161,17 +163,13 @@
   };
 
   services = {
-    # Enable Plasma 
-#    desktopManager.plasma6.enable = true;
-    # Default display manager for Plasma
     displayManager.sddm = {
       enable = true;
-      # To use Wayland (Experimental for SDDM)
       wayland.enable = true;
     };
 
     xserver.enable = true;
-    xserver.layout = "it";
+    xserver.xkb.layout = "it";
     upower.enable = true;
     gvfs.enable = true;
     pipewire = {

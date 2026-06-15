@@ -26,14 +26,13 @@
     };
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+	system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          home-manager.nixosModules.home-manager
           niri.nixosModules.niri
           #impermanence.nixosModules.impermanence
           nixvim.nixosModules.nixvim
-          #./noctalia.nix
         ];
       };   
     };
