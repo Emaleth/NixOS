@@ -51,7 +51,7 @@
       kdePackages.ktorrent
       gparted
       kdePackages.kdialog
-      vimPlugins.treesitter-modules-nvim
+      vimPlugins.nvim-treesitter
       ripgrep
     ];
   };
