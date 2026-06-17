@@ -4,6 +4,10 @@
     /etc/nixos/hardware-configuration.nix
   ];
 
+  nixpkgs.overlays = [ 
+    inputs.niri.overlays.niri 
+  ];
+
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -24,6 +28,7 @@
     systemPackages = with pkgs; [ 
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       discord
+      neovim
       kitty
       godot
       bitwarden-desktop
@@ -39,6 +44,7 @@
       xwayland-satellite
       blender
       gimp
+      kdePackages.breeze
       kdePackages.skanpage
       steam-run
       kdePackages.isoimagewriter
@@ -79,15 +85,39 @@
       # Optional configuration
       greeter-args = "";
       settings.cursor = {
-        theme = "Adwaita";
+        theme = "breeze";
         size = 24;
-        package = pkgs.adwaita-icon-theme;
+        package = pkgs.kdePackages.breeze;
       };
     };
-    niri.enable = true;
-    yazi.enable = true;
+    niri = {
+      enable = true;
+      package = pkgs.niri-unstable;
+    };
+    sway = {
+      enable = true;
+      package = pkgs.swayfx;
+      extraPackages = with pkgs; [
+        autotiling
+      ];
+    };
+    yazi = {
+      enable = true;
+      settings.yazi = {
+        show_hidden = true;
+      };
+    };
     steam.enable = true;
-    nixvim.enable = true;
+    nvf = {
+      enable = true;
+      settings = {
+        vim.viAlias = false;
+        vim.vimAlias = true;
+        vim.treesitter.enable = true;
+        vim.options.tabstop = 2;
+        vim.filetree.neo-tree.enable = true;
+      };
+    };
     fish.enable = true;
     bash = {
       interactiveShellInit = ''

@@ -18,12 +18,13 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ {nixpkgs, noctalia, noctalia-greeter, niri, impermanence, nixvim, ...}: {
+  outputs = inputs @ {nixpkgs, noctalia, noctalia-greeter, niri, impermanence, nvf, ...}: {
     nixConfig = {
       extra-substituters = [ "https://noctalia.cachix.org" ];
       extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
@@ -36,8 +37,8 @@
           ./configuration.nix
 	  noctalia-greeter.nixosModules.default
           niri.nixosModules.niri
-          #impermanence.nixosModules.impermanence
-          nixvim.nixosModules.nixvim
+          impermanence.nixosModules.impermanence
+	  nvf.nixosModules.default
         ];
       };   
     };
