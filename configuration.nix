@@ -103,7 +103,7 @@
     };
     yazi = {
       enable = true;
-      settings.yazi = {
+      settings = {
         show-hidden = true;
       };
     };
