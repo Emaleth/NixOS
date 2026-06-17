@@ -107,7 +107,7 @@
       enable = true;
       settings.yazi = {
         manager = {
-          show_hidden = true;
+          show-hidden = true;
         };
       };
     };
