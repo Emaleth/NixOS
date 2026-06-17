@@ -104,7 +104,7 @@
     yazi = {
       enable = true;
       settings.yazi = {
-        show_hidden = true;
+        show-hidden = true;
       };
     };
     steam.enable = true;
