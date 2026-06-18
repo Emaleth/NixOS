@@ -107,7 +107,7 @@
       enable = true;
       settings.yazi = {
         mgr = {
-          show-hidden = true;
+          show_hidden = true;
         };
       };
     };
