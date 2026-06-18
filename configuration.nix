@@ -119,6 +119,7 @@
         vim.vimAlias = true;
         vim.treesitter.enable = true;
         vim.options.tabstop = 2;
+        vim.options.shiftstop = 2;
         vim.filetree.neo-tree.enable = true;
       };
     };
