@@ -1,1 +1,1 @@
-[ ] push repo on system update
+[ X ] push repo on system update
