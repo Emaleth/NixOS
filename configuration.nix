@@ -118,8 +118,8 @@
         vim.viAlias = false;
         vim.vimAlias = true;
         vim.treesitter.enable = true;
-        vim.o.tabstop = 2;
-        vim.o.smarttab = 2;
+        vim.opt.tabstop = 2;
+        vim.opt.smarttab = 2;
         vim.filetree.neo-tree.enable = true;
       };
     };
