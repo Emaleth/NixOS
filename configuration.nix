@@ -17,6 +17,7 @@
       };
     };
   };
+
   environment = {
     sessionVariables.NIXOS_OZONE_WL = "1";
     variables = {
@@ -31,7 +32,6 @@
       kitty
       godot
       bitwarden-desktop
-#      noctalia-shell
       libreoffice
       hunspell
       hunspellDicts.it_IT
@@ -117,7 +117,7 @@
         vim.viAlias = false;
         vim.vimAlias = true;
         vim.treesitter.enable = true;
-        vim.opts.tabstop = 2;
+        vim.opts.tabstop = 4;
         vim.opts.smarttab = true;
         vim.filetree.neo-tree.enable = true;
       };
