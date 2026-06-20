@@ -126,6 +126,7 @@
         };
         vim.languages.nix.enable = true;
         vim.filetree.neo-tree.enable = true;
+        vim.telescope.enable = true;
       };
     };
     fish.enable = true;
