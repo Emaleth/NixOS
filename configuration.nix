@@ -117,8 +117,13 @@
         vim.viAlias = false;
         vim.vimAlias = true;
         vim.treesitter.enable = true;
-        vim.opts.tabstop = 4;
-        vim.opts.smarttab = true;
+        vim.opts = {
+          tabstop = 2;
+          shiftwidth = 2;
+          softtabstop = 2;
+          expandtab = true;
+          smarttab = true;
+        };
         vim.filetree.neo-tree.enable = true;
       };
     };
