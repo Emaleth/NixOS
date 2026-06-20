@@ -124,6 +124,7 @@
           expandtab = true;
           smarttab = true;
         };
+        vim.languages.nix.enable = true;
         vim.filetree.neo-tree.enable = true;
       };
     };
