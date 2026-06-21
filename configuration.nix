@@ -138,7 +138,7 @@
         vim.statusline = {
           lualine = {
             enable = true;
-            theme = "catppuccin";
+            theme = "ayu_dark";
           };
         };
         vim.autopairs.nvim-autopairs.enable = true;
