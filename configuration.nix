@@ -117,6 +117,8 @@
         vim.viAlias = false;
         vim.vimAlias = true;
         vim.treesitter.enable = true;
+        vim.treesitter.context.enable = true;
+
         vim.opts = {
           tabstop = 2;
           shiftwidth = 2;
@@ -124,10 +126,28 @@
           expandtab = true;
           smarttab = true;
         };
-        vim.languages.nix.enable = true;
+        vim.languages = {
+          enableFormat = true;
+          enableTreesitter = true;
+          enableExtraDiagnostics = true;
+          nix.enable = true;
+          markdown.enable = true;
+          glsl.enable = true;
+          fish.enable = true;
+        };
+        vim.statusline = {
+          lualine = {
+            enable = true;
+            theme = "catppuccin";
+          };
+        };
+        vim.autopairs.nvim-autopairs.enable = true;
         vim.filetree.neo-tree.enable = true;
         vim.telescope.enable = true;
-        vim.autocomplete.nvim-cmp.enable = true;
+        vim.autocomplete = {
+          nvim-cmp.enable = !isMaximal;
+          blink-cmp.enable = isMaximal;
+        };
       };
     };
     fish.enable = true;
