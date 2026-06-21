@@ -145,8 +145,8 @@
         vim.filetree.neo-tree.enable = true;
         vim.telescope.enable = true;
         vim.autocomplete = {
-          nvim-cmp.enable = !isMaximal;
-          blink-cmp.enable = isMaximal;
+          nvim-cmp.enable = true;
+          blink-cmp.enable = true;
         };
       };
     };
