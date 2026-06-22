@@ -14,7 +14,7 @@
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
-      };
+i      };
     };
   };
 
@@ -113,6 +113,7 @@
     steam.enable = true;
     nvf = {
       enable = true;
+      lazy.enable = false;
       settings = {
         vim.viAlias = false;
         vim.vimAlias = true;
