@@ -142,7 +142,7 @@
           fish.enable = true;
           nix = {
             enable = true;
-            lsp.server = "nixd";
+            lsp.server = [ "nixd" ];
           };
         };
         vim.statusline = {
