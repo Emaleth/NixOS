@@ -133,7 +133,10 @@
           providers.wl-copy.enable = true;
           registers = "unnamedplus";
         };
-        vim.lsp.enable = true;
+        vim.lsp = {
+          enable = true;
+          formatOnSave = true;
+        };
         vim.languages = {
           enableFormat = true;
           enableTreesitter = true;
@@ -145,6 +148,15 @@
             enable = true;
             lsp.servers = [ "nixd" ];
           };
+          css.enable = true;
+          scss.enable = true;
+          html.enable = true;
+          json.enable = true;
+          bash.enable = true;
+          toml.enable = true;
+          glsl.enable = true;
+          fish.enable = true;
+          nim.enable = true;
         };
         vim.statusline = {
           lualine = {
@@ -158,6 +170,19 @@
         vim.autocomplete = {
           nvim-cmp.enable = true;
           blink-cmp.enable = true;
+        };
+        vim.snippets.luasnip.enable = true;
+        vim.tabline = {
+          nvimBufferline.enable = true;
+        };
+        vim.git = {
+          enable = true;
+          gitsigns.enable = true;
+          neogit.enable = true;
+        };
+        vim.minimap = {
+          minimap-vim.enable = false;
+          codewindow.enable = true; # lighter, faster, and uses lua for configuration
         };
       };
     };
