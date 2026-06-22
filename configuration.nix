@@ -132,8 +132,8 @@
           providers.wl-copy.enable = true;
           registers = "unnamedplus";
         };
+        vim.lsp.enable = true;
         vim.languages = {
-          enableLSP = true;
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
@@ -142,7 +142,7 @@
           fish.enable = true;
           nix = {
             enable = true;
-            lsp.server = [ "nixd" ];
+            lsp.servers = [ "nixd" ];
           };
         };
         vim.statusline = {
