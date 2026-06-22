@@ -154,7 +154,6 @@
             json.enable = true;
             bash.enable = true;
             toml.enable = true;
-            fish.enable = true;
             nim.enable = true;
           };
           statusline = {
