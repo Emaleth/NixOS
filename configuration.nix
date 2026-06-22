@@ -113,7 +113,7 @@
     steam.enable = true;
     nvf = {
       enable = true;
-      lazy.enable = false;
+      lazy.enabled = false;
       settings = {
         vim.viAlias = false;
         vim.vimAlias = true;
