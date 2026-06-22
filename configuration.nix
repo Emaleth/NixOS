@@ -125,15 +125,25 @@
           softtabstop = 2;
           expandtab = true;
           smarttab = true;
+          clipboard = "unnamedplus";
+        };
+        vim.clipboard = {
+          enable = true;
+          providers.wl-copy.enable = true;
+          registers = "unnamedplus";
         };
         vim.languages = {
+          enableLSP = true;
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
-          nix.enable = true;
           markdown.enable = true;
           glsl.enable = true;
           fish.enable = true;
+          nix = {
+            enable = true;
+            lsp.server = "nixd";
+          };
         };
         vim.statusline = {
           lualine = {
