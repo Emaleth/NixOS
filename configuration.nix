@@ -120,7 +120,7 @@
             expandtab = true;
             smarttab = true;
             clipboard = "unnamedplus";
-            whichwrap = "<, >, [, ]";
+            whichwrap = "<,>,[,]";
           };
           clipboard = {
             enable = true;
