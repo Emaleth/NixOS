@@ -114,75 +114,75 @@
     nvf = {
       enable = true;
       settings = {
-        vim.lazy.enable = false;
-        vim.viAlias = false;
-        vim.vimAlias = true;
-        vim.treesitter.enable = true;
-        vim.treesitter.context.enable = true;
-
-        vim.opts = {
-          tabstop = 2;
-          shiftwidth = 2;
-          softtabstop = 2;
-          expandtab = true;
-          smarttab = true;
-          clipboard = "unnamedplus";
-        };
-        vim.clipboard = {
-          enable = true;
-          providers.wl-copy.enable = true;
-          registers = "unnamedplus";
-        };
-        vim.lsp = {
-          enable = true;
-          formatOnSave = true;
-        };
-        vim.languages = {
-          enableFormat = true;
-          enableTreesitter = true;
-          enableExtraDiagnostics = true;
-          markdown.enable = true;
-          glsl.enable = true;
-          fish.enable = true;
-          nix = {
-            enable = true;
-            lsp.servers = [ "nixd" ];
+        vim = {
+          lazy.enable = false;
+          viAlias = false;
+          vimAlias = true;
+          treesitter.enable = true;
+          treesitter.context.enable = true;
+          opts = {
+            tabstop = 2;
+            shiftwidth = 2;
+            softtabstop = 2;
+            expandtab = true;
+            smarttab = true;
+            clipboard = "unnamedplus";
           };
-          css.enable = true;
-          scss.enable = true;
-          html.enable = true;
-          json.enable = true;
-          bash.enable = true;
-          toml.enable = true;
-          glsl.enable = true;
-          fish.enable = true;
-          nim.enable = true;
-        };
-        vim.statusline = {
-          lualine = {
+          clipboard = {
             enable = true;
-            theme = "ayu_dark";
+            providers.wl-copy.enable = true;
+            registers = "unnamedplus";
           };
-        };
-        vim.autopairs.nvim-autopairs.enable = true;
-        vim.filetree.neo-tree.enable = true;
-        vim.telescope.enable = true;
-        vim.autocomplete = {
-          nvim-cmp.enable = true;
-          blink-cmp.enable = true;
-        };
-        vim.snippets.luasnip.enable = true;
-        vim.tabline = {
-          nvimBufferline.enable = true;
-        };
-        vim.git = {
-          enable = true;
-          gitsigns.enable = true;
-          neogit.enable = true;
-        };
-        vim.minimap = {
-          minimap-vim.enable = false;
-          codewindow.enable = true; # lighter, faster, and uses lua for configuration
+          lsp = {
+            enable = true;
+            formatOnSave = true;
+          };
+          languages = {
+            enableFormat = true;
+            enableTreesitter = true;
+            enableExtraDiagnostics = true;
+            markdown.enable = true;
+            glsl.enable = true;
+            fish.enable = true;
+            nix = {
+              enable = true;
+              lsp.servers = [ "nixd" ];
+            };
+            css.enable = true;
+            scss.enable = true;
+            html.enable = true;
+            json.enable = true;
+            bash.enable = true;
+            toml.enable = true;
+            fish.enable = true;
+            nim.enable = true;
+          };
+          statusline = {
+            lualine = {
+              enable = true;
+              theme = "ayu_dark";
+            };
+          };
+          autopairs.nvim-autopairs.enable = true;
+          filetree.neo-tree.enable = true;
+          telescope.enable = true;
+          autocomplete = {
+            nvim-cmp.enable = true;
+            blink-cmp.enable = true;
+          };
+          snippets.luasnip.enable = true;
+          tabline = {
+            nvimBufferline.enable = true;
+          };
+          git = {
+            enable = true;
+            gitsigns.enable = true;
+            neogit.enable = true;
+          };
+          minimap = {
+            minimap-vim.enable = false;
+            codewindow.enable = true; # lighter, faster, and uses lua for configuration
+          };
         };
       };
     };
