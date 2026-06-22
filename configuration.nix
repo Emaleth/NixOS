@@ -114,7 +114,7 @@
     nvf = {
       enable = true;
       settings = {
-        lazy.enable = false;
+        vim.lazy.enable = false;
         vim.viAlias = false;
         vim.vimAlias = true;
         vim.treesitter.enable = true;
