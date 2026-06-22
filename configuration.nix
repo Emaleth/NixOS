@@ -95,13 +95,6 @@
       enable = true;
       package = pkgs.niri-unstable;
     };
-    sway = {
-      enable = true;
-      package = pkgs.swayfx;
-      extraPackages = with pkgs; [
-        autotiling
-      ];
-    };
     yazi = {
       enable = true;
       settings.yazi = {
@@ -127,6 +120,7 @@
             expandtab = true;
             smarttab = true;
             clipboard = "unnamedplus";
+            whichwrap = "<, >, [, ]";
           };
           clipboard = {
             enable = true;
@@ -181,6 +175,9 @@
           minimap = {
             minimap-vim.enable = false;
             codewindow.enable = true; # lighter, faster, and uses lua for configuration
+          };
+          comments = {
+            comment-nvim.enable = true;
           };
         };
       };
