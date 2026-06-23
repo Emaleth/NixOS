@@ -163,7 +163,7 @@
             nvim-cmp.enable = true;
             blink-cmp.enable = true;
           };
-          snippets.luasnip.enable = true;
+          #snippets.luasnip.enable = true;
           tabline = {
             nvimBufferline.enable = true;
           };
