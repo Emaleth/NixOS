@@ -116,7 +116,7 @@
           keymaps = [
             {
               key = "<CR>\";
-              mode = "n,i,v";
+              mode = "[n,i,v]";
               silent = true;
               action = "<Cmd>Neotree toggle<CR>";
               }
