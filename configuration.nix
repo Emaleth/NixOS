@@ -115,10 +115,16 @@
           treesitter.context.enable = true;
           keymaps = [
             {
-              key = "<CR>Bslash";
+              key = "<CR><Bslash>";
               mode = "[n,i,v]";
               silent = true;
               action = "<Cmd>Neotree toggle<CR>";
+            }
+            {
+              key = "<Space>";
+              mode = "n";
+              silent = true;
+              action = "find_files";
             }
           ];
           opts = {
