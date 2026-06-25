@@ -115,12 +115,12 @@
           treesitter.context.enable = true;
           keymaps = [
             {
-              key = "<CR>\";
+              key = "<CR>Bslash";
               mode = "[n,i,v]";
               silent = true;
               action = "<Cmd>Neotree toggle<CR>";
-              }
-            ];
+            }
+          ];
           opts = {
             tabstop = 2;
             shiftwidth = 2;
