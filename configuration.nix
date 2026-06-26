@@ -113,20 +113,38 @@
           vimAlias = true;
           treesitter.enable = true;
           treesitter.context.enable = true;
-          maps = [
-            {
-              key = "<C><Bslash>";
-              mode = "[n,i,v]";
-              silent = true;
-              action = "<cmd>Neotree toggle<cr>";
-            }
-            {
-              key = "<Space>";
-              mode = "n";
-              silent = true;
-              action = "<cmd>Telescope<CR>";
-            }
-          ];
+          maps = {
+            normal = {
+              "<C-Bslash>" = {
+	              desc = "Toggle Neotree";
+                action = "<cmd>Neotree toggle reveal<cr>";
+              };
+              "<S>" = {
+	              desc = "Toggle Telescope fd";
+                action = "<cmd>Telescope fd<cr>";
+              };
+            };
+            insert = {
+              "<C-Bslash>" = {
+	              desc = "Toggle Neotree";
+                action = "<cmd>Neotree toggle reveal<cr>";
+              };
+            };
+          };
+#          keymaps = [
+#            {
+#              key = "<C><Bslash>";
+#              mode = "[n,i,v]";
+#              silent = true;
+#              action = "<cmd>Neotree toggle<cr>";
+#            }
+#            {
+#              key = "<Space>";
+#              mode = "n";
+#              silent = true;
+#              action = "<cmd>Telescope<CR>";
+#            }
+#          ];
           opts = {
             tabstop = 2;
             shiftwidth = 2;
