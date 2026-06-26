@@ -113,7 +113,7 @@
           vimAlias = true;
           treesitter.enable = true;
           treesitter.context.enable = true;
-          keymaps = [
+          maps = [
             {
               key = "<C><Bslash>";
               mode = "[n,i,v]";
