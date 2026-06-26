@@ -118,13 +118,13 @@
               key = "<CR><Bslash>";
               mode = "[n,i,v]";
               silent = true;
-              action = "<Cmd>Neotree toggle<CR>";
+              action = ":Neotree toggle<CR>";
             }
             {
               key = "<Space>";
               mode = "n";
               silent = true;
-              action = "<Cmd>Telescope<CR>";
+              action = ":Telescope<CR>";
             }
           ];
           opts = {
