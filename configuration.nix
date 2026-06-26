@@ -115,16 +115,16 @@
           treesitter.context.enable = true;
           keymaps = [
             {
-              key = "<CR><Bslash>";
+              key = "<C><Bslash>";
               mode = "[n,i,v]";
               silent = true;
-              action = ":Neotree toggle<CR>";
+              action = "<cmd>Neotree toggle<cr>";
             }
             {
               key = "<Space>";
               mode = "n";
               silent = true;
-              action = ":Telescope<CR>";
+              action = "<cmd>Telescope<CR>";
             }
           ];
           opts = {
