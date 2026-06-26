@@ -124,7 +124,7 @@
               key = "<Space>";
               mode = "n";
               silent = true;
-              action = "find_files";
+              action = "<Cmd>Telescope<CR>";
             }
           ];
           opts = {
