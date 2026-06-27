@@ -4,5 +4,5 @@ cd Repositories/NixOS
 sudo git add . && git commit -m "Auto Update" && git push
 #sudo nix flake update
 cd
-nh os switch --ask --file "./Repositories/NixOS/flake.nix"
+nh os switch --ask --file "./Repositories/NixOS/configuration.nix"
 #sudo nixos-rebuild switch --flake /home/emaleth/Repositories/NixOS --impure
