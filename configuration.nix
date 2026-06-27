@@ -80,6 +80,12 @@
     enable = true;
   };
   programs = {
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/emaleth/Repositories/NixOS/configuration.nix"; # sets NH_OS_FLAKE variable for you
+    };
     noctalia-greeter = {
       enable = true;
       package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -113,38 +119,22 @@
           vimAlias = true;
           treesitter.enable = true;
           treesitter.context.enable = true;
-          maps = {
-            normal = {
-              "<C-Bslash>" = {
-	              desc = "Toggle Neotree";
-                action = "<cmd>Neotree toggle reveal<cr>";
-              };
-              "<S>" = {
-	              desc = "Toggle Telescope fd";
-                action = "<cmd>Telescope fd<cr>";
-              };
-            };
-            insert = {
-              "<C-Bslash>" = {
-	              desc = "Toggle Neotree";
-                action = "<cmd>Neotree toggle reveal<cr>";
-              };
-            };
-          };
-#          keymaps = [
-#            {
-#              key = "<C><Bslash>";
-#              mode = "[n,i,v]";
-#              silent = true;
-#              action = "<cmd>Neotree toggle<cr>";
-#            }
-#            {
-#              key = "<Space>";
-#              mode = "n";
-#              silent = true;
-#              action = "<cmd>Telescope<CR>";
-#            }
-#          ];
+          utility.yazi-nvim.enable = true;
+          lineNumberMode = "number";
+          keymaps = [
+            {
+              key = "<C><Bslash>";
+              mode = "[n,i,v]";
+              silent = true;
+              action = "<cmd>Neotree toggle<CR>";
+            }
+            {
+              key = "<Space>";
+              mode = "n,v";
+              silent = true;
+              action = "<cmd>Yazi cwd<CR>";
+            }
+          ];
           opts = {
             tabstop = 2;
             shiftwidth = 2;
@@ -185,12 +175,10 @@
           statusline = {
             lualine = {
               enable = true;
-              theme = "ayu_dark";
             };
           };
           autopairs.nvim-autopairs.enable = true;
           filetree.neo-tree.enable = true;
-          telescope.enable = true;
           autocomplete = {
             nvim-cmp.enable = true;
             blink-cmp.enable = true;
