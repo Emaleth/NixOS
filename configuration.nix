@@ -132,7 +132,7 @@
               key = "<Space>";
               mode = "n,v";
               silent = true;
-              action = "<cmd>Yazi cwd<CR>";
+              action = "<cmd>Yazi toggle<CR>";
             }
           ];
           opts = {
