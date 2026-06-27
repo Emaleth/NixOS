@@ -123,14 +123,14 @@
           lineNumberMode = "number";
           keymaps = [
             {
-              key = "<C><Bslash>";
-              mode = "[n,i,v]";
+              key = "<C-\\>";
+              mode = ["n" "i" "v"];
               silent = true;
               action = "<cmd>Neotree toggle<CR>";
             }
             {
               key = "<Space>";
-              mode = "n,v";
+              mode = ["n" "v"];
               silent = true;
               action = "<cmd>Yazi toggle<CR>";
             }
