@@ -83,7 +83,7 @@
     nh = {
       enable = true;
       clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 3";
+      clean.extraArgs = "--keep 10";
       flake = "/home/emaleth/Repositories/NixOS"; # sets NH_OS_FLAKE variable for you
     };
     noctalia-greeter = {

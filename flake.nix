@@ -32,13 +32,13 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
-	system = "x86_64-linux";
+    	  system = "x86_64-linux";
         modules = [
           ./configuration.nix
-	  noctalia-greeter.nixosModules.default
+      	  noctalia-greeter.nixosModules.default
           niri.nixosModules.niri
           impermanence.nixosModules.impermanence
-	  nvf.nixosModules.default
+	        nvf.nixosModules.default
         ];
       };   
     };
