@@ -115,7 +115,7 @@
       enable = true;
       settings = {
         vim = {
-          lazy.enable = false;
+          lazy.enable = true;
           viAlias = false;
           vimAlias = true;
           treesitter.enable = true;
