@@ -31,6 +31,7 @@
       discord
       kitty
       godot
+      claude-code
       bitwarden-desktop
       libreoffice
       hunspell

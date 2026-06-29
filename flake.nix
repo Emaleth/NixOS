@@ -6,7 +6,8 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia/cachix";
+      #url = "github:noctalia-dev/noctalia/cachix";
+      url = "github:noctalia-dev/noctalia/6d6d8a506558ac3a1dc558bd3262d16157a890ef";
     };
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
