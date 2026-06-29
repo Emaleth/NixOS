@@ -120,7 +120,6 @@
           vimAlias = true;
           treesitter.enable = true;
           treesitter.context.enable = true;
-          utility.yazi-nvim.enable = true;
           lineNumberMode = "number";
           keymaps = [
             {
@@ -129,12 +128,6 @@
               silent = true;
               action = "<cmd>Neotree toggle<CR>";
             }
-            {
-              key = "<Space>";
-              mode = ["n" "v"];
-              silent = true;
-              action = "<cmd>Yazi toggle<CR>";
-            }
           ];
           opts = {
             tabstop = 2;
@@ -142,7 +135,6 @@
             softtabstop = 2;
             expandtab = true;
             smarttab = true;
-            clipboard = "unnamedplus";
             whichwrap = "<,>,[,]";
           };
           clipboard = {
@@ -181,10 +173,8 @@
           autopairs.nvim-autopairs.enable = true;
           filetree.neo-tree.enable = true;
           autocomplete = {
-            nvim-cmp.enable = true;
             blink-cmp.enable = true;
           };
-          #snippets.luasnip.enable = true;
           tabline = {
             nvimBufferline.enable = true;
           };
