@@ -32,7 +32,6 @@
       kitty
       whatsie
       spotify
-      tree-sitter
       godot
       claude-code
       bitwarden-desktop
@@ -44,6 +43,7 @@
       ani-cli
       google-chrome
       nixd
+      nixfmt
       xwayland-satellite
       blender
       gimp
@@ -54,7 +54,6 @@
       kdePackages.ktorrent
       gparted
       kdePackages.kdialog
-      tree-sitter
       ripgrep
     ];
   };
