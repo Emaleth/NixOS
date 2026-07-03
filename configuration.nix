@@ -30,6 +30,8 @@
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       discord
       kitty
+      whatsie
+      spotify
       godot
       claude-code
       bitwarden-desktop
