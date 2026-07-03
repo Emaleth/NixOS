@@ -32,6 +32,7 @@
       kitty
       whatsie
       spotify
+      tree-sitter
       godot
       claude-code
       bitwarden-desktop
@@ -276,6 +277,7 @@
   };
 
   services = {
+    protonmail-bridge.enable = true;
     greetd.enable = true;
     xserver.enable = true;
     xserver.xkb.layout = "it";
