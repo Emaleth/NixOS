@@ -10,7 +10,8 @@
       url = "github:noctalia-dev/noctalia/6d6d8a506558ac3a1dc558bd3262d16157a890ef";
     };
     noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
+      #url = "github:noctalia-dev/noctalia-greeter";
+      url = "github:noctalia-dev/noctalia-greeter/d897aff628d9ad980a6709a17c4679679e42aaf5";
     };
     niri ={
       url = "github:sodiboo/niri-flake";
