@@ -28,8 +28,10 @@
 
     systemPackages = with pkgs; [ 
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      gdscript-formatter
       discord
       kitty
+      brightnessctl
       whatsie
       spotify
       godot
