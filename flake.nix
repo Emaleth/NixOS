@@ -7,7 +7,7 @@
     };
     noctalia = {
       #url = "github:noctalia-dev/noctalia/cachix";
-      url = "github:noctalia-dev/noctalia/6d6d8a506558ac3a1dc558bd3262d16157a890ef";
+      url = "github:noctalia-dev/noctalia/e56f6e823436828c068d25f309cd6bdef2ce72df";
     };
     noctalia-greeter = {
       #url = "github:noctalia-dev/noctalia-greeter";
