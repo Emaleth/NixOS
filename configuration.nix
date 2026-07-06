@@ -57,6 +57,7 @@
       gparted
       kdePackages.kdialog
       ripgrep
+      comma
     ];
   };
 
@@ -85,12 +86,6 @@
     enable = true;
   };
   programs = {
-    nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep 10";
-      flake = "/home/emaleth/Repositories/NixOS"; # sets NH_OS_FLAKE variable for you
-    };
     noctalia-greeter = {
       enable = true;
       package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;
