@@ -122,7 +122,7 @@
           lineNumberMode = "number";
           keymaps = [
             {
-              key = "<C-\\>";
+              key = "<C-BSlash>";
               mode = ["n" "i" "v"];
               silent = true;
               action = "<cmd>Neotree toggle<CR>";
