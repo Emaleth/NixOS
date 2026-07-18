@@ -29,6 +29,7 @@
     systemPackages = with pkgs; [ 
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       gdscript-formatter
+      kdePackages.dolphin
       discord
       kitty
       brightnessctl
@@ -100,14 +101,6 @@
     niri = {
       enable = true;
       package = pkgs.niri-unstable;
-    };
-    yazi = {
-      enable = true;
-      settings.yazi = {
-        mgr = {
-          show_hidden = true;
-        };
-      };
     };
     steam.enable = true;
     nvf = {
