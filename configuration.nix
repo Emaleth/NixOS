@@ -5,10 +5,6 @@
     inputs.noctalia.nixosModules.default
   ];
 
-  nixpkgs.overlays = [ 
-    inputs.niri.overlays.niri 
-  ];
-
   boot = {
     loader = {
       systemd-boot.enable = true;
