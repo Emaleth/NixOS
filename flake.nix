@@ -7,11 +7,11 @@
     };
     noctalia = {
       #url = "github:noctalia-dev/noctalia/cachix";
-      url = "github:noctalia-dev/noctalia/e56f6e823436828c068d25f309cd6bdef2ce72df";
+      url = "github:noctalia-dev/noctalia/8de8c875fec545ac61bcc89b55e38b0010afa0d6";
     };
     noctalia-greeter = {
       #url = "github:noctalia-dev/noctalia-greeter";
-      url = "github:noctalia-dev/noctalia-greeter/d897aff628d9ad980a6709a17c4679679e42aaf5";
+      url = "github:noctalia-dev/noctalia-greeter/8de8c875fec545ac61bcc89b55e38b0010afa0d6";
     };
     niri ={
       url = "github:sodiboo/niri-flake";
