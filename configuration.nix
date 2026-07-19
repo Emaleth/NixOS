@@ -41,7 +41,7 @@
       krita
       ani-cli
       google-chrome
-      vscodium
+      vscode
       nixd
       nixfmt
       xwayland-satellite
