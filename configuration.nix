@@ -2,6 +2,7 @@
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
+    inputs.noctalia.nixosModules.default
   ];
 
   nixpkgs.overlays = [ 
