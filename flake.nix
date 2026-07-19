@@ -13,9 +13,6 @@
       #url = "github:noctalia-dev/noctalia-greeter";
       url = "github:noctalia-dev/noctalia-greeter/b0069df8a896a185dc0fc9e698741d17c7e31259";
     };
-    niri ={
-      url = "github:sodiboo/niri-flake";
-    };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -25,7 +22,7 @@
     };
   };
 
-  outputs = inputs @ {nixpkgs, noctalia, noctalia-greeter, niri, impermanence, nvf, ...}: {
+  outputs = inputs @ {nixpkgs, noctalia, noctalia-greeter, impermanence, nvf, ...}: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -33,7 +30,6 @@
         modules = [
           ./configuration.nix
       	  noctalia-greeter.nixosModules.default
-          niri.nixosModules.niri
           impermanence.nixosModules.impermanence
 	        nvf.nixosModules.default
         ];

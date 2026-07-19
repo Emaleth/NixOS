@@ -28,7 +28,6 @@
     };
 
     systemPackages = with pkgs; [ 
-      #inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       gdscript-formatter
       kdePackages.dolphin
       discord
@@ -107,7 +106,6 @@
     };
     niri = {
       enable = true;
-      package = pkgs.niri-unstable;
     };
     steam.enable = true;
     nvf = {
