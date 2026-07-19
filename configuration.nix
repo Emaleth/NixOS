@@ -27,7 +27,7 @@
     };
 
     systemPackages = with pkgs; [ 
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      #inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       gdscript-formatter
       kdePackages.dolphin
       discord
@@ -88,6 +88,11 @@
     enable = true;
   };
   programs = {
+    noctalia = {
+      enable = true;
+      # Enables NetworkManager, Bluetooth, UPower, and a power profile service.
+      recommendedServices.enable = true;
+    };
     noctalia-greeter = {
       enable = true;
       package = inputs.noctalia-greeter.packages.${pkgs.stdenv.hostPlatform.system}.default;

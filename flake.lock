@@ -241,17 +241,17 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1784465503,
-        "narHash": "sha256-of7FV8i5dULQR/WpCIWaYCcDsx94X5N23Je1UB1c7aU=",
+        "lastModified": 1784476498,
+        "narHash": "sha256-h9pfyYOLsBBAm34on/UfFGZlSG6VjanFVeKAm2gsf/M=",
         "owner": "noctalia-dev",
         "repo": "noctalia-greeter",
-        "rev": "8de8c875fec545ac61bcc89b55e38b0010afa0d6",
+        "rev": "b0069df8a896a185dc0fc9e698741d17c7e31259",
         "type": "github"
       },
       "original": {
         "owner": "noctalia-dev",
         "repo": "noctalia-greeter",
-        "rev": "8de8c875fec545ac61bcc89b55e38b0010afa0d6",
+        "rev": "b0069df8a896a185dc0fc9e698741d17c7e31259",
         "type": "github"
       }
     },
