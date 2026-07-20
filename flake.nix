@@ -22,24 +22,35 @@
     };
   };
 
-  outputs = inputs @ {nixpkgs, noctalia, noctalia-greeter, impermanence, nvf, ...}: {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-    	  system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-      	  noctalia-greeter.nixosModules.default
-          impermanence.nixosModules.impermanence
-	        nvf.nixosModules.default
-        ];
-      };   
+  outputs =
+    inputs@{
+      nixpkgs,
+      noctalia,
+      noctalia-greeter,
+      impermanence,
+      nvf,
+      ...
+    }:
+    {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+            noctalia-greeter.nixosModules.default
+            impermanence.nixosModules.impermanence
+            nvf.nixosModules.default
+          ];
+        };
+      };
     };
-  };
 
   nixConfig = {
-      extra-substituters = [ "https://noctalia.cachix.org" ];
-      extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
   };
 
 }

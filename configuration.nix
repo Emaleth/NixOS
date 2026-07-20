@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
@@ -23,13 +29,12 @@
       XCURSOR_SIZE = "24";
     };
 
-    systemPackages = with pkgs; [ 
+    systemPackages = with pkgs; [
       gdscript-formatter
       kdePackages.dolphin
       discord
       kitty
       brightnessctl
-      whatsie
       spotify
       godot
       claude-code
@@ -117,7 +122,11 @@
           keymaps = [
             {
               key = "<C-BSlash>";
-              mode = ["n" "i" "v"];
+              mode = [
+                "n"
+                "i"
+                "v"
+              ];
               silent = true;
               action = "<cmd>Neotree toggle<CR>";
             }
@@ -204,10 +213,10 @@
     git.enable = true;
     starship.enable = true;
   };
-  
+
   fonts.packages = [ pkgs.nerd-fonts.symbols-only ];
   fonts.fontDir.enable = true;
-  
+
   security = {
     rtkit.enable = true;
     polkit = {
@@ -220,7 +229,7 @@
     settings = {
       experimental-features = [
         "nix-command"
-        "flakes" 
+        "flakes"
       ];
       auto-optimise-store = true;
     };
@@ -248,12 +257,12 @@
   users.users.emaleth = {
     isNormalUser = true;
     description = "Emaleth";
-    extraGroups = [ 
-      "networkmanager" 
-      "wheel" 
-      "lpadmin" 
-      "video" 
-      "scanner" 
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "lpadmin"
+      "video"
+      "scanner"
       "adbusers"
       "plugdev"
     ];
@@ -295,7 +304,7 @@
     };
     acpid.enable = true;
   };
-  
+
   hardware = {
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;
@@ -308,10 +317,10 @@
       enable = true;
     };
   };
-  system ={
+  system = {
     stateVersion = "24.11";
-    activationScripts = {symlinks.text =
-      "
+    activationScripts = {
+      symlinks.text = "
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.gitconfig /home/emaleth/.gitconfig
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/helix/config.toml /home/emaleth/.config/helix/config.toml
         ln -sfn /home/emaleth/Repositories/NixOS/dotfiles/.config/fish/config.fish /home/emaleth/.config/fish/config.fish 
