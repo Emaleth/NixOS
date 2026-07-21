@@ -121,7 +121,7 @@
           lineNumberMode = "number";
           keymaps = [
             {
-              key = "<C-1>";
+              key = "<C>\";
               mode = [
                 "n"
                 "i"
