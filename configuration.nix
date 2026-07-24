@@ -61,7 +61,7 @@
       kdePackages.kdialog
       ripgrep
       comma
-      treesitter
+      tree-sitter
     ];
   };
 
