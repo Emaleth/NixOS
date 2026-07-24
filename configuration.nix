@@ -61,6 +61,7 @@
       kdePackages.kdialog
       ripgrep
       comma
+      treesitter
     ];
   };
 
@@ -107,6 +108,7 @@
     };
     niri = {
       enable = true;
+      useNautilus = false;
     };
     steam.enable = true;
     nvf = {
